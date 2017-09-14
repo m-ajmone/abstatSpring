@@ -1,0 +1,2 @@
+http://dbpedia.org/resource/Hawaii##http://xmlns.com/foaf/0.1/name##State of Hawaii@en
+http://dbpedia.org/resource/Hawaii##http://xmlns.com/foaf/0.1/name##Mokuāina o Hawaii@en

@@ -1,0 +1,15 @@
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/AdministrativeRegion
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/Place
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/PopulatedPlace
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/Region
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/Wikidata:Q532
+http://dbpedia.org/resource/Hawaii##http://schema.org/AdministrativeArea
+http://dbpedia.org/resource/Hawaii##http://schema.org/Place
+http://dbpedia.org/resource/Hawaii##http://www.ontologydesignpatterns.org/ont/d0.owl#Location
+http://dbpedia.org/resource/Honolulu##http://dbpedia.org/ontology/Place
+http://dbpedia.org/resource/Honolulu##http://dbpedia.org/ontology/PopulatedPlace
+http://dbpedia.org/resource/Honolulu##http://dbpedia.org/ontology/Settlement
+http://dbpedia.org/resource/Honolulu##http://dbpedia.org/ontology/Wikidata:Q532
+http://dbpedia.org/resource/Honolulu##http://schema.org/Place
+http://dbpedia.org/resource/Honolulu##http://www.ontologydesignpatterns.org/ont/d0.owl#Location
+http://dbpedia.org/resource/Honolulu##http://www.opengis.net/gml/_Feature

@@ -1,0 +1,1 @@
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/PopulatedPlace/areaTotal##28311.0^^http://dbpedia.org/datatype/squareKilometre

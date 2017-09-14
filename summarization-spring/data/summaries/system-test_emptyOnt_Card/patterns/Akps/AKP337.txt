@@ -1,0 +1,2 @@
+http://dbpedia.org/resource/Chicago##http://xmlns.com/foaf/0.1/name##Chicago@en
+http://dbpedia.org/resource/Chicago##http://xmlns.com/foaf/0.1/name##City of Chicago@en

@@ -1,0 +1,1 @@
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/capital##http://dbpedia.org/resource/Honolulu

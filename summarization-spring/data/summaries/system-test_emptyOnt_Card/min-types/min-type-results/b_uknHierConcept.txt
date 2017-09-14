@@ -1,0 +1,9 @@
+http://dbpedia.org/resource/Barack_Obama##http://dbpedia.org/ontology/Agent
+http://dbpedia.org/resource/Barack_Obama##http://dbpedia.org/ontology/OfficeHolder
+http://dbpedia.org/resource/Barack_Obama##http://dbpedia.org/ontology/Person
+http://dbpedia.org/resource/Barack_Obama##http://schema.org/Person
+http://dbpedia.org/resource/Barack_Obama##http://wikidata.dbpedia.org/resource/Q215627
+http://dbpedia.org/resource/Barack_Obama##http://wikidata.dbpedia.org/resource/Q5
+http://dbpedia.org/resource/Barack_Obama##http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent
+http://dbpedia.org/resource/Barack_Obama##http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson
+http://dbpedia.org/resource/Barack_Obama##http://xmlns.com/foaf/0.1/Person
