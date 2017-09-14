@@ -1,0 +1,8 @@
+http://dbpedia.org/resource/Barack_Obama##http://xmlns.com/foaf/0.1/name##http://the_name_of_barack_obama
+http://dbpedia.org/resource/Barack_Obama##http://xmlns.com/foaf/0.1/name##Barack Obama@en
+http://dbpedia.org/resource/Chicago##http://xmlns.com/foaf/0.1/name##City of Chicago@en
+http://dbpedia.org/resource/Chicago##http://xmlns.com/foaf/0.1/name##Chicago@en
+http://dbpedia.org/resource/Hawaii##http://xmlns.com/foaf/0.1/name##State of Hawaii@en
+http://dbpedia.org/resource/Hawaii##http://xmlns.com/foaf/0.1/name##Mokuāina o Hawaii@en
+http://dbpedia.org/resource/Honolulu##http://xmlns.com/foaf/0.1/name##City and County of Honolulu@en
+http://dbpedia.org/resource/Honolulu##http://xmlns.com/foaf/0.1/name##Honolulu@en

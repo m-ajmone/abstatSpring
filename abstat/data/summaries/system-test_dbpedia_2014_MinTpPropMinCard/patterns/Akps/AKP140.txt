@@ -1,0 +1,1 @@
+http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/PopulatedPlace/areaTotal##606.1^^http://dbpedia.org/datatype/squareKilometre

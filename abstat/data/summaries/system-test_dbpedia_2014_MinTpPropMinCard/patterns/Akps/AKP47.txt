@@ -1,0 +1,2 @@
+http://dbpedia.org/resource/Barack_Obama##http://dbpedia.org/ontology/birthPlace##http://dbpedia.org/resource/Hawaii
+http://dbpedia.org/resource/Barack_Obama##http://dbpedia.org/ontology/birthPlace##http://dbpedia.org/resource/Honolulu

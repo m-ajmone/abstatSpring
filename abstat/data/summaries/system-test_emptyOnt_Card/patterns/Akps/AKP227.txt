@@ -1,0 +1,1 @@
+http://dbpedia.org/resource/TV_Record_Rio_de_Janeiro##http://dbpedia.org/ontology/location##http://dbpedia.org/resource/Rio_de_Janeiro

@@ -1,0 +1,1 @@
+http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/areaLand##1.6638E10^^http://www.w3.org/2001/XMLSchema#double
