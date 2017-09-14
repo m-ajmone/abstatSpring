@@ -1,8 +1,0 @@
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/City
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/Place
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/PopulatedPlace
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/Settlement
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/Wikidata:Q532
-http://dbpedia.org/resource/Chicago##http://schema.org/City
-http://dbpedia.org/resource/Chicago##http://schema.org/Place
-http://dbpedia.org/resource/Chicago##http://www.ontologydesignpatterns.org/ont/d0.owl#Location

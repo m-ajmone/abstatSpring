@@ -1,2 +1,0 @@
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/areaWater##1.78709179613184E7^^http://www.w3.org/2001/XMLSchema#double
-http://dbpedia.org/resource/Hawaii##http://dbpedia.org/ontology/areaWater##1.1672E10^^http://www.w3.org/2001/XMLSchema#double

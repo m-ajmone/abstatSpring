@@ -1,1 +1,0 @@
-http://dbpedia.org/resource/Barack_Obama##http://xmlns.com/foaf/0.1/name##http://the_name_of_barack_obama
