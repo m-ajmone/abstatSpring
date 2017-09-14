@@ -1,1 +1,0 @@
-http://dbpedia.org/resource/Chicago##http://dbpedia.org/ontology/areaTotal##6.06057217818624E8^^http://www.w3.org/2001/XMLSchema#double
