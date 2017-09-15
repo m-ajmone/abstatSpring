@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -70,9 +72,17 @@ public class ProcessTriplesController {
 				ontPath = ontologyService.findOntologyById(ontId).getPath();
 				ontName = ontologyService.findOntologyById(ontId).getName();
 			}
-			//quando lo split sarà integrato
-			//String summaryPath = "/Users/michele/Documents/DsAndOnt/summaries/" + datasetName;
-			//File sourceDirectory = new File(dataset.getPath() + "/organized-splitted-deduplicated/");
+			
+			// script bash/awk invocation
+			String[] cmd = {"../pipeline/split-dataset.sh", datasetName};
+			Process p = Runtime.getRuntime().exec(cmd);
+	        
+		    BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		    String line = "";
+		    while ((line = reader.readLine()) != null) {
+		        System.out.println(line);
+		    }
+	        
 			
 			
 			String summaryPath = "data/summaries/" + datasetName + "_" + ontName + "_" + minTp + propMin + card + inf +"/";
