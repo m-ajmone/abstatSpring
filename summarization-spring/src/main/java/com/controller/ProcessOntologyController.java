@@ -42,7 +42,7 @@ public class ProcessOntologyController {
 		
 		String ontId = submitConfigService.findSubmitConfigById(subCfgId).getListOntId().get(0);
 		
-		String datasetSupportFileDirectory="data/summaries/" + ontologyService.findOntologyById(ontId).getName() + "/reports/tmp-data-for-computation/";
+		String datasetSupportFileDirectory="../data/summaries/" + ontologyService.findOntologyById(ontId).getName() + "/reports/tmp-data-for-computation/";
 		
 		File file1 = new File(datasetSupportFileDirectory);
         if (!file1.exists()) {

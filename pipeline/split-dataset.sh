@@ -1,10 +1,10 @@
 #!/bin/bash
 
 DatasetName=$1
-tmpDatasetFile="data/DsAndOnt/dataset/$DatasetName/organized-splitted-deduplicated-tmp-file"
-orgDatasetFile="data/DsAndOnt/dataset/$DatasetName/organized-splitted-deduplicated"
+tmpDatasetFile="../data/DsAndOnt/dataset/$DatasetName/organized-splitted-deduplicated-tmp-file"
+orgDatasetFile="../data/DsAndOnt/dataset/$DatasetName/organized-splitted-deduplicated"
 NProc=4
-DatasetFile="data/DsAndOnt/dataset/$DatasetName/$DatasetName.nt"
+DatasetFile="../data/DsAndOnt/dataset/$DatasetName/$DatasetName.nt"
 dbgCmd=""
 AwkScript="awk-scripts/organize_data.awk"
 

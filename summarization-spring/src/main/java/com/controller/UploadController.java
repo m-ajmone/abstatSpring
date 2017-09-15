@@ -29,7 +29,7 @@ public class UploadController {
 	@Autowired
 	OntologyService ontologyService;
 	
-	private static String UPLOADED_FOLDER = "data/DsAndOnt/";
+	private static String UPLOADED_FOLDER = "../data/DsAndOnt/";
 	
 	@RequestMapping(value = "/ds", method = RequestMethod.POST)
 	public String datasetUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {

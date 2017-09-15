@@ -64,7 +64,7 @@ public class ProcessTriplesController {
 			if(subCfg.isPropertyMinimaliz())
 				propMin = "PropMin";
 			if(!subCfg.isTipoMinimo() || subCfg.getListOntId().isEmpty()) {
-				ontPath = "data/DsAndOnt/ontology/emptyOnt.owl";
+				ontPath = "../data/DsAndOnt/ontology/emptyOnt.owl";
 				ontName = "emptyOnt";
 			}
 			else {
@@ -85,7 +85,7 @@ public class ProcessTriplesController {
 	        
 			
 			
-			String summaryPath = "data/summaries/" + datasetName + "_" + ontName + "_" + minTp + propMin + card + inf +"/";
+			String summaryPath = "../data/summaries/" + datasetName + "_" + ontName + "_" + minTp + propMin + card + inf +"/";
 			File summary = new File(summaryPath);
 			if(summary.exists())
 				FileUtils.deleteDirectory(summary);
@@ -101,7 +101,7 @@ public class ProcessTriplesController {
 	                System.out.println("Failed to create directory!");
 	            }
 	        }
-			File sourceDirectory = new File("data/DsAndOnt/dataset/" + dataset.getName() + "/organized-splitted-deduplicated/");
+			File sourceDirectory = new File("../data/DsAndOnt/dataset/" + dataset.getName() + "/organized-splitted-deduplicated/");
 			File minTypeResult = new File(minTypeResultPath);
 			
 			OntModel ontologyModel = new Model(ontPath,"RDF/XML").getOntologyModel();
