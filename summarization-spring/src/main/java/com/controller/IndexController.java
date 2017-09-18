@@ -37,7 +37,7 @@ public class IndexController {
 	public ModelAndView submitCfg(@ModelAttribute("submitConfig") SubmitConfig submitConfig) {
 		submitConfigService.add(submitConfig);
 		
-		ModelAndView model = new ModelAndView("processing");
+		ModelAndView model = new ModelAndView("processing2");
 		model.addObject("submitConfig", submitConfig);
 		if(submitConfig.getDsId()!=null)
 			model.addObject("datasetName", datasetService.findDatasetById(submitConfig.getDsId()).getName());

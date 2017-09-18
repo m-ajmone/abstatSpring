@@ -54,10 +54,7 @@ public class ProcessOntologyController {
         }
 			
 		String owlBaseFile = ontologyService.findOntologyById(ontId).getPath();
-				
-		
 		System.out.println(owlBaseFile);
-		
 		
 
 		//Model
