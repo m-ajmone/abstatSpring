@@ -1,6 +1,9 @@
-package com.summarization.dataset;
+package com.export;
 
 import java.io.File;
+
+import com.summarization.dataset.ConceptCount;
+import com.summarization.dataset.Files;
 
 
 public class AggregateConceptCounts {

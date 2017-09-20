@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.export.Events;
+
 
 public class AKPDatatypeCount implements NTripleAnalysis{
 

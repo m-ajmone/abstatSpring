@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import com.summarization.dataset.Events;
+import com.export.Events;
 import com.summarization.dataset.InputFile;
 import com.summarization.dataset.Processing;
 

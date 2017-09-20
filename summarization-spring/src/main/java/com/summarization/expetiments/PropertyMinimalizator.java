@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
 
-import com.summarization.dataset.Events;
+import com.export.Events;
 import com.summarization.ontology.PropertyGraph;
 
 

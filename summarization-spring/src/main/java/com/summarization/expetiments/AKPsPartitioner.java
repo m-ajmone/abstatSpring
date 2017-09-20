@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.summarization.dataset.Events;
+import com.export.Events;
 import com.summarization.ontology.PropertyGraph;
 
 

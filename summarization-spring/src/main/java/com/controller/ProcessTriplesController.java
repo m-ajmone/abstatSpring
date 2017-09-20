@@ -15,6 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.export.AggregateConceptCounts;
+import com.export.CalculatePropertyMinimalization;
+import com.export.DatatypeSplittedPatternInference;
+import com.export.Events;
+import com.export.MainCardinality;
+import com.export.ObjectSplittedPatternInference;
+import com.export.ProcessDatatypeRelationAssertions;
+import com.export.ProcessObjectRelationAssertions;
 import com.google.code.externalsorting.ExternalSort;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.model.Dataset;
@@ -23,15 +31,7 @@ import com.service.DatasetService;
 import com.service.OntologyService;
 import com.service.SubmitConfigService;
 import com.summarization.dataset.MinimalTypesCalculation;
-import com.summarization.ontology.DatatypeSplittedPatternInference;
 import com.summarization.ontology.Model;
-import com.summarization.ontology.ObjectSplittedPatternInference;
-import com.summarization.dataset.AggregateConceptCounts;
-import com.summarization.dataset.CalculatePropertyMinimalization;
-import com.summarization.dataset.Events;
-import com.summarization.dataset.MainCardinality;
-import com.summarization.dataset.ProcessDatatypeRelationAssertions;
-import com.summarization.dataset.ProcessObjectRelationAssertions;
 import com.summarization.dataset.ParallelProcessing;
 
 @Controller

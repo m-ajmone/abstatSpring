@@ -1,6 +1,9 @@
-package com.summarization.dataset;
+package com.export;
 
 import java.io.File;
+
+import com.summarization.dataset.OverallObjectRelationsCounting;
+import com.summarization.dataset.ParallelProcessing;
 
 public class ProcessObjectRelationAssertions {
 	public static void processObjectRelationAssertions(File sourceDirectory, File minTypeResult, String patternsPath) throws Exception {

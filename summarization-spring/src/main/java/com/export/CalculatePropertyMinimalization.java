@@ -1,6 +1,7 @@
-package com.summarization.dataset;
+package com.export;
 
 import java.io.File;
+
 import com.summarization.expetiments.PropertyMinimalizator;
 
 
