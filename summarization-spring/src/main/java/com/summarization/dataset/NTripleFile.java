@@ -4,10 +4,10 @@ package com.summarization.dataset;
 
 import org.apache.commons.io.IOUtils;
 
-import com.export.Events;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
+import com.summarization.export.Events;
 
 public class NTripleFile {
 

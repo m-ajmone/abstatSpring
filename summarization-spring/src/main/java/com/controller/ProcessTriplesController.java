@@ -15,14 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.export.AggregateConceptCounts;
-import com.export.CalculatePropertyMinimalization;
-import com.export.DatatypeSplittedPatternInference;
-import com.export.Events;
-import com.export.MainCardinality;
-import com.export.ObjectSplittedPatternInference;
-import com.export.ProcessDatatypeRelationAssertions;
-import com.export.ProcessObjectRelationAssertions;
 import com.google.code.externalsorting.ExternalSort;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.model.Dataset;
@@ -33,6 +25,14 @@ import com.service.SubmitConfigService;
 import com.summarization.dataset.MinimalTypesCalculation;
 import com.summarization.ontology.Model;
 import com.summarization.dataset.ParallelProcessing;
+import com.summarization.export.AggregateConceptCounts;
+import com.summarization.export.CalculatePropertyMinimalization;
+import com.summarization.export.DatatypeSplittedPatternInference;
+import com.summarization.export.Events;
+import com.summarization.export.MainCardinality;
+import com.summarization.export.ObjectSplittedPatternInference;
+import com.summarization.export.ProcessDatatypeRelationAssertions;
+import com.summarization.export.ProcessObjectRelationAssertions;
 
 @Controller
 public class ProcessTriplesController {

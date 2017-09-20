@@ -12,10 +12,10 @@ import java.util.Set;
 import org.jgraph.graph.DefaultEdge;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 
-import com.export.Events;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
 import com.summarization.expetiments.Property;
+import com.summarization.export.Events;
 
 
 public class PropertyGraph {

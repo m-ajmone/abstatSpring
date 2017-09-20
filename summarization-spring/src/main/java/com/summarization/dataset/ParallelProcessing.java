@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.export.Events;
+import com.summarization.export.Events;
 
 public class ParallelProcessing{
 	

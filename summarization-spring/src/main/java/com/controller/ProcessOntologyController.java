@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.export.Events;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.service.OntologyService;
 import com.service.SubmitConfigService;
 import com.summarization.dataset.FileDataSupport;
+import com.summarization.export.Events;
 import com.summarization.ontology.ConceptExtractor;
 import com.summarization.ontology.Concepts;
 import com.summarization.ontology.EqConceptExtractor;

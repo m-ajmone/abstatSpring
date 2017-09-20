@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import com.export.Events;
+import com.summarization.export.Events;
 
 
 

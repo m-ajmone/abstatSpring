@@ -1,4 +1,4 @@
-package com.export;
+package com.summarization.export;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;

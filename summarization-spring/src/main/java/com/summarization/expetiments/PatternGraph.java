@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import org.jgraph.graph.DefaultEdge;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 
-import com.export.Events;
+import com.summarization.export.Events;
 import com.summarization.ontology.PropertyGraph;
 import com.summarization.ontology.TypeGraphExperimental;
 

@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.export.Events;
+import com.summarization.export.Events;
 
 public class AKPObjectCount implements NTripleAnalysis{
 
