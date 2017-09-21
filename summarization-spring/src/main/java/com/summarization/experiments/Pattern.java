@@ -1,4 +1,4 @@
-package com.summarization.expetiments;
+package com.summarization.experiments;
 
 public class Pattern {
     private Concept subj;

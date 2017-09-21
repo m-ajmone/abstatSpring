@@ -14,8 +14,8 @@ import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.summarization.expetiments.Concept;
-import com.summarization.expetiments.JgraphGUI;
+import com.summarization.experiments.Concept;
+import com.summarization.experiments.JgraphGUI;
 
 public class TypeGraphExperimental {
 

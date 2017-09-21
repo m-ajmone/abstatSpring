@@ -6,10 +6,9 @@ import java.util.concurrent.Executors;
 
 
 import com.summarization.dataset.ParallelProcessing;
-import com.summarization.expetiments.AKPsPartitioner;
-import com.summarization.expetiments.PatternGraphMerger;
-import com.summarization.expetiments.TriplesRetriever;
-
+import com.summarization.experiments.AKPsPartitioner;
+import com.summarization.experiments.PatternGraphMerger;
+import com.summarization.experiments.TriplesRetriever;
 import com.summarization.export.Events;
 
 public class DatatypeSplittedPatternInference {

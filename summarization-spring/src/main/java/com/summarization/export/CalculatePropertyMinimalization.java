@@ -1,8 +1,8 @@
 package com.summarization.export;
 
 import java.io.File;
-import com.summarization.expetiments.PropertyMinimalizator;
 
+import com.summarization.experiments.PropertyMinimalizator;
 import com.summarization.export.Events;
 
 

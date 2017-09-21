@@ -1,4 +1,4 @@
-package com.summarization.expetiments;
+package com.summarization.experiments;
 
 import com.hp.hpl.jena.ontology.OntProperty;
 

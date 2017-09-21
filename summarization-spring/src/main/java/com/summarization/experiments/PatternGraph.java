@@ -1,4 +1,4 @@
-package com.summarization.expetiments;
+package com.summarization.experiments;
 
 import java.io.File;
 import java.util.ArrayList;
