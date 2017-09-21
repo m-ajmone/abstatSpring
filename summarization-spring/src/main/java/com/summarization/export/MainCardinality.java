@@ -5,31 +5,20 @@ import java.io.FileOutputStream;
 
 import java.util.ArrayList;
 
+import com.summarization.export.CalculateCardinality;
+import com.summarization.export.Events;
+import com.summarization.export.Split;
+
 public class MainCardinality {
 
-	public static void mainCardinality(String path) throws Exception{
-		
-		
+	public static void main(String[] args) throws Exception{
 		
 		Events.summarization();
 		
+		String path = args[0];
 
 		File folderAkps = new File(path+"/Akps");
 		File folderProps = new File(path+"/Properties");
-		if (!folderAkps.exists()) {
-            if (folderAkps.mkdirs()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
-		if (!folderProps.exists()) {
-            if (folderProps.mkdirs()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
 
 		ArrayList<String> listP = new ArrayList<String>();
 		ArrayList<String> listAKP = new ArrayList<String>();

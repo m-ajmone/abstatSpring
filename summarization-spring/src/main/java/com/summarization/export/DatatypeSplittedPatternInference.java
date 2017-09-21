@@ -4,12 +4,13 @@ import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 import com.summarization.dataset.ParallelProcessing;
 import com.summarization.expetiments.AKPsPartitioner;
 import com.summarization.expetiments.PatternGraphMerger;
 import com.summarization.expetiments.TriplesRetriever;
 
-
+import com.summarization.export.Events;
 
 public class DatatypeSplittedPatternInference {
 	
@@ -35,27 +36,21 @@ public class DatatypeSplittedPatternInference {
 	
 	
 	
-	public static void datatypeSplittedPatternInference(String akps_dir, String akps_Grezzo_splitted,String ontPath, String specialParts_outputsPath) throws Exception{
+	public static void main(String[] args) throws Exception{
 		
 		Events.summarization();
 
-		File akps_Grezzo_splitted_dir = new File(akps_Grezzo_splitted);
-		File ontology = new File(ontPath);
-		File specialParts_outputs = new File(specialParts_outputsPath);
-        if (!akps_Grezzo_splitted_dir.exists()) {
-            if (akps_Grezzo_splitted_dir.mkdirs()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
-        if (!specialParts_outputs.exists()) {
-            if (specialParts_outputs.mkdirs()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
+		String akps_dir = args[0];
+		File akps_Grezzo_splitted_dir = new File(args[1]);
+
+		/*
+		File folder = new File(args[2]);
+		Collection<File> listOfFiles = FileUtils.listFiles(folder, new String[]{"owl"}, false);
+		File ontology = listOfFiles.iterator().next();	
+		*/
+		File ontology = new File(args[2]);
+		
+		File specialParts_outputs = new File(args[3]);
 		
    //-----------------------------------------------------------      PatternGraph      -------------------------------------------------------------------------------		
 
