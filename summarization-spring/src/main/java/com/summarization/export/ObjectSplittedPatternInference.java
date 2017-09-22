@@ -10,7 +10,6 @@ import com.summarization.experiments.PatternGraphMerger;
 import com.summarization.experiments.TriplesRetriever;
 import com.summarization.export.Events;
 
-
 public class ObjectSplittedPatternInference {
 	
 	private static void parallelProcessing(File specialParts_outputs, final PatternGraphMerger merger){

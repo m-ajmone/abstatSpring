@@ -49,7 +49,7 @@ public class ProcessOntology {
 		
 		//Extract Concept from Ontology Model
 		ConceptExtractor cExtract = new ConceptExtractor();
-		cExtract.setConcepts(ontologyModel);
+		cExtract.setConcepts(ontologyModel, true);
 		
 		Concepts concepts = new Concepts();
 		concepts.setConcepts(cExtract.getConcepts());

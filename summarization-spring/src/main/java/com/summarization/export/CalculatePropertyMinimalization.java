@@ -5,7 +5,6 @@ import java.io.File;
 import com.summarization.experiments.PropertyMinimalizator;
 import com.summarization.export.Events;
 
-
 public class CalculatePropertyMinimalization {
 	
 	public static void main(String[] args) throws Exception{

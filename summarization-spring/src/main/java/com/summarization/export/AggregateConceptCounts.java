@@ -7,7 +7,6 @@ import com.summarization.dataset.Files;
 
 import com.summarization.export.Events;
 
-
 public class AggregateConceptCounts {
 
 	public static void main(String[] args) throws Exception {
