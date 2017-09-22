@@ -52,7 +52,7 @@ public class ConceptExtractorTest {
 	private HashMap<String, String> conceptsFrom(ToyOntology model) {
 		
 		ConceptExtractor conceptExtractor = new ConceptExtractor();
-		conceptExtractor.setConcepts(model.build());
+		conceptExtractor.setConcepts(model.build(), true);
 		
 		return conceptExtractor.getConcepts();
 	}

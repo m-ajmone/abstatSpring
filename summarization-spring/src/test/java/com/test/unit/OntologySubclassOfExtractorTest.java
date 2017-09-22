@@ -58,7 +58,7 @@ public class OntologySubclassOfExtractorTest {
 		OntModel model = ontology.build();
 		
 		ConceptExtractor conceptExtractor = new ConceptExtractor();
-		conceptExtractor.setConcepts(model);
+		conceptExtractor.setConcepts(model, true);
 		
 		Concepts concepts = new Concepts();
 		concepts.setConcepts(conceptExtractor.getConcepts());
