@@ -50,7 +50,6 @@ public class SummarizationController {
 		Events.summarization();
 		
 		SubmitConfig subCfg = submitConfigService.findSubmitConfigById(subCfgId);
-		String ontId = subCfg.getListOntId().get(0);
 		
 		String ontPath = "";
 		String ontName = "";
@@ -68,6 +67,7 @@ public class SummarizationController {
 			ontName = "emptyOnt";
 		}
 		else {
+			String ontId = subCfg.getListOntId().get(0);
 			ontPath = new File(ontologyService.findOntologyById(ontId).getPath()).getCanonicalPath();
 			ontName = ontologyService.findOntologyById(ontId).getName();
 		}
@@ -76,10 +76,10 @@ public class SummarizationController {
 		String datasetSupportFileDirectory = summary_dir + "/reports/tmp-data-for-computation/";
         checkFile(summary_dir);
         checkFile(datasetSupportFileDirectory);
-        String owlBaseFile = ontologyService.findOntologyById(ontId).getPath();
+        //String owlBaseFile = ontologyService.findOntologyById(ontId).getPath();
 		
 		//Process ontology
-		ProcessOntology.main(new String[] {owlBaseFile, datasetSupportFileDirectory});
+		ProcessOntology.main(new String[] {ontPath, datasetSupportFileDirectory});
         //Script bash/awk invocation
  		String[] cmd = {"../pipeline/split-dataset.sh", datasetName};
  		Process p = Runtime.getRuntime().exec(cmd);
@@ -96,7 +96,7 @@ public class SummarizationController {
         String typesDirectory = "../data/DsAndOnt/dataset/" + dataset.getName() + "/organized-splitted-deduplicated/";
  		
  		//Minimal types
- 		CalculateMinimalTypes.main(new String[] {owlBaseFile, typesDirectory, minTypeResult});
+ 		CalculateMinimalTypes.main(new String[] {ontPath, typesDirectory, minTypeResult});
  		//Aggregate concepts
  		AggregateConceptCounts.main(new String[] {minTypeResult, patternsPath});
  		//Process dt relational asserts
@@ -149,8 +149,8 @@ public class SummarizationController {
 		Path objectAkp_Updated = Paths.get("object-akp_Updated.txt");
 		Files.move(datatypeAkp_Updated, datatypeAkp, REPLACE_EXISTING);
 		Files.move(objectAkp_Updated, objectAkp, REPLACE_EXISTING);
-		Path countDatatypeProperties_Updated = Paths.get(patternsPath + "count-datatype-properties_Updated.txt");
-		Path countObjectProperties_Updated = Paths.get(patternsPath + "count-object-properties_Updated.txt");
+		Path countDatatypeProperties_Updated = Paths.get("count-datatype-properties_Updated.txt");
+		Path countObjectProperties_Updated = Paths.get("count-object-properties_Updated.txt");
 		Path countDatatypeProperties = Paths.get(patternsPath + "count-datatype-properties.txt");
 		Path countObjectProperties = Paths.get(patternsPath + "count-object-properties.txt");
 		Files.move(countDatatypeProperties_Updated, countDatatypeProperties, REPLACE_EXISTING);
