@@ -1,7 +1,5 @@
 package com.summarization.dataset;
 
-
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -134,7 +132,7 @@ public class MinimalTypesCalculation implements Processing{
 		properties.setCounter(pExtract.getCounter());
 		
 		ConceptExtractor cExtract = new ConceptExtractor();
-		cExtract.setConcepts(ontology);
+		cExtract.setConcepts(ontology, true);
 		
 		Concepts concepts = new Concepts();
 		concepts.setConcepts(cExtract.getConcepts());
