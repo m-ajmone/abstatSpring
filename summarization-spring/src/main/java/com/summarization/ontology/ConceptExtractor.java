@@ -25,11 +25,14 @@ public class ConceptExtractor {
 	private List<OntClass> ExtractedConcepts = new ArrayList<OntClass>();
 
 
-	public void setConcepts(OntModel ontologyModel) {
+	public void setConcepts(OntModel ontologyModel, boolean enrich) {
 		
 		//Get Concept from Model
-		enrichWithImplicitClassesDeclarations(ontologyModel, RDFS.subClassOf);
-		enrichWithImplicitClassesDeclarations(ontologyModel, OWL.equivalentClass);
+		if(enrich){
+			enrichWithImplicitClassesDeclarations(ontologyModel, RDFS.subClassOf);
+			enrichWithImplicitClassesDeclarations(ontologyModel, OWL.equivalentClass);
+		}
+		
 		ExtendedIterator<OntClass> TempExtractedConcepts = ontologyModel.listClasses();
 		
 		

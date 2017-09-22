@@ -14,8 +14,10 @@ import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntProperty;
+
 import com.summarization.experiments.Property;
 import com.summarization.export.Events;
+
 
 
 public class PropertyGraph {
