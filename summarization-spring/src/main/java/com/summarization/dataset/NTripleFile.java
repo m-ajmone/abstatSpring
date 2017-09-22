@@ -1,7 +1,5 @@
 package com.summarization.dataset;
 
-
-
 import org.apache.commons.io.IOUtils;
 
 import com.hp.hpl.jena.rdf.model.Model;
