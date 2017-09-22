@@ -17,7 +17,6 @@ import com.summarization.ontology.PropertyGraph;
 import com.summarization.ontology.TypeGraphExperimental;
 
 
-
 public class PGSpecial {
 
 	private DirectedAcyclicGraph<Pattern, DefaultEdge> PG = new DirectedAcyclicGraph<Pattern, DefaultEdge>(DefaultEdge.class);
@@ -27,7 +26,7 @@ public class PGSpecial {
 	
 	
 	public PGSpecial(File ontology, String type){
-		typeGraph = new TypeGraphExperimental(ontology);
+		typeGraph = new TypeGraphExperimental(ontology, true);
 		propertyGraph = new PropertyGraph(ontology);
 		this.type = type;
 		

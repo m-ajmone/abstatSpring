@@ -10,8 +10,6 @@ import java.util.List;
 import com.summarization.export.Events;
 import com.summarization.ontology.PropertyGraph;
 
-
-
 public class AKPsPartitioner {
 
 	private PropertyGraph propertyGraph;

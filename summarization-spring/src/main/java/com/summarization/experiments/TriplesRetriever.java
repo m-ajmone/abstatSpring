@@ -9,8 +9,6 @@ import com.summarization.dataset.Processing;
 import com.summarization.export.Events;
 
 
-
-
 public class TriplesRetriever implements Processing{
 	private File ontology;
 	private File output_dir;

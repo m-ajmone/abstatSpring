@@ -27,7 +27,7 @@ public class PatternGraph {
 	 
 
 	public PatternGraph(File ontology, String type, boolean full_inference){
-		typeGraph = new TypeGraphExperimental(ontology);
+		typeGraph = new TypeGraphExperimental(ontology, true);
 		propertyGraph = new PropertyGraph(ontology);
 		
 		if(full_inference)

@@ -1,6 +1,5 @@
 package com.summarization.experiments;
 
-
 import com.summarization.export.Events;
 import com.summarization.ontology.LDSummariesVocabulary;
 import com.summarization.ontology.TypeOf;

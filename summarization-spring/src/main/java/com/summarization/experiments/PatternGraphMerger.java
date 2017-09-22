@@ -11,8 +11,6 @@ import java.util.Iterator;
 import com.summarization.export.Events;
 
 
-
-
 public class PatternGraphMerger {
 	private File ontology;
 	private File outputDir;

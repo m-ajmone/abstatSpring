@@ -11,7 +11,6 @@ import java.util.ListIterator;
 import com.summarization.export.Events;
 import com.summarization.ontology.PropertyGraph;
 
-
 public class PropertyMinimalizator {
 
 	PropertyGraph propGraph;
@@ -85,9 +84,9 @@ public class PropertyMinimalizator {
 			
 			//aggiorno i file di cout dei predicati.
 			if(akp_grezzo.getPath().contains("datatype"))
-				updateCountFile(new File(akp_grezzo.getParent()+"/count-datatype-properties.txt"), new File(akp_grezzo.getParent() + "/count-datatype-properties_Updated.txt"));
+				updateCountFile(new File(akp_grezzo.getParent()+"/count-datatype-properties.txt"), new File("count-datatype-properties_Updated.txt"));
 			else
-				updateCountFile(new File(akp_grezzo.getParent()+"/count-object-properties.txt"), new File(akp_grezzo.getParent() + "/count-object-properties_Updated.txt"));
+				updateCountFile(new File(akp_grezzo.getParent()+"/count-object-properties.txt"), new File("count-object-properties_Updated.txt"));
 			br.close();	
 		}
 		catch(Exception e){
