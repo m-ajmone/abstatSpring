@@ -27,7 +27,7 @@ public class DeleteteExtConceptFromSummary {
 	private void getConceptsFromOnt(String ontology_path){
 		OntModel ontology = new Model(ontology_path, "RDF/XML").getOntologyModel();
 		ConceptExtractor ce = new ConceptExtractor();
-		ce.setConcepts(ontology);
+		ce.setConcepts(ontology, false);
 		List<OntClass>  conceptsOntClass = ce.getExtractedConcepts();
 		for(OntClass concept : conceptsOntClass)
 			conceptsOntology.add(concept.toString()); 

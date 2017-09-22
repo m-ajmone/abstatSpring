@@ -37,7 +37,7 @@ public class UnusedConceptsRemover {
 		ontNotLeafConcepts.clear();
 		
 		ConceptExtractor ce = new ConceptExtractor();
-		ce.setConcepts(ontology);               //voglio fare l'enrichment perchè voglio anche i concetti non definiti nell'ont
+		ce.setConcepts(ontology, true);               //voglio fare l'enrichment perchè voglio anche i concetti non definiti nell'ont
 		List<OntClass>  conceptsOntClass = ce.getExtractedConcepts();
 		for(OntClass concept : conceptsOntClass){
 			if(concept.hasSubClass())
@@ -98,7 +98,7 @@ public class UnusedConceptsRemover {
 	private HashSet<OntClass> classiOntModel(){
 		HashSet<OntClass> set = new HashSet<OntClass>();
 		ConceptExtractor ce = new ConceptExtractor();
-		ce.setConcepts(ontology);                 //non voglio fare l'enrichment perchè desidero solo quelli definiti nell'ontologia
+		ce.setConcepts(ontology, true);                 //non voglio fare l'enrichment perchè desidero solo quelli definiti nell'ontologia
 		List<OntClass>  conceptsOntClass = ce.getExtractedConcepts();
 		for(OntClass concept : conceptsOntClass)
 			set.add(concept);
@@ -123,3 +123,4 @@ public class UnusedConceptsRemover {
 		new ClassHierarchy().showHierarchy( System.out, remover.ontology );
 	}
 }
+
