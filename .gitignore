@@ -1,2 +1,6 @@
+logs
+bin
+tmp
 .DS_Store
-
+solr/server/indexing/data/
+logs
