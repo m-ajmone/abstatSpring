@@ -86,7 +86,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ABSTAT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href=""><i class="fa fa-link"></i> <span>Summarization</span></a></li>
+        <li class="active"><a href="summarize"><i class="fa fa-link"></i> <span>Summarization</span></a></li>
         <li class="active"><a href="browse"><i class="fa fa-link"></i> <span>Browse</span></a></li>
         <li class="active"><a href="search"><i class="fa fa-link"></i> <span>Search</span></a></li>
         <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
@@ -96,130 +96,21 @@ desired effect
     <!-- /.sidebar -->
   </aside>
 
+
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        ABSTAT
-        <small>Dataset Summarization Tool</small>
+      <h1> 
+     	 APIs <small> APIs documentation</small>
       </h1>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Upload a Dataset</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form" method="POST" action="upload/ds" enctype="multipart/form-data">
-              <div class="box-body">
-                <div class="form-group">
-                  <!-- <label for="exampleInputFile">File input</label> -->
-                  <input type="file" name="file">
-
-                  <p class="help-block">Datasets must have ".nt" extension.</p>
-                </div>
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-          <!-- /.box -->
-          <!-- box summarization -->
-           <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Summarization</h3>
-            </div>
-            <form:form action = "submit" modelAttribute = "submitConfig" method = "POST" >
-            <div class="box-body">
-               <label>Datasets Available</label>
-               <div class="form-group">
-               		<form:select path= "dsId">
-    				<form:options items="${listDataset}" itemLabel="name" itemValue="id" />
-					</form:select>
-               </div>
-               <label>Ontologies Available</label>
-               <div class="form-group">
-               		<form:select path= "listOntId" multiple = "true">
-    				<form:options items="${listOntology}" itemLabel="name" itemValue="id" />
-					</form:select>
-               </div>
-               <label>Options</label>
-               <div class="form-group">
-               	  <div class="checkbox">
-                    <label>
-                      <form:checkbox path="tipoMinimo"/>
-                      Minimal Types
-                    </label>
-                  </div>
-               	  <div class="checkbox">
-                    <label>
-                      <form:checkbox path="inferences"/>
-                      Inferences
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <form:checkbox path="cardinalita"/>
-                      Cardinalities
-                    </label>
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <form:checkbox path="propertyMinimaliz"/>
-                      Property Minimalization
-                    </label>
-                  </div>
-               </div>
-            </div>
-           <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
-           </div>
-            </form:form>
-           </div>
-         </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Upload an Ontology</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-           <form role="form" method="POST" action="upload/ont" enctype="multipart/form-data">
-              <div class="box-body">
-                <div class="form-group">
-                  <!--  <label for="exampleInputFile">File input</label> -->
-                  <input type="file" name="file">
-
-                  <p class="help-block">Ontologies must have ".owl" extension.</p>
-                </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-           	 </form>
-	          </div>
-              <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-          </div>
-          <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
 
   <!-- Main Footer -->
   <footer class="main-footer">

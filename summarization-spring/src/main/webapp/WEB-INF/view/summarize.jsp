@@ -86,7 +86,7 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ABSTAT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href=""><i class="fa fa-link"></i> <span>Summarization</span></a></li>
+        <li class="active"><a href="summarize"><i class="fa fa-link"></i> <span>Summarization</span></a></li>
         <li class="active"><a href="browse"><i class="fa fa-link"></i> <span>Browse</span></a></li>
         <li class="active"><a href="search"><i class="fa fa-link"></i> <span>Search</span></a></li>
         <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
