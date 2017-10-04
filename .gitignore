@@ -1,10 +1,13 @@
 logs
 bin
 tmp
+organized-splitted-deduplicated
 .metadata
 .recommenders
+RemoteSystemsTempFiles
+summarization.jar
 .DS_Store
-logs
 !solr/bin
 solr/server/indexing/data/
 *.pid
+data/vectors*

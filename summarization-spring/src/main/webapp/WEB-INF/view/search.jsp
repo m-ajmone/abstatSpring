@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%><!DOCTYPE html>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html lang="en" ng-app="schemasummaries">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ABSTAT</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+<!-- OLD -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="old/js/controllers.js"></script>
+<script src="old/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+
+
   <link rel="stylesheet" href="css/bootstrap.min.css" type = "text/css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type = "text/css">
@@ -30,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -102,13 +112,60 @@ desired effect
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1> 
-     	 Search <small> Full-text search</small>
-      </h1>
+
+<div ng-controller="search">
+	<div class="col-md-7">
+		<input type="text" class="form-control" ng-model="srcStr" placeHolder="search for concepts and abstract knowledge patterns"/>
+	</div>
+	<div class="col-md-1">
+		<button type="submit" class="btn btn-primary" ng-click="loadPatterns()">Search</button>
+	</div>
+    <div class="col-md-2">
+    <div class="checkbox">
+		<label>
+			<input type="checkbox" ng-model="searchInExternalResources">include external resources
+		</label>
+    </div>
+    </div>
+	
+	<div class="row" style="margin-top:1cm" ng-show="allDocuments">
+   	<div class="col-md-12">
+   		<ul class="list-unstyled">
+	  		<li><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> <small><strong>external</strong> concept / property / akp</small></li>
+	 		 <li><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span> <small><strong>internal</strong> concept / property / akp</small></li>
+		</ul>
+	</div>
+   	</div>
+   	<div class="row" ng-show="allDocuments.length == 0">
+   	<div class="col-md-12">
+   		<h4>Nothing found!</h4>
+	</div>
+	</div>
+	
+	<div class="row">
+   	<div class="col-md-12">
+		<div ng-repeat="doc in allDocuments">
+	 		<ul class="list-inline">
+	 		<li><span class="label label-default">{{doc.dataset}}</span></li>
+			<li><span class="label label-{{doc.type | asLabel}}">{{doc.type}}</span></li>
+			<li><span class="glyphicon glyphicon-resize-{{doc.subtype | asIcon}}" aria-hidden="true"></span></li>
+	 		<li ng-repeat="uri in doc.URI track by $index"><h4>{{uri | prefixed}}</h4></li>
+	 		<li>({{doc.occurrence}})</li>
+	 	</ul>
+		</div>
+		<button ng-show="allDocuments" ng-click="loadMore()" type="button" class="btn btn-deafult btn-block">
+			<span><strong>{{allDocuments.length}}</strong> results - get more</span>
+      	</button>
+	</div>
+	</div>
+	
+</div>
+
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+ 
 
 
 
@@ -137,13 +194,13 @@ desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-
 <!-- jQuery 3 -->
 <script src="jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="jquery/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="jquery/adminlte.min.js"></script>
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
