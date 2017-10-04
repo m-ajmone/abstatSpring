@@ -1,6 +1,10 @@
 logs
 bin
 tmp
+.metadata
+.recommenders
 .DS_Store
-solr/server/indexing/data/
 logs
+!solr/bin
+solr/server/indexing/data/
+*.pid
