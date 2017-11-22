@@ -15,7 +15,7 @@ import com.service.SubmitConfigService;
 
 
 @Controller
-@RequestMapping(value="submitconfig")
+@RequestMapping(value="submitConfig")
 public class SubmitConfigController {
 	@Autowired
 	SubmitConfigService submitConfigService;

@@ -53,6 +53,6 @@ public class DatasetController {
 		datasetService.delete(dataset);
 		FileUtils.deleteDirectory(new File(StringUtils.substringBeforeLast(dataset.getPath(), "/")));
 		return "redirect:/dataset/list";
-}
+	}
 	
 }

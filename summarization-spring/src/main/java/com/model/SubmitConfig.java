@@ -13,6 +13,8 @@ public class SubmitConfig {
 	private String id;
 	private String dsId;
 	private List<String> listOntId;
+	private String dsName;
+	private String OntName;
 	private String summaryPath;
 	//options..
 	private boolean tipoMinimo;
@@ -82,5 +84,18 @@ public class SubmitConfig {
 	public void setPropertyMinimaliz(boolean propertyMinimaliz) {
 		this.propertyMinimaliz = propertyMinimaliz;
 	}
+	public String getDsName() {
+		return dsName;
+	}
+	public void setDsName(String dsName) {
+		this.dsName = dsName;
+	}
+	public String getOntName() {
+		return OntName;
+	}
+	public void setOntName(String ontName) {
+		OntName = ontName;
+	}
+	
 	
 }

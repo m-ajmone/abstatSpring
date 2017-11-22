@@ -86,8 +86,8 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ABSTAT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href=""><i class="fa fa-link"></i> <span>Summarization</span></a></li>
-        <li><a href = "summary"> <i class = "fa fa-link"></i> <span>Summaries</span></a> </li>
+        <li><a href="home"><i class="fa fa-link"></i> <span>Summarization</span></a></li>
+        <li class = "active"><a href = "summary"> <i class = "fa fa-link"></i> <span>Summaries</span></a> </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -105,36 +105,29 @@ desired effect
     </section>
     <!-- Main content -->
     <section class="content">
- 	  <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Your Configuration</h3>
+      <div class="row">
+      	<div class="col-md-8">
+		<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Summary List</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-condensed">
+            <div class="box-body">
+              <table class="table table-bordered">
                 <tr>
-                  <th>Options</th>
-                  <th>Values</th>
+                  <th class = "text-center" style="width: 20px">Dataset</th>
+                  <th class = "text-center" style="width: 20px">Ontology</th>
+                  <th class = "text-center" style="width: 20px">Minimal Types</th>
+                  <th class = "text-center" style="width: 20px">Inferences</th>
+                  <th class = "text-center" style="width: 20px">Cardinalities</th>
+                  <th class = "text-center" style="width: 20px">Property Minimalization</th>
                 </tr>
-                <tr>
-                  <td>Dataset</td>
-                  <td>
-                    ${submitConfig.dsName}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Ontologies</td>
-                  <td>
-                    ${submitConfig.ontName}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Calculate Minimal Types</td>
-                  <td>
-                  <c:choose>
+					<c:forEach items="${listSubmitConfig}" var="submitConfig">
+						<tr>
+							<td class = "text-center">${submitConfig.dsName}</td>
+							<td class = "text-center">${submitConfig.ontName}</td>
+							<td class = "text-center">
+								<c:choose>
 							      <c:when test = "${submitConfig.tipoMinimo == true}">
 							         <span class="glyphicon glyphicon-ok text-success"></span>
 							      </c:when>
@@ -142,12 +135,9 @@ desired effect
 							         <span class="glyphicon glyphicon-remove text-danger"></span>
 							      </c:otherwise>
 								</c:choose>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Inferences</td>
-                  <td>
-				  <c:choose>
+					      </td>
+							<td class = "text-center">
+								<c:choose>
 							      <c:when test = "${submitConfig.inferences == true}">
 							         <span class="glyphicon glyphicon-ok text-success"></span>
 							      </c:when>
@@ -155,12 +145,9 @@ desired effect
 							         <span class="glyphicon glyphicon-remove text-danger"></span>
 							      </c:otherwise>
 								</c:choose>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cardinalities</td>
-                  <td>
-                  <c:choose>
+					      </td>
+							<td class = "text-center">
+								<c:choose>
 							      <c:when test = "${submitConfig.cardinalita == true}">
 							         <span class="glyphicon glyphicon-ok text-success"></span>
 							      </c:when>
@@ -168,12 +155,9 @@ desired effect
 							         <span class="glyphicon glyphicon-remove text-danger"></span>
 							      </c:otherwise>
 								</c:choose>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Property Minimalization</td>
-                  <td>
-                  <c:choose>
+					      </td>
+							<td class = "text-center">
+								<c:choose>
 							      <c:when test = "${submitConfig.propertyMinimaliz == true}">
 							         <span class="glyphicon glyphicon-ok text-success"></span>
 							      </c:when>
@@ -181,22 +165,20 @@ desired effect
 							         <span class="glyphicon glyphicon-remove text-danger"></span>
 							      </c:otherwise>
 								</c:choose>
-                  </td>
-                </tr>
+					      </td>
+							<td class = "text-center" style="width: 20px"><a href="">View Summary</a></td>
+						</tr>
+					</c:forEach>
               </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-                <form:form action = "summarization" method = "post">
-					<input type="hidden" name="subCfgId" value="${submitConfig.getId()}" />
-					<input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
-					<button type="submit" class="btn btn-primary">Run Summarization</button>
-				</form:form>
-            </div>
           </div>
           <!-- /.box -->
-        </div>
+		
+		
+		</div>
       </div>
+          <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -236,6 +218,5 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-</div>
 </body>
 </html>

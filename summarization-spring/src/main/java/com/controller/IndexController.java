@@ -35,16 +35,21 @@ public class IndexController {
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public ModelAndView submitCfg(@ModelAttribute("submitConfig") SubmitConfig submitConfig) {
+		submitConfig.setDsName(datasetService.findDatasetById(submitConfig.getDsId()).getName());
+		if(!submitConfig.getListOntId().isEmpty())
+			submitConfig.setOntName(ontologyService.findOntologyById(submitConfig.getListOntId().get(0)).getName());
+		else
+			submitConfig.setOntName("");
 		submitConfigService.add(submitConfig);
 		
 		ModelAndView model = new ModelAndView("processing2");
 		model.addObject("submitConfig", submitConfig);
-		if(submitConfig.getDsId()!=null)
+		/*if(submitConfig.getDsId()!=null)
 			model.addObject("datasetName", datasetService.findDatasetById(submitConfig.getDsId()).getName());
 		List<String> ontNames = new ArrayList<String>();
 		for(String id : submitConfig.getListOntId())
 			ontNames.add(ontologyService.findOntologyById(id).getName());
-		model.addObject("ontologyNames", ontNames);
+		model.addObject("ontologyNames", ontNames);*/
 			
 		
 		return model;

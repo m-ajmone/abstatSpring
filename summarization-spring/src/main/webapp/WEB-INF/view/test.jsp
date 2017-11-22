@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%><!DOCTYPE html>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -12,17 +12,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ABSTAT</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="css/bootstrap.min.css" type = "text/css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type = "text/css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type = "text/css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="css/ionicons.min.css" type = "text/css">
+  <link rel="stylesheet" href="/css/ionicons.min.css" type = "text/css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="css/skinblue.min.css" type = "text/css">
+  <link rel="stylesheet" href="/css/skinblue.min.css" type = "text/css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,8 +86,8 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ABSTAT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href=""><i class="fa fa-link"></i> <span>Summarization</span></a></li>
-        <li><a href = "summary"> <i class = "fa fa-link"></i> <span>Summaries</span></a> </li>
+        <li class="active"><a href=""><i class="fa fa-link"></i> <span>Ontology CRUD</span></a></li>
+        <li><a href="/ontology/list"><i class="fa fa-link"></i> <span>ontology CRUD</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -100,103 +100,48 @@ desired effect
     <section class="content-header">
       <h1>
         ABSTAT
-        <small>Dataset Summarization Tool</small>
+        <small>ontology Summarization Tool</small>
       </h1>
     </section>
     <!-- Main content -->
     <section class="content">
- 	  <div class="row">
-        <!-- left column -->
+	      <div class="row">
         <div class="col-md-6">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Your Configuration</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">Ontology List</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-condensed">
+            <div class="box-body">
+              <table class="table table-bordered">
                 <tr>
-                  <th>Options</th>
-                  <th>Values</th>
+                  <th>Name</th>
+                  <th colspan=3 class="text-center">Action</th>
                 </tr>
-                <tr>
-                  <td>Dataset</td>
-                  <td>
-                    ${submitConfig.dsName}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Ontologies</td>
-                  <td>
-                    ${submitConfig.ontName}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Calculate Minimal Types</td>
-                  <td>
-                  <c:choose>
-							      <c:when test = "${submitConfig.tipoMinimo == true}">
-							         <span class="glyphicon glyphicon-ok text-success"></span>
-							      </c:when>
-						         <c:otherwise>
-							         <span class="glyphicon glyphicon-remove text-danger"></span>
-							      </c:otherwise>
-								</c:choose>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Inferences</td>
-                  <td>
-				  <c:choose>
-							      <c:when test = "${submitConfig.inferences == true}">
-							         <span class="glyphicon glyphicon-ok text-success"></span>
-							      </c:when>
-						         <c:otherwise>
-							         <span class="glyphicon glyphicon-remove text-danger"></span>
-							      </c:otherwise>
-								</c:choose>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cardinalities</td>
-                  <td>
-                  <c:choose>
-							      <c:when test = "${submitConfig.cardinalita == true}">
-							         <span class="glyphicon glyphicon-ok text-success"></span>
-							      </c:when>
-						         <c:otherwise>
-							         <span class="glyphicon glyphicon-remove text-danger"></span>
-							      </c:otherwise>
-								</c:choose>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Property Minimalization</td>
-                  <td>
-                  <c:choose>
-							      <c:when test = "${submitConfig.propertyMinimaliz == true}">
-							         <span class="glyphicon glyphicon-ok text-success"></span>
-							      </c:when>
-						         <c:otherwise>
-							         <span class="glyphicon glyphicon-remove text-danger"></span>
-							      </c:otherwise>
-								</c:choose>
-                  </td>
-                </tr>
+					<c:forEach items="${listOntology}" var="ontology">
+						<tr>
+							<td>${ontology.name}</td>
+							<td>
+								<spring:url value ="/ontology/update/${ontology.id}" var="updateURL"/>
+								<a href="${updateURL}">Update</a>
+							</td>
+							<td>
+								<spring:url value ="/ontology/delete/${ontology.id}" var="deleteURL"/>
+								<a href="${deleteURL}">Delete MetaData</a>
+							</td>
+							<td>
+								<spring:url value ="/ontology/deleteDir/${ontology.id}" var="deleteDirURL"/>
+								<a href="${deleteDirURL}">Delete MetaData and Files</a>
+							</td>
+						</tr>
+					</c:forEach>
               </table>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-                <form:form action = "summarization" method = "post">
-					<input type="hidden" name="subCfgId" value="${submitConfig.getId()}" />
-					<input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
-					<button type="submit" class="btn btn-primary">Run Summarization</button>
-				</form:form>
-            </div>
           </div>
           <!-- /.box -->
-        </div>
-      </div>
+       </div>
+     </div>
     </section>
     <!-- /.content -->
   </div>
@@ -227,11 +172,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="jquery/jquery.min.js"></script>
+<script src="/jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="jquery/bootstrap.min.js"></script>
+<script src="/jquery/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="jquery/adminlte.min.js"></script>
+<script src="/jquery/adminlte.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

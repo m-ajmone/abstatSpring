@@ -40,7 +40,7 @@ public class UploadController {
         }
 		try {
 
-            // Get the file and save it somewhere
+            // Get the file and save it
             byte[] bytes = file.getBytes();
             Dataset dataset = new Dataset();
             dataset.setType("dataset");

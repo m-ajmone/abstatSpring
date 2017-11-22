@@ -87,6 +87,7 @@ desired effect
         <li class="header">ABSTAT</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href=""><i class="fa fa-link"></i> <span>Summarization</span></a></li>
+        <li><a href = "summary"> <i class = "fa fa-link"></i> <span>Summaries</span></a> </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -132,7 +133,7 @@ desired effect
           </div>
           <!-- /.box -->
           <!-- box summarization -->
-           <div class="box box-info">
+           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Summarization</h3>
             </div>
@@ -199,7 +200,7 @@ desired effect
                   <!--  <label for="exampleInputFile">File input</label> -->
                   <input type="file" name="file">
 
-                  <p class="help-block">Ontologies must have ".owl" extension.</p>
+                  <p class="help-block">Ontologies must have ".owl" or ".rdfs" extension.</p>
                 </div>
               </div>
               <!-- /.box-body -->
@@ -222,10 +223,8 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
