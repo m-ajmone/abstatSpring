@@ -23,10 +23,15 @@ public class IndexController {
 	OntologyService ontologyService;
 	@Autowired
 	SubmitConfigService submitConfigService;
-	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+		@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView list() {
-		ModelAndView model = new ModelAndView("index");
+		ModelAndView model = new ModelAndView("home");
+		return model;
+	}
+	
+	@RequestMapping(value = "/summarize", method = RequestMethod.GET)
+	public ModelAndView summarization() {
+		ModelAndView model = new ModelAndView("summarize");
 		model.addObject("listDataset", datasetService.listDataset());
 		model.addObject("listOntology", ontologyService.listOntology());
 		model.addObject("submitConfig", new SubmitConfig());
@@ -50,5 +55,23 @@ public class IndexController {
 		return model;
 	}
 	
+	
+	@RequestMapping(value = "/browse", method = RequestMethod.GET)
+	public ModelAndView browse() {
+		ModelAndView model = new ModelAndView("browse");
+		return model;
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search() {
+		ModelAndView model = new ModelAndView("search");
+		return model;
+	}
+	
+	@RequestMapping(value = "/apis", method = RequestMethod.GET)
+	public ModelAndView apis() {
+		ModelAndView model = new ModelAndView("apis");
+		return model;
+	}
 	
 }
