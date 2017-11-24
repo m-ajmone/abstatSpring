@@ -31,7 +31,6 @@ public class SubmitConfigDaoImpl implements SubmitConfigDao {
 	
 	public void delete(SubmitConfig submitConfig) {
 		mongoTemplate.remove(submitConfig, COLLECTION_NAME);
-		
 	}
 
 	public SubmitConfig findSubmitConfigById(String id) {
