@@ -29,53 +29,21 @@ public class Dataset {
 		this.type = type;
 	}
 
-	public String getId() {
-		return id;
-	}
+	public String getId() { return id; }
+	public void setId(String id) { this.id = id; }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+	public String getName() { return name; }
+	public void setName(String name) { this.name = name; }
 
-	public String getName() {
-		return name;
-	}
+	public String getPath() { return path; }
+	public void setPath(String path) { this.path = path; }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public String getTimestamp() { return timestamp; }
+	public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
 
-	public String getPath() {
-		return path;
-	}
+	public boolean isSplit() { return split; }
+	public void setSplit(boolean split) { this.split = split; }
 
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public String getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public boolean isSplit() {
-		return split;
-	}
-
-	public void setSplit(boolean split) {
-		this.split = split;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	
+	public String getType() { return type; }
+	public void setType(String type) { this.type = type; }
 }
