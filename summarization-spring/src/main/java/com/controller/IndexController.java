@@ -67,7 +67,7 @@ public class IndexController {
 		submitConfig.setSummaryPath(summary_dir);
 		submitConfigService.add(submitConfig);
 		
-		ModelAndView model = new ModelAndView("processing2");
+		ModelAndView model = new ModelAndView("recapConfig");
 		model.addObject("submitConfig", submitConfig);
 		if(submitConfig.getDsId()!=null)
 			model.addObject("datasetName", datasetService.findDatasetById(submitConfig.getDsId()).getName());
@@ -98,5 +98,5 @@ public class IndexController {
 		ModelAndView model = new ModelAndView("apis");
 		return model;
 	}
-
+	
 }
