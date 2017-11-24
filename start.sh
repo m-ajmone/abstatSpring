@@ -10,4 +10,4 @@ echo "Starting Solr"
 
 echo "Starting ABSTAT"
 cd summarization-spring
-mvn spring-boot:run
+mvn spring-boot:run@abstat
