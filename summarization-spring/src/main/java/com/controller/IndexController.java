@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.model.Dataset;
+import com.model.IndexSummary;
 import com.model.SubmitConfig;
 import com.service.DatasetService;
 import com.service.OntologyService;
@@ -29,6 +33,7 @@ public class IndexController {
 		return model;
 	}
 	
+		
 	@RequestMapping(value = "/summarize", method = RequestMethod.GET)
 	public ModelAndView summarization() {
 		ModelAndView model = new ModelAndView("summarize");
@@ -39,7 +44,27 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public ModelAndView submitCfg(@ModelAttribute("submitConfig") SubmitConfig submitConfig) {
+	public ModelAndView submitCfg(@ModelAttribute("submitConfig") SubmitConfig submitConfig) throws Exception {
+		String summary_dir = "";
+		String ontName = "";
+		String datasetName =  datasetService.findDatasetById(submitConfig.getDsId()).getName();
+		String inf = ""; String minTp = ""; String propMin = ""; String card = "";
+
+		if(submitConfig.isTipoMinimo())        minTp = "MinTp";
+		if(submitConfig.isCardinalita())       card = "Card";
+		if(submitConfig.isInferences())        inf = "Inf";
+		if(submitConfig.isPropertyMinimaliz()) propMin = "PropMin";
+		if(!submitConfig.isTipoMinimo() || submitConfig.getListOntId().isEmpty()) {
+			ontName = "emptyOnt";
+		}
+		else {
+			String ontId = submitConfig.getListOntId().get(0);
+			ontName = ontologyService.findOntologyById(ontId).getName();
+		}
+		summary_dir = "../data/summaries/" + datasetName + "_" + ontName + "_" + minTp + propMin + card + inf +"/";
+		
+		
+		submitConfig.setSummaryPath(summary_dir);
 		submitConfigService.add(submitConfig);
 		
 		ModelAndView model = new ModelAndView("processing2");
@@ -73,5 +98,5 @@ public class IndexController {
 		ModelAndView model = new ModelAndView("apis");
 		return model;
 	}
-	
+
 }
