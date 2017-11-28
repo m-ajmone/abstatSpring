@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,7 +17,7 @@ public class Resource {
 	private String subConceptOf;
 	
 	private String datasetOfOrigin;
-	private String ontologiesOfOrigin;
+	private List<String> ontologiesOfOrigin;
 	private String summary_conf;
 	
 	private long frequency;
@@ -47,8 +49,8 @@ public class Resource {
 	public String getDatasetOfOrigin() { return datasetOfOrigin; }
 	public void setDatasetOfOrigin(String datasetOfOrigin) { this.datasetOfOrigin = datasetOfOrigin; }
 	
-	public String getOntologiesOfOrigin() { return ontologiesOfOrigin; }
-	public void setOntologiesOfOrigin(String ontologiesOfOrigin) { this.ontologiesOfOrigin = ontologiesOfOrigin; }
+	public List<String> getOntologiesOfOrigind() { return ontologiesOfOrigin; }
+	public void setOntologiesOfOrigin(List<String> ontologiesOfOrigin) { this.ontologiesOfOrigin = ontologiesOfOrigin; }
 	
 	public String getSummary_conf() { return summary_conf; }
 	public void setSummary_conf(String summary_conf) { this.summary_conf = summary_conf; }

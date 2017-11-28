@@ -87,15 +87,26 @@ public class IndexController {
 		return model;
 	}
 	
+	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
 		ModelAndView model = new ModelAndView("search");
 		return model;
 	}
 	
+	
 	@RequestMapping(value = "/apis", method = RequestMethod.GET)
 	public ModelAndView apis() {
 		ModelAndView model = new ModelAndView("apis");
+		return model;
+	}
+	
+	
+	@RequestMapping(value = "/dataLoading", method = RequestMethod.GET)
+	public ModelAndView dataLoading() {
+		ModelAndView model = new ModelAndView("dataLoading");
+		model.addObject("listConfig", submitConfigService.listSubmitConfig());
+		model.addObject("indexingReq", new IndexSummary());
 		return model;
 	}
 	

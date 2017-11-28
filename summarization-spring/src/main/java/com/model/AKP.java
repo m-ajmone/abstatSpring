@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,6 +10,7 @@ public class AKP {
 	
 	@Id
 	private String Id;
+	private String URL;
 	private String subject;
 	private String predicate;
 	private String object;
@@ -16,7 +19,7 @@ public class AKP {
 	private String subType;
 	
 	private String datasetOfOrigin;
-	private String ontologiesOfOrigin;
+	private List<String> ontologiesOfOrigin;
 	private String summary_conf;
 	
 	private long frequency;
@@ -30,6 +33,9 @@ public class AKP {
 	
 	public String getId() { return Id; }
 	public void setId(String Id) { this.Id = Id; }
+	
+	public String getURL() { return URL; }
+	public void setURL(String URL) { this.URL = URL; }
 	
 	public String getSubject() { return subject; }
 	public void setSubject(String subject) { this.subject = subject; }
@@ -52,8 +58,8 @@ public class AKP {
 	public String getDatasetOfOrigin() { return datasetOfOrigin; }
 	public void setDatasetOfOrigin(String datasetOfOrigin) { this.datasetOfOrigin = datasetOfOrigin; }
 	
-	public String getOntologiesOfOrigin() { return ontologiesOfOrigin; }
-	public void setOntologiesOfOrigin(String ontologiesOfOrigin) { this.ontologiesOfOrigin = ontologiesOfOrigin; }
+	public List<String> getOntologiesOfOrigind() { return ontologiesOfOrigin; }
+	public void setOntologiesOfOrigin(List<String> ontologiesOfOrigin) { this.ontologiesOfOrigin = ontologiesOfOrigin; }
 	
 	public String getSummary_conf() { return summary_conf; }
 	public void setSummary_conf(String summary_conf) { this.summary_conf = summary_conf; }	

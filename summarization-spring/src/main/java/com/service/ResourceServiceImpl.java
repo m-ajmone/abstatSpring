@@ -20,13 +20,11 @@ public class ResourceServiceImpl implements ResourceService{
 
 	
 	public void update(Resource resource) {
-		resourceDao.update(resource);
-		
+		resourceDao.update(resource);	
 	}
 
 	
 	public void delete(Resource resource) {
 		resourceDao.delete(resource);
-		
 	}
 }

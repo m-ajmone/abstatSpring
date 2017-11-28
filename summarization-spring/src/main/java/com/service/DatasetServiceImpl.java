@@ -27,7 +27,6 @@ public class DatasetServiceImpl implements DatasetService{
 	
 	public void update(Dataset dataset) {
 		datasetDao.update(dataset);
-		
 	}
 
 	
@@ -38,7 +37,6 @@ public class DatasetServiceImpl implements DatasetService{
 
 	
 	public Dataset findDatasetById(String id) {
-		
 		return datasetDao.findDatasetById(id);
 	}
 	
