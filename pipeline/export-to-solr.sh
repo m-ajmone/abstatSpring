@@ -7,7 +7,7 @@ function as_absolute()
 
 function run(){
 	echo "$@"
-	java -Xms256m -Xmx16g -cp .:'summarization.jar' com.summarization.export.$@
+	java -Xms256m -Xmx16g -cp .:'summarization.jar' it.unimib.disco.summarization.export.$@
 	echo "Done"
 }
 
@@ -27,12 +27,12 @@ cd ../summarization-spring
 run DeleteAllDocumentsFromIndex $dataset
 
 sleep 1
-
+summary_dir="../data/summaries/$dataset/patterns/"
 run RunResourcesIndexing ../data/summaries/$dataset/patterns/count-concepts.txt $dataset concept $payleveldomain
 run RunResourcesIndexing ../data/summaries/$dataset/patterns/count-datatype.txt $dataset datatype $payleveldomain
 run RunResourcesIndexing ../data/summaries/$dataset/patterns/count-datatype-properties.txt $dataset datatypeProperty $payleveldomain
 run RunResourcesIndexing ../data/summaries/$dataset/patterns/count-object-properties.txt $dataset objectProperty $payleveldomain
-run RunAKPIndexing ../data/summaries/$dataset/patterns/datatype-akp.txt $dataset datatypeAkp $payleveldomain
-run RunAKPIndexing ../data/summaries/$dataset/patterns/object-akp.txt $dataset objectAkp $payleveldomain
+run RunAKPIndexing ../data/summaries/$dataset/patterns/datatype-akp.txt $dataset datatypeAkp $payleveldomain $summary_dir
+run RunAKPIndexing ../data/summaries/$dataset/patterns/object-akp.txt $dataset objectAkp $payleveldomain $summary_dir
 
 cd ../pipeline
