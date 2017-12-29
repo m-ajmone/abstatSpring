@@ -118,7 +118,7 @@ desired effect
             <div class="box-header with-border">
               <h3 class="box-title">Data Loading</h3>
             </div>
-            <form:form action = "index" modelAttribute = "indexingReq" method = "POST" >
+            <form:form action = "indexingLoading" modelAttribute = "indexingReq" method = "POST" >
             <div class="box-body">
                <label>Summaries Available</label>
                <div class="form-group">
@@ -131,7 +131,13 @@ desired effect
                	  <div class="checkbox">
                     <label>
                       <form:checkbox path="indexMongoDB"/>
-                      Index on MongoDB
+                      Load on the persistent storage
+                    </label>
+                  </div>
+                   <div class="checkbox">
+                    <label>
+                      <form:checkbox path="indexSolr"/>
+                      Index on search engine
                     </label>
                   </div>
                </div>

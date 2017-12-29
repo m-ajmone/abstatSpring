@@ -1,70 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <schema name="schemaSolr" version="1.5">
-   <copyField source="URI" dest="URI_ngram"/>
-   <fields>
-   	<field name="idDocument" type="text_general" indexed="true" stored="true" required="true" multiValued="false" /> 
-	<field name="_version_" type="long" indexed="true" stored="true" multiValued="false" />
-	<field name="occurrence" type="long" indexed="true" stored="true" multiValued="false" />
-	<field name="URI" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
-	<field name="dataset" type="string" indexed="true" stored="true" required="false" multiValued="false" />
-	<field name="subtype" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
-	<field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
-	<field name="type" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
-	<field name="fullTextSearchField" type="full_text" indexed="true" stored="true" required="false" multiValued="true" />
-	<field name="URI_ngram" type="text_ngram" indexed="true" stored="true" multiValued="true"/>
-   </fields>
-   <uniqueKey>idDocument</uniqueKey>
-   <types>
-	<fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
-	<fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
-	<fieldType name="string" class="solr.StrField"/>
+    <copyField source="fullTextSearchField" dest="label_ngram"/>
+    <copyField source="fullTextSearchField" dest="label_edgeNgram"/>
+    <fields>
+        <field name="idDocument" type="text_general" indexed="true" stored="true" required="true" multiValued="false" /> 
+        <field name="_version_" type="long" indexed="true" stored="true" multiValued="false" />
+        <field name="occurrence" type="long" indexed="true" stored="true" multiValued="false" />
+        <field name="URI" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+        <field name="dataset" type="string" indexed="true" stored="true" required="false" multiValued="false" />
+        <field name="subtype" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+        <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
+        <field name="type" type="text_general" indexed="true" stored="true" required="true" multiValued="false" />
+        <field name="fullTextSearchField" type="full_text" indexed="true" stored="true" required="false" multiValued="true" />
+        <field name="label_ngram" type="text_ngram" indexed="true" stored="true" multiValued="true"/>
+        <field name="label_edgeNgram" type="text_edgeNgram" indexed="true" stored="true" multiValued="true"/>
+    </fields>
+    <uniqueKey>idDocument</uniqueKey>
+    <types>
+        <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="string" class="solr.StrField"/>
 
-   	<fieldType name="text_general" class="solr.TextField" sortMissingLast="true" positionIncrementGap="100">
-		<analyzer type="index">
-   			<tokenizer class="solr.StandardTokenizerFactory" />
-			<filter class="solr.LowerCaseFilterFactory" />
-		</analyzer>
-		<analyzer type="query">
-			<tokenizer class="solr.StandardTokenizerFactory" />
-			<filter class="solr.LowerCaseFilterFactory" />
-		</analyzer>
-	</fieldType>
-	<fieldtype name="full_text" class="solr.TextField">
-      	<analyzer type="query">
-          <tokenizer class="solr.StandardTokenizerFactory"/>
-          <filter class="solr.WordDelimiterFilterFactory"
-                generateWordParts="1"
-                generateNumberParts="1"
-                catenateWords="0"
-                catenateNumbers="0"
-                catenateAll="0"
-                preserveOriginal="1"
-                />
-	<filter class="solr.LowerCaseFilterFactory"/>
-      	</analyzer>
-      	<analyzer type="index">
-          <tokenizer class="solr.StandardTokenizerFactory"/>
-          <filter class="solr.WordDelimiterFilterFactory"
-                generateWordParts="1"
-                generateNumberParts="1"
-                catenateWords="1"
-                catenateNumbers="1"
-                catenateAll="0"
-                preserveOriginal="1"
-                />
-	  <filter class="solr.LowerCaseFilterFactory"/>
-     	 </analyzer>
-    	</fieldtype>	
-    	<fieldType name="text_ngram" class="solr.TextField" positionIncrementGap="100">
-		<analyzer type="index">
-			<tokenizer class="solr.NGramTokenizerFactory" minGramSize="2" maxGramSize="10"/>
-			<filter class="solr.LowerCaseFilterFactory"/>
-		</analyzer>
-		<analyzer type="query">
-			<tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="2" maxGramSize="10"/>
-			<filter class="solr.LowerCaseFilterFactory"/>
-		</analyzer>
-	</fieldType>
+        <fieldType name="text_general" class="solr.TextField" sortMissingLast="true" positionIncrementGap="100">
+            <analyzer type="index">
+               <tokenizer class="solr.StandardTokenizerFactory" />
+               <filter class="solr.LowerCaseFilterFactory" />
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory" />
+                <filter class="solr.LowerCaseFilterFactory" />
+            </analyzer>
+        </fieldType>
+
+        <fieldtype name="full_text" class="solr.TextField">
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.WordDelimiterFilterFactory"
+                      generateWordParts="1"
+                      generateNumberParts="1"
+                      catenateWords="0"
+                      catenateNumbers="0"
+                      catenateAll="0"
+                      preserveOriginal="1"
+                      />
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+            <analyzer type="index">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.WordDelimiterFilterFactory"
+                      generateWordParts="1"
+                      generateNumberParts="1"
+                      catenateWords="1"
+                      catenateNumbers="1"
+                      catenateAll="0"
+                      preserveOriginal="1"
+                      />
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+        </fieldtype>  
+
+        <fieldType name="text_ngram" class="solr.TextField" positionIncrementGap="100">
+            <analyzer type="index">
+                <tokenizer class="solr.NGramTokenizerFactory" minGramSize="1" maxGramSize="10"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+        </fieldType>
+
+        <fieldType name="text_edgeNgram" class="solr.TextField" positionIncrementGap="100">
+            <analyzer type="index">
+                <tokenizer class="solr.EdgeNGramTokenizerFactory" minGramSize="1" maxGramSize="10"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+        </fieldType>
+        
    </types>
 </schema>

@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.4.RELEASE</version>
+		<version>1.3.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -23,12 +23,40 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
+	
 
 	<dependencies>
+	
+		<dependency>
+	  		<groupId>org.springframework.boot</groupId>
+	 		<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-test</artifactId>
+		  <scope>test</scope>
+		</dependency>
+	
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+		
+		<dependency>
+   	    	<groupId>org.springframework.data</groupId>
+    		<artifactId>spring-data-solr</artifactId>
+ <!--   		<version>2.0.5.RELEASE</version>  -->
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.solr/solr-solrj -->
+		<dependency>
+		    <groupId>org.apache.solr</groupId>
+		    <artifactId>solr-solrj</artifactId>
+	<!--  <version>4.2.0</version>  -->	  
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -45,12 +73,29 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+	
+		
 		
 		<dependency>
     		<groupId>javax.servlet</groupId>
     		<artifactId>jstl</artifactId>
     		<scope>provided</scope>
 		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+   		 <groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+   			<version>2.4</version>
+		</dependency>
+		
+<!-- AGGIUNTO PER L'MD5 https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.7</version>
+</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-arq -->
 		<dependency>
@@ -59,12 +104,6 @@
     		<version>2.13.0</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
-   		 <groupId>commons-io</groupId>
-    		<artifactId>commons-io</artifactId>
-   			<version>2.4</version>
-		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-core -->
 		<dependency>
@@ -134,20 +173,11 @@
 		    <version>9.2.9.v20150224</version>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.apache.solr/solr-solrj -->
-		<dependency>
-		    <groupId>org.apache.solr</groupId>
-		    <artifactId>solr-solrj</artifactId>
-		    <version>4.2.0</version>
-		</dependency>
-		
 		
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
 		<dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-log4j12</artifactId>
-		    <version>1.7.6</version>
 		    <scope>test</scope>
 		</dependency>
 				
@@ -155,7 +185,7 @@
 		<dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-api</artifactId>
-		    <version>1.7.6</version>
+
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
@@ -169,14 +199,13 @@
 		<dependency>
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
-		    <version>1.1</version>
+
 		</dependency>
-		
-		
+
 		
 	</dependencies>
 
-	<build>
+		<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -199,6 +228,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
 
 </project>
