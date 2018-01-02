@@ -4,6 +4,8 @@ service mongod start
 
 echo "Starting nginx"
 service nginx start
+service nginx stop
+service nginx start
 
 echo "Starting Solr"
 ./deployment/solr.sh start
