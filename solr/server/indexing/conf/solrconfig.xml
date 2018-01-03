@@ -15,7 +15,7 @@
       			<str name="dir">${solr.ulog.dir:}</str>
     		</updateLog>
      		<autoCommit> 
-       			<maxDocs>10000</maxDocs>
+       			<maxDocs>1000000</maxDocs>
        			<maxTime>${solr.autoCommit.maxTime:15000}</maxTime> 
        			<openSearcher>false</openSearcher> 
      		</autoCommit>
@@ -53,26 +53,104 @@
 	<requestHandler name="/concept-suggest" class="solr.SearchHandler">
 		<lst name="defaults">
 			<str name="echoParams">explicit</str>
-			<int name="rows">20</int>
+			<int name="rows">1000000</int>
 		</lst>
 		<lst name="appends">
 			<str name="wt">json</str>
-			<str name="df">URI_ngram</str>
-			<str name="fq">type:concept OR type:datatype</str>
-			<str name="fl">URI,type</str>
+			<str name="df">label_ngram</str>
+			<str name="fq">type:concept</str>                         
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+	<requestHandler name="/concept-suggest-edge" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">1000000</int>
+		</lst>
+		<lst name="appends">
+			<str name="wt">json</str>
+			<str name="df">label_edgeNgram</str>
+			<str name="fq">type:concept</str>                         
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+	<requestHandler name="/datatype-suggest" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">1000000</int>
+		</lst>
+		<lst name="appends">
+			<str name="wt">json</str>
+			<str name="df">label_ngram</str>
+			<str name="fq">type:datatype</str>                         
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+	<requestHandler name="/datatype-suggest-edge" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">1000000</int>
+		</lst>
+		<lst name="appends">
+			<str name="wt">json</str>
+			<str name="df">label_edgeNgram</str>
+			<str name="fq">type:datatype</str>                         
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+	<requestHandler name="/type-suggest" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">1000000</int>
+		</lst>
+		<lst name="appends">
+			<str name="wt">json</str>
+			<str name="df">label_ngram</str>
+			<str name="fq">type:concept OR type:datatype</str>                       
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+	<requestHandler name="/type-suggest-edge" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">1000000</int>
+		</lst>
+		<lst name="appends">
+			<str name="wt">json</str>
+			<str name="df">label_edgeNgram</str>
+			<str name="fq">type:concept OR type:datatype</str>                       
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
 			<str name="indent">true</str>
 		</lst>
 	</requestHandler>
 	<requestHandler name="/property-suggest" class="solr.SearchHandler">
 		<lst name="defaults">
 			<str name="echoParams">explicit</str>
-			<int name="rows">20</int>
+			<int name="rows">10000000</int>
 		</lst>
 		<lst name="appends">
 			<str name="wt">json</str>
-			<str name="df">URI_ngram</str>
+			<str name="df">label_ngram</str>
 			<str name="fq">type:*Property</str>
-			<str name="fl">URI,type</str>
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
+			<str name="indent">true</str>
+		</lst>
+	</requestHandler>
+	<requestHandler name="/property-suggest-edge" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<int name="rows">10000000</int>
+		</lst>
+		<lst name="appends">
+			<str name="wt">json</str>
+			<str name="df">label_edgeNgram</str>
+			<str name="fq">type:*Property</str>
+			<str name="fl">URI,fullTextSearchField,type,dataset,occurrence</str>
 			<str name="indent">true</str>
 		</lst>
 	</requestHandler>
