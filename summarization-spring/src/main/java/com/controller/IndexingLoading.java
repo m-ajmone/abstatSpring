@@ -64,15 +64,6 @@ public class IndexingLoading {
 	@RequestMapping(value = "/indexingLoading", method = RequestMethod.POST)
 	public String func(@ModelAttribute("indexingReq") IndexSummary dataloading, @RequestParam("domain") String domain) throws Exception {
 		SubmitConfig config = submitConfigService.findSubmitConfigById(dataloading.getIdSummary());
-		
-		// update summary config 
-		if(dataloading.getIndexOnSolr())
-				config.setIndexedSolr(dataloading.getIndexOnSolr());
-		if(dataloading.getLoadOnMongoDB())
-			config.setLoadedMongoDB(dataloading.getLoadOnMongoDB());
-		submitConfigService.update(config);
-		
-		
 		String patternsPath = config.getSummaryPath() + "/patterns/";
 		dataset = datasetService.findDatasetById(config.getDsId()).getName();
 		this.domain = domain;
@@ -84,7 +75,7 @@ public class IndexingLoading {
 		File objectAKP = new File(patternsPath + "/object-akp.txt");
 		File datatypeAKP = new File(patternsPath + "/datatype-akp.txt");
 		
-		if(dataloading.getLoadOnMongoDB()) {
+		if(dataloading.getLoadOnMongoDB() & !config.isLoadedMongoDB()) {
 			loadResources(new TextInput(new FileSystemConnector(countConcepts)), config, "Concept");
 			loadResources(new TextInput(new FileSystemConnector(countDatatype)), config,  "Datatype");
 			loadResources(new TextInput(new FileSystemConnector(countObjectProperties)), config, "Object Property");
@@ -93,7 +84,7 @@ public class IndexingLoading {
 			loadAKPs(new TextInput(new FileSystemConnector(datatypeAKP)), config, "Datatype AKP");
 		}
 		
-		if(dataloading.getIndexOnSolr()) {
+		if(dataloading.getIndexOnSolr() & !config.isIndexedSolr()) {
 			datatypes = getFreqs(countDatatype);
 			concepts = getFreqs(countConcepts);
 			datatype_properties = getFreqs(countDatatypeProperties);
@@ -108,6 +99,15 @@ public class IndexingLoading {
 			indexAKPsAutocomplete(new TextInput(new FileSystemConnector(objectAKP)), "objectAkp");
 			indexAKPsAutocomplete(new TextInput(new FileSystemConnector(datatypeAKP)), "datatypeAkp");	
 		}
+		
+		// update summary config 
+		if(dataloading.getIndexOnSolr())
+				config.setIndexedSolr(dataloading.getIndexOnSolr());
+		if(dataloading.getLoadOnMongoDB())
+			config.setLoadedMongoDB(dataloading.getLoadOnMongoDB());
+		submitConfigService.update(config);
+		
+		
 		return "redirect:home";
 	}
 	
