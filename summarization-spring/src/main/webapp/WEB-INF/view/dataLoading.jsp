@@ -130,13 +130,13 @@ desired effect
                <div class="form-group">
                	  <div class="checkbox">
                     <label>
-                      <form:checkbox path="indexMongoDB"/>
+                      <form:checkbox path="loadOnMongoDB"/>
                       Load on the persistent storage
                     </label>
                   </div>
                    <div class="checkbox">
                     <label>
-                      <form:checkbox path="indexSolr"/>
+                      <form:checkbox path="indexOnSolr"/>
                       Index on search engine
                     </label>
                   </div>

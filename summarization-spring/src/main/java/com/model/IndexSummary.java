@@ -3,15 +3,15 @@ package com.model;
 public class IndexSummary {
 
 	private String idSummary;
-	private boolean indexMongoDB;
-	private boolean indexSolr;
+	private boolean loadOnMongoDB;
+	private boolean indexOnSolr;
 	
 	public String getIdSummary() { return idSummary; }
 	public void setIdSummary(String idSummary) { this.idSummary = idSummary; }
 	
-	public boolean getIndexMongoDB() { return indexMongoDB; }
-	public void setIndexMongoDB(boolean indexMongoDB) { this.indexMongoDB = indexMongoDB; }
+	public boolean getLoadOnMongoDB() { return loadOnMongoDB; }
+	public void setLoadOnMongoDB(boolean indexMongoDB) { this.loadOnMongoDB = indexMongoDB; }
 	
-	public boolean getIndexSolr() { return indexSolr; }
-	public void setIndexSolr(boolean indexSolr) { this.indexSolr = indexSolr; }	
+	public boolean getIndexOnSolr() { return indexOnSolr; }
+	public void setIndexOnSolr(boolean indexSolr) { this.indexOnSolr = indexSolr; }	
 }

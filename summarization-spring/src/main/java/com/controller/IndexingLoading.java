@@ -62,8 +62,17 @@ public class IndexingLoading {
 	static final int SolrBufferSize = 2000;
 	
 	@RequestMapping(value = "/indexingLoading", method = RequestMethod.POST)
-	public String func(@ModelAttribute("indexingReq") IndexSummary indexingReq, @RequestParam("domain") String domain) throws Exception {
-		SubmitConfig config = submitConfigService.findSubmitConfigById(indexingReq.getIdSummary());
+	public String func(@ModelAttribute("indexingReq") IndexSummary dataloading, @RequestParam("domain") String domain) throws Exception {
+		SubmitConfig config = submitConfigService.findSubmitConfigById(dataloading.getIdSummary());
+		
+		// update summary config 
+		if(dataloading.getIndexOnSolr())
+				config.setIndexedSolr(dataloading.getIndexOnSolr());
+		if(dataloading.getLoadOnMongoDB())
+			config.setLoadedMongoDB(dataloading.getLoadOnMongoDB());
+		submitConfigService.update(config);
+		
+		
 		String patternsPath = config.getSummaryPath() + "/patterns/";
 		dataset = datasetService.findDatasetById(config.getDsId()).getName();
 		this.domain = domain;
@@ -75,7 +84,7 @@ public class IndexingLoading {
 		File objectAKP = new File(patternsPath + "/object-akp.txt");
 		File datatypeAKP = new File(patternsPath + "/datatype-akp.txt");
 		
-		if(indexingReq.getIndexMongoDB()) {
+		if(dataloading.getLoadOnMongoDB()) {
 			loadResources(new TextInput(new FileSystemConnector(countConcepts)), config, "Concept");
 			loadResources(new TextInput(new FileSystemConnector(countDatatype)), config,  "Datatype");
 			loadResources(new TextInput(new FileSystemConnector(countObjectProperties)), config, "Object Property");
@@ -84,7 +93,7 @@ public class IndexingLoading {
 			loadAKPs(new TextInput(new FileSystemConnector(datatypeAKP)), config, "Datatype AKP");
 		}
 		
-		if(indexingReq.getIndexSolr()) {
+		if(dataloading.getIndexOnSolr()) {
 			datatypes = getFreqs(countDatatype);
 			concepts = getFreqs(countConcepts);
 			datatype_properties = getFreqs(countDatatypeProperties);

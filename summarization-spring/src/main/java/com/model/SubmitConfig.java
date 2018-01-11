@@ -19,6 +19,9 @@ public class SubmitConfig {
 	private boolean inferences;
 	private boolean cardinalita;
 	private boolean propertyMinimaliz;
+	//indexing and loading
+	private boolean loadedMongoDB;
+	private boolean indexedSolr;
 	
 	
 	
@@ -30,6 +33,8 @@ public class SubmitConfig {
 		this.id = id;
 		this.dsId = dsId;
 		this.listOntId = listOntId;
+		this.loadedMongoDB = false;
+		this.indexedSolr = false;
 	}
 	
 	public String getId() { return id; }
@@ -58,4 +63,9 @@ public class SubmitConfig {
 	public boolean isPropertyMinimaliz() { return propertyMinimaliz; }
 	public void setPropertyMinimaliz(boolean propertyMinimaliz) { this.propertyMinimaliz = propertyMinimaliz; }
 	
+	public boolean isLoadedMongoDB() { return loadedMongoDB; }
+	public void setLoadedMongoDB(boolean loadedMongoDB) { this.loadedMongoDB = loadedMongoDB; }
+	
+	public boolean isIndexedSolr() { return indexedSolr; }
+	public void setIndexedSolr(boolean indexedSolr) { this.indexedSolr = indexedSolr; }
 }
