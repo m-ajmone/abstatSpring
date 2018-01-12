@@ -17,6 +17,21 @@ public class SubmitConfigServiceImpl implements SubmitConfigService {
 	public List<SubmitConfig> listSubmitConfig() {
 		return submitConfigDao.listSubmitConfig();
 	}
+	
+	public String listSubmitConfig(Boolean loaded, Boolean indexed) {
+		List<SubmitConfig> results =  submitConfigDao.listSubmitConfig(loaded, indexed);
+		
+		String output = "[";
+		for(SubmitConfig conf : results)
+			output += "\"" + conf.getId() + "\", ";
+		
+		if(results.size()>0)
+			output = output.substring(0,output.length()-2) + "]";
+		else
+			output += "]";
+		
+		return output;
+	}
 
 	public void add(SubmitConfig submitConfig) {
 		submitConfigDao.add(submitConfig);
@@ -35,4 +50,5 @@ public class SubmitConfigServiceImpl implements SubmitConfigService {
 	public void update(SubmitConfig submitConfig) {
 		submitConfigDao.update(submitConfig);
 	}
+	
 }

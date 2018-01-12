@@ -15,4 +15,6 @@ public interface SubmitConfigDao {
 	public void delete(SubmitConfig submitConfig);
 	
 	public SubmitConfig findSubmitConfigById(String id);
+	
+	public List<SubmitConfig> listSubmitConfig(Boolean loaded, Boolean indexed);
 }

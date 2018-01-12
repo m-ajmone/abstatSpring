@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.model.SubmitConfig;
@@ -39,7 +41,18 @@ public class SubmitConfigDaoImpl implements SubmitConfigDao {
 
 	public void update(SubmitConfig submitConfig) {
 		mongoTemplate.save(submitConfig,COLLECTION_NAME);
+	}
+
+	public List<SubmitConfig> listSubmitConfig(Boolean loaded, Boolean indexed) {
+		Query query = new Query();
+		if(loaded!=null && indexed!=null)
+			query.addCriteria(new Criteria().andOperator(Criteria.where("loadedMongoDB").is(loaded), Criteria.where("indexedSolr").is(indexed)));
+		else if(loaded!=null)
+			query.addCriteria(Criteria.where("loadedMongoDB").is(loaded));
+		else if(indexed!=null)
+			query.addCriteria(Criteria.where("indexedSolr").is(indexed));
 		
+		return mongoTemplate.find(query, SubmitConfig.class, COLLECTION_NAME);
 	}
 
 }
