@@ -58,7 +58,7 @@ public class AKP {
 	public String getDatasetOfOrigin() { return datasetOfOrigin; }
 	public void setDatasetOfOrigin(String datasetOfOrigin) { this.datasetOfOrigin = datasetOfOrigin; }
 	
-	public List<String> getOntologiesOfOrigind() { return ontologiesOfOrigin; }
+	public List<String> getOntologiesOfOrigin() { return ontologiesOfOrigin; }
 	public void setOntologiesOfOrigin(List<String> ontologiesOfOrigin) { this.ontologiesOfOrigin = ontologiesOfOrigin; }
 	
 	public String getSummary_conf() { return summary_conf; }

@@ -10,4 +10,6 @@ public interface AKPService {
 	
 	public void delete(AKP AKP);
 	
+	public String list(String dataset,String subj, String pred, String obj);
+	
 }
