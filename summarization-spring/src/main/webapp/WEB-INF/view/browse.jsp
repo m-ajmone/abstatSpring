@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%><!DOCTYPE html>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html lang="en" ng-app="schemasummaries">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ABSTAT</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+<!-- OLD -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="old/js/controllers.js"></script>
+<script src="old/js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+
+
   <link rel="stylesheet" href="css/bootstrap.min.css" type = "text/css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type = "text/css">
@@ -30,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 
   <!-- Google Font -->
   <link rel="stylesheet"
@@ -103,13 +113,111 @@ desired effect
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1> 
-     	 Browse <small> Advance search page</small>
-      </h1>
+
+
+		<div ng-controller="browse">
+			<div class="row">
+			<div class="col-md-6">
+			<form class="form-inline">
+			<div class="form-group">
+				browse the <strong>abstract knowledge patterns</strong> found into 
+				<select id="dataset" ng-model="selected_graph" class="form-control">
+					<option>select a dataset</option>
+				    <option ng-repeat="graph in graphs">{{graph.id}}</option>
+				</select>
+				<button type="button" ng-click='loadPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
+					<span ng-hide="loadingSummary">view</span>
+        			<span ng-show="loadingSummary">view  <i class="fa fa-spinner fa-spin"></i></span>
+        		</button>
+			</div>
+			</form>
+			</div>
+			</div>
+			
+			<br><br>
+			
+			<div ng-show="graph_was_selected">
+			<div style="margin-top:0.5cm" class="row">
+			<div class="col-md-12">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>subject type <small>(occurrences)</small></th>
+						<th>predicate <small>(occurrences)</small></th>
+						<th>object type <small>(occurrences)</small></th>
+						<th>frequency</th>
+						<th>instances</th>
+						<th>Max subjs-obj</th>
+						<th>Avg subjs-obj</th>
+						<th>Min subjs-obj</th>
+						<th>Max subj-objs</th>
+						<th>Avg subj-objs</th>
+						<th>Min subj-objs</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center"><button type="submit" ng-click='filterPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
+													<span ng-hide="loadingSummary">filter</span>
+        											<span ng-show="loadingSummary">filter  <i class="fa fa-spinner fa-spin"></i></span>
+												</button>
+						</td>
+						<script type="text/ng-template" id="autocomplete-template.html">
+						<a>
+							{{match.model.local | isDatatype}}{{match.model.local | isObject}}
+      						<span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+  						</a>
+						</script>
+						<td><input type="text" typeahead="subject as subject.global for subject in autocomplete.subject | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="subject" class="form-control" placeholder="subject"></td>
+						<td><input type="text" typeahead="predicate as predicate.global for predicate in autocomplete.predicate | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="predicate" class="form-control" placeholder="predicate"></td>
+						<td><input type="text" typeahead="object as object.global for object in autocomplete.object | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="object" class="form-control" placeholder="object"></td>
+					</tr>
+					<tr ng-repeat="summary in summaries">
+						<td class="text-center"><a target="_blank" href="{{describe_uri}}{{summary.pattern.value | escape}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+						<td>
+							<a target="_blank" href="{{describe_uri}}{{summary.subject.value | escape}}">{{summary.gSubject.value | prefixed}}</a>
+							<small ng-show="summary.subjectOcc">({{summary.subjectOcc.value}})</small>
+						</td>
+						<td>
+							{{summary.predicate.value | isDatatype}}{{summary.predicate.value | isObject}}
+							<a target="_blank" href="{{describe_uri}}{{summary.predicate.value | escape}}">{{summary.gPredicate.value  | prefixed}}</a>
+							<small ng-show="summary.predicateOcc">({{summary.predicateOcc.value}})</small>
+						</td>
+						<td>
+							<a target="_blank" href="{{describe_uri}}{{summary.object.value | escape}}">{{summary.gObject.value  | prefixed}}</a>
+							<small ng-show="summary.objectOcc">({{summary.objectOcc.value}})</small>
+						</td>
+						<td>{{summary.frequency.value}}</td>
+                                                <td>{{summary.instances.value}}</td>
+                                                <td>{{summary.max_M.value}}</td>
+                                                <td>{{summary.avg_M.value}}</td>
+                                                <td>{{summary.min_M.value}}</td>
+                                                <td>{{summary.max_N.value}}</td>
+                                                <td>{{summary.avg_N.value}}</td>
+                                                <td>{{summary.min_N.value}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<button ng-click="loadMore()" type="button" ng-disabled="loadingSummary" class="btn btn-deafult btn-block">
+				<span ng-hide="loadingSummary"><strong>{{summaries.length}}</strong> patterns found - get more</span>
+        		<span ng-show="loadingSummary"><strong>{{summaries.length}}</strong> patterns found - get more  <i class="fa fa-spinner fa-spin"></i></span>
+        	</button>
+			</div>
+			</div>
+			</div>
+			
+			<br><br>
+		</div>
+
+
+
+
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+ 
 
 
 
@@ -145,6 +253,7 @@ desired effect
 <script src="jquery/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="jquery/adminlte.min.js"></script>
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

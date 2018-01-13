@@ -171,9 +171,9 @@ summary.controller('browse', function ($scope, $http) {
 	bootstrapControllerFor($scope, $http, 'select a dataset', summaries, '');
 	
 	summaries.startLoading();
-	$http.get('/api/v1/datasets', {method: 'GET', params:{}})
+	$http.get('/api/v1/summaries', {method: 'GET', params:{}})
 		 .success(function(results){
-			$scope.graphs = results['datasets'];
+			$scope.graphs = results['summaries'];
 			summaries.endLoading();
 		 });
 });

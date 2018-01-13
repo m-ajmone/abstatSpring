@@ -21,14 +21,14 @@ public class SubmitConfigServiceImpl implements SubmitConfigService {
 	public String listSubmitConfig(Boolean loaded, Boolean indexed) {
 		List<SubmitConfig> results =  submitConfigDao.listSubmitConfig(loaded, indexed);
 		
-		String output = "[";
+		String output = "{\"summaries\":[";
 		for(SubmitConfig conf : results)
-			output += "\"" + conf.getId() + "\", ";
+			output += "{\"id\":\"" + conf.getId() + "\"},";
 		
 		if(results.size()>0)
-			output = output.substring(0,output.length()-2) + "]";
+			output = output.substring(0,output.length()-1) + "]}";
 		else
-			output += "]";
+			output += "]}";
 		
 		return output;
 	}
