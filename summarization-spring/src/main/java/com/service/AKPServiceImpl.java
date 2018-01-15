@@ -51,6 +51,6 @@ public class AKPServiceImpl implements AKPService{
 		try { out = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(array);}
 		catch(Exception e) {e.printStackTrace(); }
 		
-		return out;
+		return "{ \"akps\": " + out + "}";
 	}
 }

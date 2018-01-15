@@ -137,7 +137,7 @@ summary.filter('isDatatype', function(){
 });
 
 isDatatype = function(value){
-	if(value.indexOf('datatype-property') > -1) return 'DTP';
+	if(value === 'Datatype AKP') return 'DTP';
 	return '';
 };
 
@@ -146,7 +146,7 @@ summary.filter('isObject', function(){
 });
 
 isObject = function(value){
-	if(value.indexOf('object-property') > -1) return 'OP';
+	if(value === 'Object AKP') return 'OP';
 	return '';
 };
 
@@ -400,19 +400,12 @@ Sparql = function(http_service){
 	};
 	
 	this.accumulate = function(onSuccess){
-		http.get('/sparql', {
+		http.get('/api/v1/browse', {
 	        method: 'GET',
 	        params: {
-	            query: 'prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ' +
-		        	   'prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> ' +
-		        	   'prefix lds:   <http://ld-summaries.org/ontology/> '+
-		        	   'prefix skos:   <http://www.w3.org/2004/02/skos/core#> '+
-	         	       query,
-	            'default-graph-uri' : graph,
-	            format: 'json'
 	        }
 	    }).success(function(res){
-	    	onSuccess(res.results.bindings);
+	    	onSuccess(res.akps);
 	    });
 	};
 };

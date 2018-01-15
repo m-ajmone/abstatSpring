@@ -176,26 +176,26 @@ desired effect
 					<tr ng-repeat="summary in summaries">
 						<td class="text-center"><a target="_blank" href="{{describe_uri}}{{summary.pattern.value | escape}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
 						<td>
-							<a target="_blank" href="{{describe_uri}}{{summary.subject.value | escape}}">{{summary.gSubject.value | prefixed}}</a>
+							<a target="_blank" ">{{summary.subject | prefixed}}</a>
 							<small ng-show="summary.subjectOcc">({{summary.subjectOcc.value}})</small>
 						</td>
 						<td>
-							{{summary.predicate.value | isDatatype}}{{summary.predicate.value | isObject}}
-							<a target="_blank" href="{{describe_uri}}{{summary.predicate.value | escape}}">{{summary.gPredicate.value  | prefixed}}</a>
+							{{summary.type | isDatatype}}{{summary.type | isObject}}
+							<a target="_blank" ">{{summary.predicate  | prefixed}}</a>
 							<small ng-show="summary.predicateOcc">({{summary.predicateOcc.value}})</small>
 						</td>
 						<td>
-							<a target="_blank" href="{{describe_uri}}{{summary.object.value | escape}}">{{summary.gObject.value  | prefixed}}</a>
+							<a target="_blank" ">{{summary.object  | prefixed}}</a>
 							<small ng-show="summary.objectOcc">({{summary.objectOcc.value}})</small>
 						</td>
-						<td>{{summary.frequency.value}}</td>
-                                                <td>{{summary.instances.value}}</td>
-                                                <td>{{summary.max_M.value}}</td>
-                                                <td>{{summary.avg_M.value}}</td>
-                                                <td>{{summary.min_M.value}}</td>
-                                                <td>{{summary.max_N.value}}</td>
-                                                <td>{{summary.avg_N.value}}</td>
-                                                <td>{{summary.min_N.value}}</td>
+						  <td>{{summary.frequency}}</td>
+              <td>{{summary.numberOfInstances}}</td>
+              <td>{{summary.cardinality1}}</td>
+              <td>{{summary.cardinality2}}</td>
+              <td>{{summary.cardinality3}}</td>
+              <td>{{summary.cardinality4}}</td>
+              <td>{{summary.cardinality5}}</td>
+              <td>{{summary.cardinality6}}</td>
 					</tr>
 				</tbody>
 			</table>

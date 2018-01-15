@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -71,6 +72,8 @@ public class AKPDaoImpl implements AKPDao{
 													 Criteria.where(array[1][0]).is(array[1][1]),
 													 Criteria.where(array[2][0]).is(array[2][1]),
 													 Criteria.where(array[3][0]).is(array[3][1])));
+		
+		query.with(new Sort(Sort.Direction.DESC, "frequency"));
 
 		return mongoTemplate.find(query, AKP.class, COLLECTION_NAME);
 	}
