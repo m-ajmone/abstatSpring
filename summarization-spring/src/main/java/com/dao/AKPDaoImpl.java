@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.model.AKP;
-import com.model.SubmitConfig;
 
 @Repository
 public class AKPDaoImpl implements AKPDao{
@@ -72,22 +71,17 @@ public class AKPDaoImpl implements AKPDao{
 													 Criteria.where(array[1][0]).is(array[1][1]),
 													 Criteria.where(array[2][0]).is(array[2][1]),
 													 Criteria.where(array[3][0]).is(array[3][1])));
-		
 		query.with(new Sort(Sort.Direction.DESC, "frequency"));
-
 		return mongoTemplate.find(query, AKP.class, COLLECTION_NAME);
 	}
 	
 	
-	public List<SubmitConfig> listSubmitConfig(Boolean loaded, Boolean indexed) {
-		Query query = new Query();
-		if(loaded!=null && indexed!=null)
-			query.addCriteria(new Criteria().andOperator(Criteria.where("loadedMongoDB").is(loaded), Criteria.where("indexedSolr").is(indexed)));
-		else if(loaded!=null)
-			query.addCriteria(Criteria.where("loadedMongoDB").is(loaded));
-		else if(indexed!=null)
-			query.addCriteria(Criteria.where("indexedSolr").is(indexed));
+	public List<String> getSPOlist(String dataset, String position){
+		Query query = new Query();	
+		if(dataset!=null)
+			query.addCriteria(Criteria.where("datasetOfOrigin").is(dataset));
 		
-		return mongoTemplate.find(query, SubmitConfig.class, COLLECTION_NAME);
+		List<String> coll = mongoTemplate.getCollection(COLLECTION_NAME).distinct(position, query.getQueryObject());
+		return coll;	
 	}
 }

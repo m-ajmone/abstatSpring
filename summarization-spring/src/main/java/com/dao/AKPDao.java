@@ -15,4 +15,5 @@ public interface AKPDao {
 	
 	public List<AKP> list(String dataset, String subj, String pred, String obj);
 	
+	public List<String> getSPOlist(String dataset, String position);
 }

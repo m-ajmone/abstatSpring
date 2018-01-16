@@ -12,4 +12,6 @@ public interface AKPService {
 	
 	public String list(String dataset,String subj, String pred, String obj);
 	
+	public String getSPOlist(String dataset, String position);
+	
 }

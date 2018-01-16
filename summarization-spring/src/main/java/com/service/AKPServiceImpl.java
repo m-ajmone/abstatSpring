@@ -53,4 +53,18 @@ public class AKPServiceImpl implements AKPService{
 		
 		return "{ \"akps\": " + out + "}";
 	}
+	
+	public String getSPOlist(String dataset, String position){
+		List<String> list = AKPDao.getSPOlist(dataset, position);
+		String out = "{ \"results\": [";
+		for(String el : list) 
+			out += "{\"" + position + "\":\""+ el+"\"},";
+		
+		if(list.size()>0)
+			out = out.substring(0,out.length()-1) + "]}";
+		else
+			out += "]}";
+		
+		return out;
+	}
 }
