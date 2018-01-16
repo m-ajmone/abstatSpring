@@ -275,19 +275,13 @@ fill = function(type, graph, result, http, filter){
 	result[type] = [];
 	
 	new Sparql(http)
-	.query('select distinct(?' + type + ') ?g' + type + ' ' + 
-			'where { '+
-				'?pattern a lds:AbstractKnowledgePattern . ' +
-				 filter +
-	         	'?pattern rdf:' + type + ' ?' + type + ' . ' +
-	         	'?' + type + ' rdfs:seeAlso' + ' ?g' + type + ' . ' +
-         	'} ')
      .onGraph(graph)
-     .accumulate(function(results){		    	 
+     .onType(type)
+     .SPO(function(results){		    	 
     	 angular.forEach(results, function(key, value){
     		 var result = {};
-    		 result['local'] = key[type].value;
-    		 result['global'] = prefixed(key['g' + type].value);
+    		 result['global'] = prefixed(key[type])
+    		 result['notPrefixed'] = key[type];
     		 
     		 this.push(result)
     	 }, result[type]);
@@ -318,60 +312,22 @@ Summary = function(scope_service, http_service, filter){
 		
 		var localOrDefault = function(value, default_value){
 			var value_to_return = default_value;
-			if(value) value_to_return = '<' + value.local + '>';
+			if(value) value_to_return = value.notPrefixed;
 			return value_to_return;
 		}
 		
-		var subject = localOrDefault(scope.subject, '?subject');
-		var predicate = localOrDefault(scope.predicate, '?predicate');
-		var object = localOrDefault(scope.object, '?object');
+		var subject = localOrDefault(scope.subject, '');
+		var predicate = localOrDefault(scope.predicate, '');
+		var object = localOrDefault(scope.object, '');
 		
 		this.startLoading();
 		endLoading = this.endLoading;
 		
 		new Sparql(http)
-			.query('select ' + subject + ' as ?subject ' + predicate + ' as ?predicate ' + object + ' as ?object ?frequency ?instances ?max_M ?avg_M ?min_M ?max_N ?avg_N ?min_N ?pattern ?gSubject ?gPredicate ?gObject ?subjectOcc ?predicateOcc ?objectOcc ' +
-				   ' where { ' +
-						'?pattern a lds:AbstractKnowledgePattern . ' +
-						internalConstraint +
-						'?pattern rdf:subject ' + subject + ' . ' +
-						'?pattern rdf:predicate ' + predicate + ' . ' + 
-			         	'?pattern rdf:object ' + object + ' . ' +
-			         	'?pattern lds:occurrence ?frequency . ' +
-
-					'optional { ?pattern  lds:numberOfInstances ?instances . ' +
-					'} . ' +
-			         	'optional { ?pattern  lds:max_M_Cardinality ?max_M . ' +
-					'} . ' +
-			         	'optional { ?pattern  lds:avg_M_Cardinality ?avg_M . ' +
-					'} . ' +
-			         	'optional { ?pattern  lds:min_M_Cardinality ?min_M . ' +
-					'} . ' +
-			         	'optional { ?pattern  lds:max_N_Cardinality ?max_N . ' +
-					'} . ' +
-			         	'optional { ?pattern  lds:avg_N_Cardinality ?avg_N . ' +
-					'} . ' +
-			         	'optional { ?pattern  lds:min_N_Cardinality ?min_N . ' +
-					'} . ' +
-
-			         	subject + ' rdfs:seeAlso ?gSubject . ' +
-			         	predicate +' rdfs:seeAlso ?gPredicate . ' +
-			         	object + ' rdfs:seeAlso ?gObject . ' +
-			         	'optional { ' +
-			         		subject + ' lds:occurrence ?subjectOcc .' +
-			         	'} . ' +
-			         	'optional { ' +
-			         		predicate + ' lds:occurrence ?predicateOcc .' +
-			         	'} . ' +
-			         	'optional { ' +
-		         			object + ' lds:occurrence ?objectOcc . ' +
-		         			'FILTER (?objectOcc > 0) ' +
-		         		'} . ' +
-					'} ' +
-					'order by desc(?frequency) ' +
-					'limit ' + limit + ' ' +
-					'offset ' + offset)
 			.onGraph(scope.selected_graph)
+			.onS(subject)
+			.onP(predicate)
+			.onO(object)
 			.accumulate(function(results){
 				offset = offset + 20;
 				for (var i = 0; i < results.length; i++) {
@@ -387,15 +343,33 @@ Sparql = function(http_service){
 	
 	var http = http_service;
 	var graph = "";
-	var query;
+	var type = "";
+	var s = "";
+	var p = "";
+	var o = "";
+
+	this.onS = function(arg){
+		s = arg;
+		return this;
+	};
+
+		this.onP = function(arg){
+		p = arg;
+		return this;
+	};
+
+		this.onO = function(arg){
+		o = arg;
+		return this;
+	};
 	
 	this.onGraph = function(target_graph){
 		graph = target_graph;
 		return this;
 	};
-	
-	this.query = function(query_to_execute){
-		query = query_to_execute;
+
+	this.onType = function(target_type){
+		type = target_type;
 		return this;
 	};
 	
@@ -403,9 +377,25 @@ Sparql = function(http_service){
 		http.get('/api/v1/browse', {
 	        method: 'GET',
 	        params: {
+	        //	dataset:'system-test',
+	        	subj: s,
+	        	pred: p,
+	        	obj:o
 	        }
 	    }).success(function(res){
 	    	onSuccess(res.akps);
+	    });
+	};
+
+	this.SPO = function(onSuccess){
+		http.get('/api/v1/SPO', {
+	        method: 'GET',
+	        params: {
+	        //	dataset: 'system-test',
+	        	position: type
+	        }
+	    }).success(function(res){
+	    	onSuccess(res.results);
 	    });
 	};
 };
