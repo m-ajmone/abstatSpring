@@ -329,6 +329,8 @@ Summary = function(scope_service, http_service, filter){
 			.onS(subject)
 			.onP(predicate)
 			.onO(object)
+			.onLimit(limit)
+			.onOffset(offset)
 			.accumulate(function(results){
 				offset = offset + 20;
 				for (var i = 0; i < results.length; i++) {
@@ -348,6 +350,8 @@ Sparql = function(http_service){
 	var s = "";
 	var p = "";
 	var o = "";
+	var limit;
+	var offset;
 
 	this.onS = function(arg){
 		s = arg;
@@ -373,6 +377,16 @@ Sparql = function(http_service){
 		type = target_type;
 		return this;
 	};
+
+	this.onLimit = function(arg){
+		limit = arg;
+		return this;
+	};
+
+	this.onOffset = function(arg){
+		offset = arg;
+		return this;
+	};
 	
 	this.accumulate = function(onSuccess){
 		http.get('/api/v1/browse', {
@@ -381,7 +395,9 @@ Sparql = function(http_service){
 	        	summary:graph,
 	        	subj: s,
 	        	pred: p,
-	        	obj:o
+	        	obj:o,
+	        	limit:limit,
+	        	offset:offset
 	        }
 	    }).success(function(res){
 	    	onSuccess(res.akps);
