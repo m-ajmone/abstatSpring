@@ -21,7 +21,7 @@ public class BrowseAPI {
 			@RequestParam(value="subj", required=false) String s, 
 			@RequestParam(value="pred", required=false) String p,
 			@RequestParam(value="obj", required=false) String o,
-			@RequestParam(value="dataset", required=false) String dataset) throws Exception {
+			@RequestParam(value="summary", required=false) String summary) {
 		
 	
 			// to avoid errors when an empty value is passed
@@ -32,16 +32,16 @@ public class BrowseAPI {
 			if(o!=null && o.equals(""))
 				o = null;
 			
-			String results = AKPService.list(dataset, s, p, o);
+			String results = AKPService.list(summary, s, p, o);
 			return results;
 	}
 	
 	
 	@RequestMapping(value="/api/v1/SPO", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String SPO(
-			@RequestParam(value="dataset", required=false) String dataset,
-			@RequestParam(value="position", required=true) String position) throws Exception {
-			String results = AKPService.getSPOlist(dataset, position);
+			@RequestParam(value="summary", required=false) String summary,
+			@RequestParam(value="position", required=true) String position) {
+			String results = AKPService.getSPOlist(summary, position);
 			return results;
 	}
 }

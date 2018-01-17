@@ -171,7 +171,8 @@ summary.controller('browse', function ($scope, $http) {
 	bootstrapControllerFor($scope, $http, 'select a dataset', summaries, '');
 	
 	summaries.startLoading();
-	$http.get('/api/v1/summaries', {method: 'GET', params:{}})
+	$http.get('/api/v1/summaries', {method: 'GET',  params: { loaded:'true'
+	        }})
 		 .success(function(results){
 			$scope.graphs = results['summaries'];
 			summaries.endLoading();
@@ -377,7 +378,7 @@ Sparql = function(http_service){
 		http.get('/api/v1/browse', {
 	        method: 'GET',
 	        params: {
-	        //	dataset:'system-test',
+	        	summary:graph,
 	        	subj: s,
 	        	pred: p,
 	        	obj:o
@@ -391,7 +392,7 @@ Sparql = function(http_service){
 		http.get('/api/v1/SPO', {
 	        method: 'GET',
 	        params: {
-	        //	dataset: 'system-test',
+	        	summary:graph,
 	        	position: type
 	        }
 	    }).success(function(res){

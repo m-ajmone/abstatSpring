@@ -42,16 +42,16 @@ public class AKPDaoImpl implements AKPDao{
 		
 	}
 	
-	public List<AKP> list(String dataset, String subj, String pred, String obj) {
+	public List<AKP> list(String summary, String subj, String pred, String obj) {
 		String[][] array = new String[4][2];
 		array[0][0] = "";
 		array[1][0] = "" ;
 		array[2][0] = "";
 		array[3][0] = "" ;
 		
-		if(dataset!=null) {
-			array[0][0] = "datasetOfOrigin";
-			array[0][1] = dataset;
+		if(summary!=null) {
+			array[0][0] = "summary_conf";
+			array[0][1] = summary;
 		}
 		if(subj!=null) {
 			array[1][0] = "subject" ;
@@ -76,10 +76,10 @@ public class AKPDaoImpl implements AKPDao{
 	}
 	
 	
-	public List<String> getSPOlist(String dataset, String position){
+	public List<String> getSPOlist(String summary, String position){
 		Query query = new Query();	
-		if(dataset!=null)
-			query.addCriteria(Criteria.where("datasetOfOrigin").is(dataset));
+		if(summary!=null)
+			query.addCriteria(Criteria.where("summary_conf").is(summary));
 		
 		List<String> coll = mongoTemplate.getCollection(COLLECTION_NAME).distinct(position, query.getQueryObject());
 		return coll;	

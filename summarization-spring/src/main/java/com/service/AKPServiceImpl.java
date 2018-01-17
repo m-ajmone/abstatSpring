@@ -34,8 +34,8 @@ public class AKPServiceImpl implements AKPService{
 	}
 	
 	
-	public String list(String dataset, String subj, String pred, String obj) {
-		List<AKP> list = AKPDao.list(dataset, subj, pred, obj);
+	public String list(String summary, String subj, String pred, String obj) {
+		List<AKP> list = AKPDao.list(summary, subj, pred, obj);
 	
 		String out = ""; 
 		ObjectMapper mapper = new ObjectMapper();
@@ -54,8 +54,8 @@ public class AKPServiceImpl implements AKPService{
 		return "{ \"akps\": " + out + "}";
 	}
 	
-	public String getSPOlist(String dataset, String position){
-		List<String> list = AKPDao.getSPOlist(dataset, position);
+	public String getSPOlist(String summary, String position){
+		List<String> list = AKPDao.getSPOlist(summary, position);
 		String out = "{ \"results\": [";
 		for(String el : list) 
 			out += "{\"" + position + "\":\""+ el+"\"},";

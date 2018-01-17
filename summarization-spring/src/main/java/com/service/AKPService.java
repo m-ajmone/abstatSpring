@@ -10,8 +10,8 @@ public interface AKPService {
 	
 	public void delete(AKP AKP);
 	
-	public String list(String dataset,String subj, String pred, String obj);
+	public String list(String summary,String subj, String pred, String obj);
 	
-	public String getSPOlist(String dataset, String position);
+	public String getSPOlist(String summary, String position);
 	
 }
