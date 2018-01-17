@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.model.Resource;
@@ -36,5 +38,11 @@ public class ResourceDaoImpl implements ResourceDao {
 	public void delete(Resource resource) {
 		mongoTemplate.remove(resource, COLLECTION_NAME);
 		
+	}
+	
+	public Resource getResourceFromSummary(String globalURI, String summary) {
+		Query query = new Query();
+		query.addCriteria(new Criteria().andOperator(Criteria.where("seeAlso").is(globalURI), Criteria.where("summary_conf").is(summary)));
+		return mongoTemplate.findOne(query, Resource.class, COLLECTION_NAME);
 	}
 }

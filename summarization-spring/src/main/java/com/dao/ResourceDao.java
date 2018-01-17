@@ -10,5 +10,6 @@ public interface ResourceDao {
 	
 	public void delete(Resource resource);
 	
+	public Resource getResourceFromSummary(String globalURI, String summary);
 }
 		

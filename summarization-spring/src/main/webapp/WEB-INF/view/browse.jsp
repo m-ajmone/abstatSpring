@@ -176,17 +176,17 @@ desired effect
 					<tr ng-repeat="summary in summaries">
 						<td class="text-center"><a target="_blank" href="{{describe_uri}}{{summary.pattern.value | escape}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
 						<td>
-							<a target="_blank" ">{{summary.subject | prefixed}}</a>
-							<small ng-show="summary.subjectOcc">({{summary.subjectOcc.value}})</small>
+							<a target="_blank" ">{{summary.subject.globalURL | prefixed}}</a>
+							<small ng-show="summary.subject.frequency">({{summary.subject.frequency}})</small>
 						</td>
 						<td>
 							{{summary.type | isDatatype}}{{summary.type | isObject}}
-							<a target="_blank" ">{{summary.predicate  | prefixed}}</a>
-							<small ng-show="summary.predicateOcc">({{summary.predicateOcc.value}})</small>
+							<a target="_blank" ">{{summary.predicate.globalURL  | prefixed}}</a>
+							<small ng-show="summary.predicate.frequency">({{summary.predicate.frequency}})</small>
 						</td>
 						<td>
-							<a target="_blank" ">{{summary.object  | prefixed}}</a>
-							<small ng-show="summary.objectOcc">({{summary.objectOcc.value}})</small>
+							<a target="_blank" ">{{summary.object.globalURL  | prefixed}}</a>
+							<small ng-show="summary.object.frequency">({{summary.object.frequency}})</small>
 						</td>
 						  <td>{{summary.frequency}}</td>
               <td>{{summary.numberOfInstances}}</td>

@@ -397,7 +397,8 @@ Sparql = function(http_service){
 	        	pred: p,
 	        	obj:o,
 	        	limit:limit,
-	        	offset:offset
+	        	offset:offset,
+	        	enrichWithSPO: 'true'
 	        }
 	    }).success(function(res){
 	    	onSuccess(res.akps);

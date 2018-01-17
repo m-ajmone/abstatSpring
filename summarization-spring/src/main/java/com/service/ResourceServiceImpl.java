@@ -27,4 +27,9 @@ public class ResourceServiceImpl implements ResourceService{
 	public void delete(Resource resource) {
 		resourceDao.delete(resource);
 	}
+	
+	
+	public Resource getResourceFromSummary(String globalURI, String summary) {
+		return resourceDao.getResourceFromSummary(globalURI, summary);
+	}
 }
