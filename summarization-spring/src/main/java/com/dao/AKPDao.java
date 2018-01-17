@@ -13,7 +13,7 @@ public interface AKPDao {
 	
 	public void delete(AKP AKP);
 	
-	public List<AKP> list(String summary, String subj, String pred, String obj);
+	public List<AKP> list(String summary, String subj, String pred, String obj, Integer limit, Integer offset);
 	
 	public List<String> getSPOlist(String summary, String position);
 }

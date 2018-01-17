@@ -21,7 +21,9 @@ public class BrowseAPI {
 			@RequestParam(value="subj", required=false) String s, 
 			@RequestParam(value="pred", required=false) String p,
 			@RequestParam(value="obj", required=false) String o,
-			@RequestParam(value="summary", required=false) String summary) {
+			@RequestParam(value="summary", required=false) String summary,
+			@RequestParam(value="limit", required=false) Integer limit,
+			@RequestParam(value="offset", required=false) Integer offset) {
 		
 	
 			// to avoid errors when an empty value is passed
@@ -32,7 +34,7 @@ public class BrowseAPI {
 			if(o!=null && o.equals(""))
 				o = null;
 			
-			String results = AKPService.list(summary, s, p, o);
+			String results = AKPService.list(summary, s, p, o, limit, offset);
 			return results;
 	}
 	

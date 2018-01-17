@@ -34,8 +34,8 @@ public class AKPServiceImpl implements AKPService{
 	}
 	
 	
-	public String list(String summary, String subj, String pred, String obj) {
-		List<AKP> list = AKPDao.list(summary, subj, pred, obj);
+	public String list(String summary, String subj, String pred, String obj, Integer limit, Integer offset) {
+		List<AKP> list = AKPDao.list(summary, subj, pred, obj, limit, offset);
 	
 		String out = ""; 
 		ObjectMapper mapper = new ObjectMapper();

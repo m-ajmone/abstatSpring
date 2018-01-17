@@ -42,7 +42,7 @@ public class AKPDaoImpl implements AKPDao{
 		
 	}
 	
-	public List<AKP> list(String summary, String subj, String pred, String obj) {
+	public List<AKP> list(String summary, String subj, String pred, String obj, Integer limit, Integer offset) {
 		String[][] array = new String[4][2];
 		array[0][0] = "";
 		array[1][0] = "" ;
@@ -72,6 +72,15 @@ public class AKPDaoImpl implements AKPDao{
 													 Criteria.where(array[2][0]).is(array[2][1]),
 													 Criteria.where(array[3][0]).is(array[3][1])));
 		query.with(new Sort(Sort.Direction.DESC, "frequency"));
+		if(offset!=null)
+			query.skip(offset);
+		else
+			query.skip(0);
+		if(limit!=null)
+			query.limit(limit);
+		else
+			query.limit(0);
+		
 		return mongoTemplate.find(query, AKP.class, COLLECTION_NAME);
 	}
 	
