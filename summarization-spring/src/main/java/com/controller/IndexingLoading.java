@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.model.AKP;
 import com.model.AKPSolr;
 import com.model.IndexSummary;
 import com.model.ResourceSolr;
@@ -74,6 +75,9 @@ public class IndexingLoading {
 		File countDatatypeProperties = new File(patternsPath + "/count-datatype-properties.txt");
 		File objectAKP = new File(patternsPath + "/object-akp.txt");
 		File datatypeAKP = new File(patternsPath + "/datatype-akp.txt");
+		File objectPatterns = new File(patternsPath + "/patterns_splitMode_object.txt");
+		File datatypePatterns = new File(patternsPath + "/patterns_splitMode_datatype.txt");
+		
 		
 		if(dataloading.getLoadOnMongoDB() & !config.isLoadedMongoDB()) {
 			loadResources(new TextInput(new FileSystemConnector(countConcepts)), config, "Concept");
@@ -82,6 +86,12 @@ public class IndexingLoading {
 			loadResources(new TextInput(new FileSystemConnector(countDatatypeProperties)), config, "Datatype Property");
 			loadAKPs(new TextInput(new FileSystemConnector(objectAKP)), config, "Object AKP");
 			loadAKPs(new TextInput(new FileSystemConnector(datatypeAKP)), config, "Datatype AKP");
+			
+			if(objectPatterns.exists() && datatypePatterns.exists()) {
+				loadNumberOfInstances(new TextInput(new FileSystemConnector(objectPatterns)), config, "Object AKP");
+				loadNumberOfInstances(new TextInput(new FileSystemConnector(datatypePatterns)), config, "Datatype AKP");
+			}
+			
 		}
 		
 		if(dataloading.getIndexOnSolr() & !config.isIndexedSolr()) {
@@ -109,8 +119,7 @@ public class IndexingLoading {
 		
 		
 		return "redirect:home";
-	}
-	
+	}	
 	
 	public void loadResources(InputFile file, SubmitConfig config, String type) throws Exception{
 		while (file.hasNextLine()) {
@@ -173,7 +182,7 @@ public class IndexingLoading {
 				String globalPredicate = splitted[1];
 				String globalObject = splitted[2];
 				String frequency = splitted[3];
-				
+
 				Model model = ModelFactory.createDefaultModel();
 				LDSummariesVocabulary vocabulary = new LDSummariesVocabulary(model, dataset);
 				RDFTypeOf typeOf = new RDFTypeOf(domain);
@@ -217,6 +226,22 @@ public class IndexingLoading {
 				AKP.setOntologiesOfOrigin(ontList);
 				AKP.setSummary_conf(config.getId());
 				AKPService.add(AKP);
+			}
+		}
+	}
+	
+	
+	public void loadNumberOfInstances(InputFile file,SubmitConfig config, String type) throws Exception{
+		while (file.hasNextLine()) {
+			String line = file.nextLine();
+			if(!line.equals("")){
+				String[] splitted = line.split("##");				
+				AKP akp = AKPService.getAKP(splitted[0], splitted[1], splitted[2], config.getId());
+				
+				if(akp!=null) {  //to deal with no-minimal patterns
+					akp.setNumberOfInstances(Long.parseLong(splitted[4]));
+					AKPService.update(akp);
+				}
 			}
 		}
 	}

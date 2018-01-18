@@ -102,4 +102,10 @@ public class AKPServiceImpl implements AKPService{
 		
 		return out;
 	}
+	
+	
+	public AKP getAKP(String subject, String predicate, String object, String summary) {
+		return AKPDao.getAKP(subject, predicate, object, summary);
+	}
+	
 }

@@ -16,4 +16,7 @@ public interface AKPDao {
 	public List<AKP> list(String summary, String subj, String pred, String obj, Integer limit, Integer offset);
 	
 	public List<String> getSPOlist(String summary, String position);
+	
+	public AKP getAKP(String subject, String predicate, String object, String summary);
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.model.AKP;
+import com.model.Resource;
 
 @Repository
 public class AKPDaoImpl implements AKPDao{
@@ -92,5 +93,14 @@ public class AKPDaoImpl implements AKPDao{
 		
 		List<String> coll = mongoTemplate.getCollection(COLLECTION_NAME).distinct(position, query.getQueryObject());
 		return coll;	
+	}
+	
+	public AKP getAKP(String subject, String predicate, String object, String summary) {
+		Query query = new Query();	
+		query.addCriteria(new Criteria().andOperator(Criteria.where("subject").is(subject),
+				 Criteria.where("predicate").is(predicate),
+				 Criteria.where("object").is(object),
+				 Criteria.where("summary_conf").is(summary)));
+		return mongoTemplate.findOne(query, AKP.class, COLLECTION_NAME);
 	}
 }

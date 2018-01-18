@@ -14,4 +14,6 @@ public interface AKPService {
 	
 	public String getSPOlist(String summary, String position);
 	
+	public AKP getAKP(String subject, String predicate, String object, String summary);
+	
 }
