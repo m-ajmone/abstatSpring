@@ -22,14 +22,14 @@ public class AKP {
 	private List<String> ontologiesOfOrigin;
 	private String summary_conf;
 	
-	private long frequency;
-	private long numberOfInstances;
-	private long cardinality1;
-	private long cardinality2;
-	private long cardinality3;
-	private long cardinality4;
-	private long cardinality5;
-	private long cardinality6;
+	private Long frequency;
+	private Long numberOfInstances;
+	private Long cardinality1;
+	private Long cardinality2;
+	private Long cardinality3;
+	private Long cardinality4;
+	private Long cardinality5;
+	private Long cardinality6;
 	
 	public String getId() { return Id; }
 	public void setId(String Id) { this.Id = Id; }
@@ -65,29 +65,29 @@ public class AKP {
 	public void setSummary_conf(String summary_conf) { this.summary_conf = summary_conf; }	
 	
 	
-	public long getFrequency() { return frequency; }
-	public void setFrequency(long frequency) { this.frequency = frequency; }
+	public Long getFrequency() { return frequency; }
+	public void setFrequency(Long frequency) { this.frequency = frequency; }
 	
-	public long getNumberOfInstances() { return numberOfInstances; }
-	public void setNumberOfInstances(long numberOfInstances) { this.numberOfInstances = numberOfInstances; }
+	public Long getNumberOfInstances() { return numberOfInstances; }
+	public void setNumberOfInstances(Long numberOfInstances) { this.numberOfInstances = numberOfInstances; }
 	
-	public long getCardinality1() { return cardinality1; }
-	public void setCardinality1(long cardinality1) { this.cardinality1 = cardinality1; }
+	public Long getCardinality1() { return cardinality1; }
+	public void setCardinality1(Long cardinality1) { this.cardinality1 = cardinality1; }
 	
-	public long getCardinality2() { return cardinality2; }
-	public void setCardinality2(long cardinality2) { this.cardinality2 = cardinality2; }
+	public Long getCardinality2() { return cardinality2; }
+	public void setCardinality2(Long cardinality2) { this.cardinality2 = cardinality2; }
 	
-	public long getCardinality3() { return cardinality3; }
-	public void setCardinality3(long cardinality3) { this.cardinality3 = cardinality3; }
+	public Long getCardinality3() { return cardinality3; }
+	public void setCardinality3(Long cardinality3) { this.cardinality3 = cardinality3; }
 	
-	public long getCardinality4() { return cardinality4; }
-	public void setCardinality4(long cardinality4) { this.cardinality4 = cardinality4; }
+	public Long getCardinality4() { return cardinality4; }
+	public void setCardinality4(Long cardinality4) { this.cardinality4 = cardinality4; }
 	
-	public long getCardinality5() { return cardinality5; }
-	public void setCardinality5(long cardinality5) { this.cardinality5 = cardinality5; }
+	public Long getCardinality5() { return cardinality5; }
+	public void setCardinality5(Long cardinality5) { this.cardinality5 = cardinality5; }
 	
-	public long getCardinality6() { return cardinality6; }
-	public void setCardinality6(long cardinality6) { this.cardinality6 = cardinality6; }
+	public Long getCardinality6() { return cardinality6; }
+	public void setCardinality6(Long cardinality6) { this.cardinality6 = cardinality6; }
 
 }
 
