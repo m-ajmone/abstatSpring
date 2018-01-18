@@ -37,55 +37,8 @@ public class AKPServiceImpl implements AKPService{
 	}
 	
 	
-	public String list(String summary, String subj, String pred, String obj, Integer limit, Integer offset, Boolean enrichWithSPO) {
-		List<AKP> list = AKPDao.list(summary, subj, pred, obj, limit, offset);
-		String out = ""; 
-		ObjectMapper mapper = new ObjectMapper();
-		ArrayNode array = mapper.createArrayNode();
-		
-		if(enrichWithSPO != null && enrichWithSPO == true) {
-			for(AKP el : list) { 
-				Resource subjResource = resService.getResourceFromSummary(el.getSubject(), el.getSummary_conf());
-				Resource predResource = resService.getResourceFromSummary(el.getPredicate(), el.getSummary_conf());
-				Resource objResource = resService.getResourceFromSummary(el.getObject(), el.getSummary_conf());
-				
-				JsonNode node = mapper.convertValue(el, JsonNode.class);
-		        ObjectNode object = (ObjectNode) node;
-		        object.remove("patternType");
-		        object.remove("url");
-		        object.remove("subject");
-		        object.remove("predicate");
-		        object.remove("object");
-		        
-		        if(subjResource!=null)
-		        	object.putObject("subject").put("globalURL", el.getSubject()).put("frequency", subjResource.getFrequency());
-		        else
-		        	object.putObject("subject").put("globalURL", el.getSubject());
-		        object.putObject("predicate").put("globalURL", el.getPredicate()).put("frequency", predResource.getFrequency());
-		        if(objResource!=null)
-		        	object.putObject("object").put("globalURL", el.getObject()).put("frequency", objResource.getFrequency());
-		        else
-		        	object.putObject("object").put("globalURL", el.getObject());
-		        
-		        array.add(object);
-			}
-			try { out = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(array);}
-			catch(Exception e) {e.printStackTrace(); }
-		}
-		else {
-			for(AKP el : list) { 
-				JsonNode node = mapper.convertValue(el, JsonNode.class);
-		        ObjectNode object = (ObjectNode) node;
-		        object.remove("patternType");
-		        object.remove("url");
-		        array.add(object);
-			}
-			try { out = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(array);}
-			catch(Exception e) {e.printStackTrace(); }
-		}
-		
-		
-		return "{ \"akps\": " + out + "}";
+	public AKP getAKP(String subject, String predicate, String object, String summary) {
+		return AKPDao.getAKP(subject, predicate, object, summary);
 	}
 	
 	
@@ -104,8 +57,66 @@ public class AKPServiceImpl implements AKPService{
 	}
 	
 	
-	public AKP getAKP(String subject, String predicate, String object, String summary) {
-		return AKPDao.getAKP(subject, predicate, object, summary);
+	public String list(String summary, String subj, String pred, String obj, Integer limit, Integer offset, Boolean enrichWithSPO) {
+		List<AKP> akps = AKPDao.list(summary, subj, pred, obj, limit, offset);
+		String out = ""; 
+		ObjectMapper mapper = new ObjectMapper();
+		ArrayNode array = mapper.createArrayNode();
+		
+		for(AKP akp : akps) { 
+			JsonNode node = mapper.convertValue(akp, JsonNode.class);
+			ObjectNode object = (ObjectNode) node;
+			
+			if(enrichWithSPO != null && enrichWithSPO == true) {
+				Resource sResource = resService.getResourceFromSummary(akp.getSubject(), akp.getSummary_conf());
+				Resource pResource = resService.getResourceFromSummary(akp.getPredicate(), akp.getSummary_conf());
+				Resource oResource = resService.getResourceFromSummary(akp.getObject(), akp.getSummary_conf());
+				
+		        object.remove("patternType");
+		        object.remove("url");
+		        object.remove("subject");
+		        object.remove("predicate");
+		        object.remove("object");
+		        
+		        if(sResource!=null) object.putObject("subject").put("globalURL", akp.getSubject()).put("frequency", sResource.getFrequency());
+		        else object.putObject("subject").put("globalURL", akp.getSubject());
+		       
+		        object.putObject("predicate").put("globalURL", akp.getPredicate()).put("frequency", pResource.getFrequency());
+		        
+		        if(oResource!=null) object.putObject("object").put("globalURL", akp.getObject()).put("frequency", oResource.getFrequency());
+		        else object.putObject("object").put("globalURL", akp.getObject());
+		        
+		        array.add(object);
+			}
+			else {
+		        object.remove("patternType");
+		        object.remove("url");
+		        array.add(object);
+			}
+			checkAndRemoveOptionalFields(object, akp);
+		}
+		
+		try { out = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(array);}
+		catch(Exception e) {e.printStackTrace(); }
+		
+		return "{ \"akps\": " + out + "}";
 	}
 	
+	
+	public void checkAndRemoveOptionalFields(ObjectNode node, AKP akp) {
+		if(akp.getNumberOfInstances() == null)
+			node.remove("numberOfInstances");
+		if(akp.getCardinality1() == null)
+			node.remove("cardinality1");
+		if(akp.getCardinality2() == null)
+			node.remove("cardinality2");
+		if(akp.getCardinality3() == null)
+			node.remove("cardinality3");
+		if(akp.getCardinality4() == null)
+			node.remove("cardinality4");
+		if(akp.getCardinality5() == null)
+			node.remove("cardinality5");
+		if(akp.getCardinality6() == null)
+			node.remove("cardinality6");
+	}
 }

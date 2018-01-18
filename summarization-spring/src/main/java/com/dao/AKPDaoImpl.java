@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.model.AKP;
-import com.model.Resource;
 
 @Repository
 public class AKPDaoImpl implements AKPDao{
