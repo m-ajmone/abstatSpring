@@ -1,116 +1,7 @@
 var summary = angular.module('schemasummaries', ['ui.bootstrap']);
 
-summary.filter('patternInstances', function(){
-	return function(pattern){
-		var p = pattern.gPredicate.value;
-		var o = pattern.gObject.value;
-		var query = '';
-		if(isDatatype(pattern.predicate.value).indexOf('DTP') > -1){
-			query = 'select ?s <' + p + '> as ?p ?o ' +
-			   'where{' + 
-			   '?s a <' + pattern.gSubject.value + '> . ' +
-			   '?s <' + p + '> ?o .' +
-		   		'filter(datatype(?o) = <' + o + '>)' +
-		   '} limit 100';
-		}
-		if(isDatatype(pattern.predicate.value).indexOf('DTP') > -1 && o.indexOf('XMLSchema#nonNegativeInteger') > -1){
-			query = 'select ?s <' + p + '> as ?p ?o ' +
-			   'where{' + 
-			   '?s a <' + pattern.gSubject.value + '> . ' +
-			   '?s <' + p + '> ?o .' +
-		   		'filter(datatype(?o) = <http://www.w3.org/2001/XMLSchema#integer>)' +
-		   '} limit 100';
-		}
-		if(isDatatype(pattern.predicate.value).indexOf('DTP') > -1 && o.indexOf('rdf-schema#Literal') > -1){
-			query = 'select ?s <' + p + '> as ?p ?o ' +
-			   'where{' + 
-			   '?s a <' + pattern.gSubject.value + '> . ' +
-			   '?s <' + p + '> ?o .' +
-		   		'filter(isLiteral(?o) && lang(?o) != "")' +
-		   '} limit 100';
-		}
-		if(isObject(pattern.predicate.value).indexOf('OP') > -1){
-			query = 'select ?s <' + p + '> as ?p ?o ' +
-			   'where{' + 
-			   		'?s a <' + pattern.gSubject.value + '> . ' +
-			   		'?o a <' + o + '> . ' +
-			   		'?s <' + p + '> ?o .' +
-			   '} limit 100';
-		}
-		return query;
-	}
-	
-});
-
-summary.filter('patternInstancesFromSearchResults', function(){
-	return function(resource){
-		if(resource.type.indexOf('datatype') > -1){
-			query= 'select ?o ' +
-			   'where{' +
-			   		'?s ?p ?o ' +
-			   		'filter(datatype(?o) = <' + resource.URI[0] + '>)' +
-			   '} limit 100';
-		}
-		if(resource.type.indexOf('datatype') > -1 && resource.URI[0].indexOf('XMLSchema#nonNegativeInteger') > -1){
-			query= 'select ?o ' +
-			   'where{' +
-			   		'?s ?p ?o ' +
-			   		'filter(datatype(?o) = <http://www.w3.org/2001/XMLSchema#integer>)' +
-			   '} limit 100';
-		}
-		if(resource.URI[0].indexOf('rdf-schema#Literal') > -1){
-			query= 'select ?o ' +
-			   'where{' + 
-			   '?s ?p ?o . ' +
-		   	   'filter(isLiteral(?o) && lang(?o) != "")' +
-		   '} limit 100';
-		}
-		if(resource.type.indexOf('datatypeAkp') > -1){
-			query= 'select ?s <' + resource.URI[1] + '> as ?p ?o ' +
-			   'where{' + 
-			   '?s a <' + resource.URI[0] + '> . ' +
-			   '?s <' + resource.URI[1] + '> ?o .' +
-		   		'filter(datatype(?o) = <' + resource.URI[2] + '>)' +
-		   '} limit 100';
-		}
-		if(resource.type.indexOf('datatypeAkp') > -1 && resource.URI[2].indexOf('XMLSchema#nonNegativeInteger') > -1){
-			query= 'select ?s <' + resource.URI[1] + '> as ?p ?o ' +
-			   'where{' + 
-			   '?s a <' + resource.URI[0] + '> . ' +
-			   '?s <' + resource.URI[1] + '> ?o .' +
-		   		'filter(datatype(?o) = <http://www.w3.org/2001/XMLSchema#integer>)' +
-		   '} limit 100';
-		}
-		if(resource.type.indexOf('datatypeAkp') > -1 && resource.URI[2].indexOf('rdf-schema#Literal') > -1){
-			query= 'select ?s <' + resource.URI[1] + '> as ?p ?o ' +
-			   'where{' + 
-			   '?s a <' + resource.URI[0] + '> . ' +
-			   '?s <' + resource.URI[1] + '> ?o .' +
-		   		'filter(isLiteral(?o) && lang(?o) != "")' +
-		   '} limit 100';
-		}
-		if(resource.type.indexOf('objectAkp') > -1){
-			query= 'select ?s <' + resource.URI[1] + '> as ?p ?o ' +
-			   'where{' + 
-			   		'?s a <' + resource.URI[0] + '> . ' +
-			   		'?o a <' + resource.URI[2] + '> . ' +
-			   		'?s <' + resource.URI[1] + '> ?o .' +
-			   '} limit 100';
-		}
-		if(resource.type.indexOf('Property') > -1){
-			query= 'select ?s <' + resource.URI[0] + '> as ?p ?o ' +
-			   'where{' + 
-			   		'?s <' + resource.URI[0] + '> ?o .' +
-			   '} limit 100';
-		}
-		if(resource.type.indexOf('concept') > -1){
-			query= 'select ?s ' +
-			   'where{' + 
-			   		'?s a <' + resource.URI[0] + '> .' +
-			   '} limit 100';
-		}
-		return query;
-	}
+summary.filter('escape', function(){
+	return window.encodeURIComponent;
 });
 
 summary.filter('prefixed', function(){
@@ -127,10 +18,6 @@ prefixed = function(value){
 	}
 	return prefix + localname;
 }
-
-summary.filter('escape', function(){
-	return window.encodeURIComponent;
-});
 
 summary.filter('isDatatype', function(){
 	return isDatatype;
@@ -165,6 +52,8 @@ summary.filter('asIcon', function(){
 	};
 });
 
+
+
 summary.controller('browse', function ($scope, $http) {
 	var summaries = new Summary($scope, $http, '');
 	
@@ -185,27 +74,6 @@ summary.controller("search", function ($scope, $http) {
 	bootstrapSearchController($scope, solr, '');
 });
 
-summary.controller('experiment-browse', function ($scope, $http) {
-	var summaries = new Summary($scope, $http, '?pattern a lds:Internal . ');
-	
-	bootstrapControllerFor($scope, $http, 'http://ld-summaries.org/dbpedia-3.9', summaries, '?pattern a lds:Internal . ');
-	
-	$scope.loadPatterns();
-});
-
-summary.controller('experiment-browse_dbp-2016-10-infobox-clean', function ($scope, $http) {
-	var summaries = new Summary($scope, $http, '?pattern a lds:Internal . ');
-	
-	bootstrapControllerFor($scope, $http, 'http://ld-summaries.org/dbpedia-2016-10-infobox-NoExtConcepts', summaries, '?pattern a lds:Internal . ');
-	
-	$scope.loadPatterns();
-});
-
-summary.controller("experiment-search", function ($scope, $http) {
-	var solr = new Solr($http);
-	
-	bootstrapSearchController($scope, solr, 'dbpedia-3.9');
-});
 
 bootstrapSearchController = function(scope, solr, dataset){
 	
@@ -275,7 +143,7 @@ fill = function(type, graph, result, http, filter){
 	
 	result[type] = [];
 	
-	new Sparql(http)
+	new Mongo(http)
      .onGraph(graph)
      .onType(type)
      .SPO(function(results){		    	 
@@ -324,11 +192,9 @@ Summary = function(scope_service, http_service, filter){
 		this.startLoading();
 		endLoading = this.endLoading;
 		
-		new Sparql(http)
+		new Mongo(http)
 			.onGraph(scope.selected_graph)
-			.onS(subject)
-			.onP(predicate)
-			.onO(object)
+			.onConstraints(subject, predicate, object)
 			.onLimit(limit)
 			.onOffset(offset)
 			.accumulate(function(results){
@@ -342,29 +208,21 @@ Summary = function(scope_service, http_service, filter){
 	}
 }
 
-Sparql = function(http_service){
+Mongo = function(http_service){
 	
 	var http = http_service;
 	var graph = "";
 	var type = "";
-	var s = "";
-	var p = "";
-	var o = "";
+	var subj = "";
+	var pred = "";
+	var obj = "";
 	var limit;
 	var offset;
 
-	this.onS = function(arg){
-		s = arg;
-		return this;
-	};
-
-		this.onP = function(arg){
-		p = arg;
-		return this;
-	};
-
-		this.onO = function(arg){
-		o = arg;
+	this.onConstraints = function(s, p, o){
+		subj = s;
+		pred = p;
+		obj = o;
 		return this;
 	};
 	
@@ -393,9 +251,9 @@ Sparql = function(http_service){
 	        method: 'GET',
 	        params: {
 	        	summary:graph,
-	        	subj: s,
-	        	pred: p,
-	        	obj:o,
+	        	subj: subj,
+	        	pred: pred,
+	        	obj: obj,
 	        	limit:limit,
 	        	offset:offset,
 	        	enrichWithSPO: 'true'
