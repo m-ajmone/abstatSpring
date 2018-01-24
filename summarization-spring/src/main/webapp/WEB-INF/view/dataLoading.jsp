@@ -80,69 +80,109 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">ABSTAT</li>
           <!-- Optionally, you can add icons to the links -->
-          <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarization</span></a></li>
-          <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Data Loading</span></a></li>
-          <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
-          <li class="active"><a href="search"><i class="fa fa-search"></i> <span>Search</span></a></li>
+          <li class="active"><a href="summarize"><i class="fa fa-link"></i> <span>Summarization</span></a></li>
+          <li class="active"><a href="dataLoading"><i class="fa fa-link"></i> <span>Data Loading</span></a></li>
+          <li class="active"><a href="browse"><i class="fa fa-link"></i> <span>Browse</span></a></li>
+          <li class="active"><a href="search"><i class="fa fa-link"></i> <span>Search</span></a></li>
           <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
       <!-- /.sidebar -->
     </aside>
-    <!-- Content Wrapper. Contains page content -->
+       <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        ABSTAT
-        <small>Dataset Summarization Tool</small>
-      </h1>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-      <!-- left column -->
-      <div class="col-md-6">
-        <!-- general form elements -->
-        <!-- /.box -->
-        <!-- box summarization -->
-        <div class="box box-info">
-          <div class="box-header with-border">
-            <h3 class="box-title">Data Loading</h3>
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          ABSTAT
+          <small>Dataset Summarization Tool</small>
+        </h1>
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="box box-info">
+              
+              <div class="box-header with-border">
+                <h3 class="box-title">Summaries available</h3>
+              </div>
+
+              <form:form action = "indexingLoading" modelAttribute = "indexingReq" method = "POST" >
+                <div class="box-body">
+
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>   
+                        <tr>
+                          <td class="mailbox-attachment"><b>Dataset</b></td>
+                          <td class="mailbox-attachment"><b>Ontology</b></td>
+                          <td class="mailbox-attachment"><b>Timestamp</b></td>
+                          <td class="mailbox-attachment"><b>Concept min.</b></td>
+                          <td class="mailbox-attachment"><b>Inference</b></td>
+                          <td class="mailbox-attachment"><b>Cardinality</b></td>
+                          <td class="mailbox-attachment"><b>Property min.</b></td>
+                          <td class="mailbox-attachment"><b>Loaded</b></td>
+                          <td class="mailbox-attachment"><b>Indexed</b></td>
+                          <td class="mailbox-attachment"><b>Select</b></td>
+                        </tr>
+
+                        <c:forEach var="summary" items="${listSummaries}">
+                          <tr>
+                            <td class="mailbox-attachment">${summary.dsName}</td>
+                            <td class="mailbox-attachment">${summary.listOntNames.get(0)}</td>
+                            <td class="mailbox-attachment">${summary.timestamp}</td>
+                            <td class="mailbox-attachment">${summary.tipoMinimo}</td>
+                            <td class="mailbox-attachment">${summary.inferences}</td>
+                            <td class="mailbox-attachment">${summary.cardinalita}</td>
+                            <td class="mailbox-attachment">${summary.propertyMinimaliz}</td>
+                            <td class="mailbox-attachment">${summary.loadedMongoDB}</td>
+                            <td class="mailbox-attachment">${summary.indexedSolr}</td>
+                            <td><form:radiobutton name="readAnswer" path="idSummary" value="${summary.id}" /> </td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </div>
+
+                 
+                  <label>Options</label>
+                  <div class="form-group">
+                    
+                    <div class="checkbox">
+                      <label>
+                        <form:checkbox path="loadOnMongoDB"/>
+                        Load on the persistent storage
+                      </label>
+                    </div>
+
+                    <div class="checkbox">
+                      <label>
+                        <form:checkbox path="indexOnSolr"/>
+                        Index on search engine
+                      </label>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="box-footer">
+                  <input type="text" name="domain" placeholder="Insert a domain" />
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+              </form:form>
+
+            </div>
+             <!-- /.mail-box-messages -->
           </div>
-          <form:form action = "indexingLoading" modelAttribute = "indexingReq" method = "POST" >
-            <div class="box-body">
-              <label>Summaries Available</label>
-              <div class="form-group">
-                <form:select path= "idSummary">
-                  <form:options items="${listConfig}" itemLabel="summaryPath" itemValue="id" />
-                </form:select>
-              </div>
-              <label>Options</label>
-              <div class="form-group">
-                <div class="checkbox">
-                  <label>
-                    <form:checkbox path="loadOnMongoDB"/>
-                    Load on the persistent storage
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <form:checkbox path="indexOnSolr"/>
-                    Index on search engine
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="box-footer">
-              <input type="text" name="domain" placeholder="Insert a domain" />
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form:form>
-          <!-- /.row -->
         </div>
-    </section>
+      </section>
+
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

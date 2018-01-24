@@ -108,7 +108,7 @@ public class IndexController {
 	@RequestMapping(value = "/dataLoading", method = RequestMethod.GET)
 	public ModelAndView dataLoading() {
 		ModelAndView model = new ModelAndView("dataLoading");
-		model.addObject("listConfig", submitConfigService.listSubmitConfig());
+		model.addObject("listSummaries", submitConfigService.listSubmitConfig());
 		model.addObject("indexingReq", new IndexSummary());
 		return model;
 	}
