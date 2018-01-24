@@ -12,8 +12,11 @@ public class SubmitConfig {
 	@Id
 	private String id;
 	private String dsId;
+	private String dsName;
 	private List<String> listOntId;
+	private List<String> listOntNames;
 	private String summaryPath;
+	private String timestamp;
 	//options..
 	private boolean tipoMinimo;
 	private boolean inferences;
@@ -43,13 +46,22 @@ public class SubmitConfig {
 	public String getDsId() { return dsId; }
 	public void setDsId(String dsId) { this.dsId = dsId; }
 	
+	public String getDsName() { return dsName; }
+	public void setDsName(String dsName) { this.dsName = dsName; }
+	
 	public void addOntId(String ontId) { listOntId.add(ontId); }
 	
 	public List<String> getListOntId() { return listOntId; }
 	public void setListOntId(List<String> listOntId) { this.listOntId = listOntId; }
 	
+	public List<String> getListOntNames() { return listOntNames; }
+	public void setListOntNames(List<String> listOntNames) { this.listOntNames = listOntNames; }
+	
 	public String getSummaryPath() { return summaryPath; }
 	public void setSummaryPath(String summaryPath) { this.summaryPath = summaryPath; }
+	
+	public String getTimestamp() { return timestamp; }
+	public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
 	
 	public boolean isTipoMinimo() { return tipoMinimo; }
 	public void setTipoMinimo(boolean tipoMinimo) { this.tipoMinimo = tipoMinimo; }
