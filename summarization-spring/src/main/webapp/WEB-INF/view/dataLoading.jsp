@@ -90,84 +90,153 @@
       </section>
       <!-- /.sidebar -->
     </aside>
-       <!-- Content Wrapper. Contains page content -->
+
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+
       <section class="content-header">
         <h1>
           ABSTAT
           <small>Dataset Summarization Tool</small>
         </h1>
       </section>
+
       <!-- Main content -->
       <section class="content">
         <div class="row">
-
-          <!-- /.col -->
-          <div class="col-md-9">
+          <div class="col-xs-12">
             <div class="box box-info">
               
-              <div class="box-header with-border">
-                <h3 class="box-title">Summaries available</h3>
+              <div class="box-header">
+                <h3 class="box-title">Summaries Available</h3>
               </div>
 
+              <!-- /.box-header -->
               <form:form action = "indexingLoading" modelAttribute = "indexingReq" method = "POST" >
                 <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover table-striped">
+                   
+                    <thead>
+                      <tr>
+                        <th>Dataset</th>
+                        <th>Ontology</th>
+                        <th>Timestamp</th>
+                        <th>Concept Min.</th>
+                        <th>Inference</th>
+                        <th>Cardinality</th>
+                        <th>Property Min.</th>
+                        <th>Loaded</th>
+                        <th>Indexed</th>
+                        <th>Select</th>
+                      </tr>
+                    </thead>
 
-                  <div class="table-responsive mailbox-messages">
-                    <table class="table table-hover table-striped">
-                      <tbody>   
+                    <tbody>
+                      <c:forEach var="summary" items="${listSummaries}">
                         <tr>
-                          <td class="mailbox-attachment"><b>Dataset</b></td>
-                          <td class="mailbox-attachment"><b>Ontology</b></td>
-                          <td class="mailbox-attachment"><b>Timestamp</b></td>
-                          <td class="mailbox-attachment"><b>Concept min.</b></td>
-                          <td class="mailbox-attachment"><b>Inference</b></td>
-                          <td class="mailbox-attachment"><b>Cardinality</b></td>
-                          <td class="mailbox-attachment"><b>Property min.</b></td>
-                          <td class="mailbox-attachment"><b>Loaded</b></td>
-                          <td class="mailbox-attachment"><b>Indexed</b></td>
-                          <td class="mailbox-attachment"><b>Select</b></td>
+                          <td>${summary.dsName}</td>
+                          <td>${summary.listOntNames.get(0)}</td>
+                          <td>${summary.timestamp}</td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.tipoMinimo == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.inferences == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.cardinalita == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.propertyMinimaliz == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"> </span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.loadedMongoDB == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.indexedSolr == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <form:radiobutton name="readAnswer" path="idSummary" value="${summary.id}" />
+                          </td>
                         </tr>
+                      </c:forEach>
+                    </tbody>
 
-                        <c:forEach var="summary" items="${listSummaries}">
-                          <tr>
-                            <td class="mailbox-attachment">${summary.dsName}</td>
-                            <td class="mailbox-attachment">${summary.listOntNames.get(0)}</td>
-                            <td class="mailbox-attachment">${summary.timestamp}</td>
-                            <td class="mailbox-attachment">${summary.tipoMinimo}</td>
-                            <td class="mailbox-attachment">${summary.inferences}</td>
-                            <td class="mailbox-attachment">${summary.cardinalita}</td>
-                            <td class="mailbox-attachment">${summary.propertyMinimaliz}</td>
-                            <td class="mailbox-attachment">${summary.loadedMongoDB}</td>
-                            <td class="mailbox-attachment">${summary.indexedSolr}</td>
-                            <td><form:radiobutton name="readAnswer" path="idSummary" value="${summary.id}" /> </td>
-                          </tr>
-                        </c:forEach>
-                      </tbody>
-                    </table>
-                  </div>
+                  </table>
 
-                 
-                  <label>Options</label>
-                  <div class="form-group">
-                    
-                    <div class="checkbox">
-                      <label>
-                        <form:checkbox path="loadOnMongoDB"/>
-                        Load on the persistent storage
-                      </label>
-                    </div>
+                </div>
 
-                    <div class="checkbox">
-                      <label>
-                        <form:checkbox path="indexOnSolr"/>
-                        Index on search engine
-                      </label>
-                    </div>
-
-                  </div>
-
+                <div class="box-body">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <div class="form-group">
+                        <tr>
+                          <div class="checkbox">
+                            <td>
+                              <form:checkbox path="loadOnMongoDB"/>
+                              &nbsp Load on the persistent storage
+                            </td>
+                          </div>
+                        </tr>
+                        <tr>
+                          <div class="checkbox">
+                            <td>
+                              <form:checkbox path="indexOnSolr"/>
+                              &nbsp Index on search engine
+                            </td>
+                          </div>
+                        </tr>
+                      </div>
+                    </tbody>
+                  </table>
                 </div>
 
                 <div class="box-footer">
@@ -177,13 +246,14 @@
 
               </form:form>
 
+              <!-- /.box-body -->
             </div>
-             <!-- /.mail-box-messages -->
+            <!-- /.box -->
           </div>
+          <!-- /.col -->
         </div>
+        <!-- /.row -->
       </section>
-
-    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <!-- Main Footer -->
