@@ -121,7 +121,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Upload</button>
                 </div>
               </form>
             </div>
@@ -150,13 +150,13 @@
                     <div class="checkbox">
                       <label>
                         <form:checkbox path="tipoMinimo"/>
-                        Minimal Types
+                        Concept Minimalization
                       </label>
                     </div>
                     <div class="checkbox">
                       <label>
                         <form:checkbox path="inferences"/>
-                        Inferences
+                        Inference
                       </label>
                     </div>
                     <div class="checkbox">
@@ -198,7 +198,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Upload</button>
                 </div>
               </form>
             </div>
