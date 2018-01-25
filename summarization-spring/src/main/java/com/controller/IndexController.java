@@ -61,7 +61,8 @@ public class IndexController {
 		summary_dir = "../data/summaries/" + datasetName + "_" + ontName + "_" + minTp + propMin + card + inf +"/";
 		
 		ArrayList<String> ontlogiesListName = new ArrayList<String>();
-		ontlogiesListName.add(ontName);
+		for(String id : submitConfig.getListOntId())
+			ontlogiesListName.add(ontologyService.findOntologyById(id).getName());
 		
 		submitConfig.setDsName(datasetName);
 		submitConfig.setListOntNames(ontlogiesListName);
@@ -71,14 +72,6 @@ public class IndexController {
 		
 		ModelAndView model = new ModelAndView("recapConfig");
 		model.addObject("submitConfig", submitConfig);
-		if(submitConfig.getDsId()!= null)
-			model.addObject("datasetName", datasetName);
-		
-		List<String> ontNames = new ArrayList<String>();
-		for(String id : submitConfig.getListOntId())
-			ontNames.add(ontologyService.findOntologyById(id).getName());
-		
-		model.addObject("ontologyNames", ontNames);
 				
 		return model;
 	}
