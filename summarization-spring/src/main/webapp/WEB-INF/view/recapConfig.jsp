@@ -104,7 +104,7 @@
           <div class="row">
             <!-- left column -->
             <div class="col-md-6">
-              <div class="box">
+              <div class="box box-info">
                 <div class="box-header">
                   <h3 class="box-title">Your Configuration</h3>
                 </div>
@@ -132,10 +132,10 @@
                       <td>
                         <c:choose>
                           <c:when test = "${submitConfig.tipoMinimo == true}">
-                            <span class="glyphicon glyphicon-ok text-success"></span>
+                            <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
                           </c:when>
                           <c:otherwise>
-                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                            <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
                           </c:otherwise>
                         </c:choose>
                       </td>
@@ -145,10 +145,10 @@
                       <td>
                         <c:choose>
                           <c:when test = "${submitConfig.inferences == true}">
-                            <span class="glyphicon glyphicon-ok text-success"></span>
+                            <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
                           </c:when>
                           <c:otherwise>
-                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                            <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
                           </c:otherwise>
                         </c:choose>
                       </td>
@@ -158,10 +158,10 @@
                       <td>
                         <c:choose>
                           <c:when test = "${submitConfig.cardinalita == true}">
-                            <span class="glyphicon glyphicon-ok text-success"></span>
+                            <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
                           </c:when>
                           <c:otherwise>
-                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                            <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
                           </c:otherwise>
                         </c:choose>
                       </td>
@@ -171,10 +171,10 @@
                       <td>
                         <c:choose>
                           <c:when test = "${submitConfig.propertyMinimaliz == true}">
-                            <span class="glyphicon glyphicon-ok text-success"></span>
+                            <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
                           </c:when>
                           <c:otherwise>
-                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                            <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
                           </c:otherwise>
                         </c:choose>
                       </td>
