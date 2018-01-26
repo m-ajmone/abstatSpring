@@ -135,13 +135,13 @@
                 <div class="box-body">
                   <label>Datasets Available</label>
                   <div class="form-group">
-                    <form:select path= "dsId">
+                    <form:select class="form-control select2" path="dsId">
                       <form:options items="${listDataset}" itemLabel="name" itemValue="id" />
                     </form:select>
                   </div>
                   <label>Ontologies Available</label>
                   <div class="form-group">
-                    <form:select path= "listOntId" multiple = "true">
+                    <form:select class="form-control select2" path="listOntId" multiple = "multiple">
                       <form:options items="${listOntology}" itemLabel="name" itemValue="id" />
                     </form:select>
                   </div>
