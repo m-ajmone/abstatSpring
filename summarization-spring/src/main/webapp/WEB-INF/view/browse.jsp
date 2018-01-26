@@ -100,95 +100,181 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <div ng-controller="browse">
+          
           <div class="row">
-            <div class="col-md-6">
-              <form class="form-inline">
-                <div class="form-group">
-                  browse the <strong>abstract knowledge patterns</strong> found into 
-                  <select id="dataset" ng-model="selected_graph" class="form-control">
-                    <option>select a dataset</option>
-                    <option ng-repeat="graph in graphs">{{graph.id}}</option>
-                  </select>
-                  <button type="button" ng-click='loadPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
-                  <span ng-hide="loadingSummary">view</span>
-                  <span ng-show="loadingSummary">view  <i class="fa fa-spinner fa-spin"></i></span>
-                  </button>
+            
+            <div class="col-md-12">
+              <div class="box box-info">
+
+                <div class="box-header">
+                  <h3 class="box-title">Summaries Available</h3>
                 </div>
-              </form>
+
+                <div class="box-body">
+                  <form>
+                    <table id="example2" class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>Dataset</th>
+                          <th>Ontology</th>
+                          <th>Timestamp</th>
+                          <th>Concept Min.</th>
+                          <th>Inference</th>
+                          <th>Cardinality</th>
+                          <th>Property Min.</th>
+                          <th>Select</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="summary" items="${listSummaries}">
+                          <tr>
+                            <td>${summary.dsName}</td>
+                            <td>${summary.listOntNames.get(0)}</td>
+                            <td>${summary.timestamp}</td>
+                            <td class = "text-center">
+                              <c:choose>
+                                <c:when test = "${summary.tipoMinimo == true}">
+                                  <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                                </c:when>
+                                <c:otherwise>
+                                  <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                                </c:otherwise>
+                              </c:choose>
+                            </td>
+                            <td class = "text-center">
+                              <c:choose>
+                                <c:when test = "${summary.inferences == true}">
+                                  <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                                </c:when>
+                                <c:otherwise>
+                                  <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                                </c:otherwise>
+                              </c:choose>
+                            </td>
+                            <td class = "text-center">
+                              <c:choose>
+                                <c:when test = "${summary.cardinalita == true}">
+                                  <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                                </c:when>
+                                <c:otherwise>
+                                  <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                                </c:otherwise>
+                              </c:choose>
+                            </td>
+                            <td class = "text-center">
+                              <c:choose>
+                                <c:when test = "${summary.propertyMinimaliz == true}">
+                                  <span class="glyphicon glyphicon-ok text-success" style="color:green"> </span>
+                                </c:when>
+                                <c:otherwise>
+                                  <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                                </c:otherwise>
+                              </c:choose>
+                            </td>
+                            <td class = "text-center">
+                              <input type="radio" ng-model="selected_graph" name="readAnswer" value="${summary.id}" />
+                            </td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </form>
+                </div>
+
+                <div class="box-footer">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <button type="button" ng-click='loadPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
+                      <span ng-hide="loadingSummary">view</span>
+                      <span ng-show="loadingSummary">view  <i class="fa fa-spinner fa-spin"></i></span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
             </div>
-          </div>
-          <br><br>
-          <div ng-show="graph_was_selected">
-            <div style="margin-top:0.5cm" class="row">
+
+            <br><br>
+            <div ng-show="graph_was_selected">
               <div class="col-md-12">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>subject type <small>(occurrences)</small></th>
-                      <th>predicate <small>(occurrences)</small></th>
-                      <th>object type <small>(occurrences)</small></th>
-                      <th>frequency</th>
-                      <th>instances</th>
-                      <th>Max subjs-obj</th>
-                      <th>Avg subjs-obj</th>
-                      <th>Min subjs-obj</th>
-                      <th>Max subj-objs</th>
-                      <th>Avg subj-objs</th>
-                      <th>Min subj-objs</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="text-center"><button type="submit" ng-click='filterPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
-                        <span ng-hide="loadingSummary">filter</span>
-                        <span ng-show="loadingSummary">filter  <i class="fa fa-spinner fa-spin"></i></span>
+                <div class="box box-info">
+                  <div class="box-body">
+                    <div style="margin-top:0.0cm" class="row">
+                      <div class="col-md-12">
+                        <table class="table table-bordered table-hover table-striped">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>subject type <small>(occurrences)</small></th>
+                              <th>predicate <small>(occurrences)</small></th>
+                              <th>object type <small>(occurrences)</small></th>
+                              <th>frequency</th>
+                              <th>instances</th>
+                              <th>Max subjs-obj</th>
+                              <th>Avg subjs-obj</th>
+                              <th>Min subjs-obj</th>
+                              <th>Max subj-objs</th>
+                              <th>Avg subj-objs</th>
+                              <th>Min subj-objs</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-center"><button type="submit" ng-click='filterPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
+                                <span ng-hide="loadingSummary">filter</span>
+                                <span ng-show="loadingSummary">filter  <i class="fa fa-spinner fa-spin"></i></span>
+                                </button>
+                              </td>
+                              <script type="text/ng-template" id="autocomplete-template.html">
+                                <a>
+                                  {{match.model.local | isDatatype}}{{match.model.local | isObject}}
+                                            <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+                                    </a>
+                              </script>
+                              <td><input type="text" typeahead="subject as subject.global for subject in autocomplete.subject | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="subject" class="form-control" placeholder="subject"></td>
+                              <td><input type="text" typeahead="predicate as predicate.global for predicate in autocomplete.predicate | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="predicate" class="form-control" placeholder="predicate"></td>
+                              <td><input type="text" typeahead="object as object.global for object in autocomplete.object | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="object" class="form-control" placeholder="object"></td>
+                            </tr>
+                            <tr ng-repeat="summary in summaries">
+                              <td></td>
+                              <td>
+                                <a target="_blank" ">{{summary.subject.globalURL | prefixed}}</a>
+                                <small ng-show="summary.subject.frequency">({{summary.subject.frequency}})</small>
+                              </td>
+                              <td>
+                                {{summary.type | isDatatype}}{{summary.type | isObject}}
+                                <a target="_blank" ">{{summary.predicate.globalURL  | prefixed}}</a>
+                                <small ng-show="summary.predicate.frequency">({{summary.predicate.frequency}})</small>
+                              </td>
+                              <td>
+                                <a target="_blank" ">{{summary.object.globalURL  | prefixed}}</a>
+                                <small ng-show="summary.object.frequency">({{summary.object.frequency}})</small>
+                              </td>
+                              <td>{{summary.frequency}}</td>
+                              <td>{{summary.numberOfInstances != null && summary.numberOfInstances || '-' }}</td>
+                              <td>{{summary.cardinality1 != null && 'summary.cardinality1' || '-' }}</td>
+                              <td>{{summary.cardinality2 != null && 'summary.cardinality2' || '-' }}</td>
+                              <td>{{summary.cardinality3 != null && 'summary.cardinality3' || '-' }}</td>
+                              <td>{{summary.cardinality4 != null && 'summary.cardinality4' || '-' }}</td>
+                              <td>{{summary.cardinality5 != null && 'summary.cardinality5' || '-' }}</td>
+                              <td>{{summary.cardinality6 != null && 'summary.cardinality6' || '-' }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button ng-click="loadMore()" type="button" ng-disabled="loadingSummary" class="btn btn-deafult btn-block">
+                        <span ng-hide="loadingSummary"><strong>{{summaries.length}}</strong> patterns found - get more</span>
+                        <span ng-show="loadingSummary"><strong>{{summaries.length}}</strong> patterns found - get more  <i class="fa fa-spinner fa-spin"></i></span>
                         </button>
-                      </td>
-                      <script type="text/ng-template" id="autocomplete-template.html">
-                        <a>
-                          {{match.model.local | isDatatype}}{{match.model.local | isObject}}
-                                    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
-                            </a>
-                      </script>
-                      <td><input type="text" typeahead="subject as subject.global for subject in autocomplete.subject | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="subject" class="form-control" placeholder="subject"></td>
-                      <td><input type="text" typeahead="predicate as predicate.global for predicate in autocomplete.predicate | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="predicate" class="form-control" placeholder="predicate"></td>
-                      <td><input type="text" typeahead="object as object.global for object in autocomplete.object | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="object" class="form-control" placeholder="object"></td>
-                    </tr>
-                    <tr ng-repeat="summary in summaries">
-                      <td class="text-center"><a target="_blank" href="{{describe_uri}}{{summary.pattern.value | escape}}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
-                      <td>
-                        <a target="_blank" ">{{summary.subject.globalURL | prefixed}}</a>
-                        <small ng-show="summary.subject.frequency">({{summary.subject.frequency}})</small>
-                      </td>
-                      <td>
-                        {{summary.type | isDatatype}}{{summary.type | isObject}}
-                        <a target="_blank" ">{{summary.predicate.globalURL  | prefixed}}</a>
-                        <small ng-show="summary.predicate.frequency">({{summary.predicate.frequency}})</small>
-                      </td>
-                      <td>
-                        <a target="_blank" ">{{summary.object.globalURL  | prefixed}}</a>
-                        <small ng-show="summary.object.frequency">({{summary.object.frequency}})</small>
-                      </td>
-                      <td>{{summary.frequency}}</td>
-                      <td>{{summary.numberOfInstances != null && summary.numberOfInstances || '-' }}</td>
-                      <td>{{summary.cardinality1 != null && 'summary.cardinality1' || '-' }}</td>
-                      <td>{{summary.cardinality2 != null && 'summary.cardinality2' || '-' }}</td>
-                      <td>{{summary.cardinality3 != null && 'summary.cardinality3' || '-' }}</td>
-                      <td>{{summary.cardinality4 != null && 'summary.cardinality4' || '-' }}</td>
-                      <td>{{summary.cardinality5 != null && 'summary.cardinality5' || '-' }}</td>
-                      <td>{{summary.cardinality6 != null && 'summary.cardinality6' || '-' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button ng-click="loadMore()" type="button" ng-disabled="loadingSummary" class="btn btn-deafult btn-block">
-                <span ng-hide="loadingSummary"><strong>{{summaries.length}}</strong> patterns found - get more</span>
-                <span ng-show="loadingSummary"><strong>{{summaries.length}}</strong> patterns found - get more  <i class="fa fa-spinner fa-spin"></i></span>
-                </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <br><br>
+
           </div>
-          <br><br>
         </div>
       </section>
       <!-- /.content -->
