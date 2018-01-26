@@ -94,11 +94,190 @@
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h1> 
-          Dashboard <small> Schermata riassuntiva sui summary che abbiamo (?)</small>
+        <h1>
+          ABSTAT
+          <small>Dataset Summarization Tool</small>
         </h1>
       </section>
-      <!-- /.content -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+
+          <div class="col-xs-12">
+            <div class="box box-info">
+
+              <div class="box-header">
+                <h3 class="box-title">Summaries Available</h3>
+              </div>
+
+              <div class="box-body">
+                <form>
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Dataset</th>
+                        <th>Ontology</th>
+                        <th>Timestamp</th>
+                        <th>Concept Min.</th>
+                        <th>Inference</th>
+                        <th>Cardinality</th>
+                        <th>Property Min.</th>
+                        <th>Loaded</th>
+                        <th>Indexed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <c:forEach var="summary" items="${listSummaries}">
+                        <tr>
+                          <td>${summary.id}</td>
+                          <td>${summary.dsName}</td>
+                          <td>${summary.listOntNames.get(0)}</td>
+                          <td>${summary.timestamp}</td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.tipoMinimo == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.inferences == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.cardinalita == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.propertyMinimaliz == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"> </span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.loadedMongoDB == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                          <td class = "text-center">
+                            <c:choose>
+                              <c:when test = "${summary.indexedSolr == true}">
+                                <span class="glyphicon glyphicon-ok text-success" style="color:green"></span>
+                              </c:when>
+                              <c:otherwise>
+                                <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
+                              </c:otherwise>
+                            </c:choose>
+                          </td>
+                        </tr>
+                      </c:forEach>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <!-- /.box-body -->
+
+            </div>
+            <!-- /.box -->
+          </div>
+         
+         
+          <!-- /.col -->
+          <div class="col-xs-6">
+            <div class="box box-info">
+              
+              <div class="box-header">
+                <h3 class="box-title">Datasets Available</h3>
+              </div>
+              
+              <div class="box-body">
+                <!-- /.box-header -->
+                <form>
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>TimeStamp</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <c:forEach var="dataset" items="${listDatasets}">
+                        <tr>
+                          <td>${dataset.name}</td>
+                          <td>${dataset.timestamp}</td>
+                        </tr>
+                      </c:forEach>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+         
+
+          <div class="col-xs-6">
+            <div class="box box-info">
+              
+              <div class="box-header">
+                <h3 class="box-title">Ontologies Available</h3>
+              </div>
+              
+              <div class="box-body">
+                <!-- /.box-header -->
+                <form>
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>TimeStamp</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <c:forEach var="ontology" items="${listOntologies}">
+                        <tr>
+                          <td>${ontology.name}</td>
+                          <td>${ontology.timestamp}</td>
+                        </tr>
+                      </c:forEach>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+
+        </div>
+        <!-- /.row -->
+      </section>
     </div>
     <!-- /.content-wrapper -->
     <!-- Main Footer -->

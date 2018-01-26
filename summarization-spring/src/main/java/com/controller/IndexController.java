@@ -26,9 +26,14 @@ public class IndexController {
 	OntologyService ontologyService;
 	@Autowired
 	SubmitConfigService submitConfigService;
-		@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public ModelAndView list() {
+
+
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView home() {
 		ModelAndView model = new ModelAndView("home");
+		model.addObject("listSummaries", submitConfigService.listSubmitConfig());
+		model.addObject("listDatasets", datasetService.listDataset());
+		model.addObject("listOntologies", ontologyService.listOntology());
 		return model;
 	}
 	
@@ -41,6 +46,7 @@ public class IndexController {
 		model.addObject("submitConfig", new SubmitConfig());
 		return model;
 	}
+	
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public ModelAndView submitCfg(@ModelAttribute("submitConfig") SubmitConfig submitConfig) throws Exception {
