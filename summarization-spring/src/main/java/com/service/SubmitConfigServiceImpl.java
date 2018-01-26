@@ -18,7 +18,11 @@ public class SubmitConfigServiceImpl implements SubmitConfigService {
 		return submitConfigDao.listSubmitConfig();
 	}
 	
-	public String listSubmitConfig(Boolean loaded, Boolean indexed) {
+	public List<SubmitConfig> listSubmitConfig(Boolean loaded, Boolean indexed) {
+		return submitConfigDao.listSubmitConfig(loaded, indexed);
+	}
+	
+	public String listSubmitConfigJSON(Boolean loaded, Boolean indexed) {
 		List<SubmitConfig> results =  submitConfigDao.listSubmitConfig(loaded, indexed);
 		
 		String output = "{\"summaries\":[";

@@ -80,6 +80,7 @@ public class IndexController {
 	@RequestMapping(value = "/browse", method = RequestMethod.GET)
 	public ModelAndView browse() {
 		ModelAndView model = new ModelAndView("browse");
+		model.addObject("listSummaries", submitConfigService.listSubmitConfig(true, null));
 		return model;
 	}
 	

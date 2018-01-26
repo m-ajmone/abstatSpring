@@ -8,7 +8,9 @@ public interface SubmitConfigService {
 	
 	public List<SubmitConfig> listSubmitConfig();
 	
-	public String listSubmitConfig(Boolean loaded, Boolean indexed);
+	public List<SubmitConfig> listSubmitConfig(Boolean loaded, Boolean indexed);
+	
+	public String listSubmitConfigJSON(Boolean loaded, Boolean indexed);
 	
 	public void add(SubmitConfig submitConfig);
 	

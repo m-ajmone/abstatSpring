@@ -18,7 +18,7 @@ public class SummariesListAPI {
 	@RequestMapping(value="/api/v1/summaries", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getitem( @RequestParam(value="loaded", required=false) Boolean loaded,
 										 @RequestParam(value="indexed", required=false) Boolean indexed) {
-			String result = submitConfigService.listSubmitConfig(loaded, indexed);
+			String result = submitConfigService.listSubmitConfigJSON(loaded, indexed);
 			return result;
 	}
 }
