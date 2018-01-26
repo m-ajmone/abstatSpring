@@ -80,6 +80,7 @@
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">ABSTAT</li>
             <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="home"><i class="fa fa-home"></i> <span>Overview</span></a></li>
             <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarization</span></a></li>
             <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Data Loading</span></a></li>
             <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
