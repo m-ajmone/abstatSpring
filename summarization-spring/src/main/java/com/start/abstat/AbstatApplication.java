@@ -24,6 +24,8 @@ public class AbstatApplication {
             if ((connector.getProtocolHandler() instanceof AbstractHttp11Protocol<?>)) {
                 //-1 means unlimited
                 ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setMaxSwallowSize(-1);
+                ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setKeepAliveTimeout(-1);
+                ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setSoTimeout(60000 * 30);
             }
         });
 

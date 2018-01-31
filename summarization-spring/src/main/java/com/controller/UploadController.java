@@ -2,11 +2,13 @@ package com.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +43,8 @@ public class UploadController {
 		try {
 
             // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
+            InputStream stream = file.getInputStream();
+            
             Dataset dataset = new Dataset();
             dataset.setType("dataset");
             dataset.setName(file.getOriginalFilename().replaceFirst("[.][^.]+$", ""));
@@ -62,7 +65,7 @@ public class UploadController {
     			//update
     			datasetService.update(dataset);
             }else {
-            	Files.write(path, bytes);
+            	FileUtils.copyInputStreamToFile(stream, path.toFile());
             	datasetService.add(dataset);
             	redirectAttributes.addFlashAttribute("message", "You successfully uploaded '" + file.getOriginalFilename() + "'");
             }
