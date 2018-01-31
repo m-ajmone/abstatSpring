@@ -95,9 +95,11 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+
       <section class="content-header">
-        <h1> 
-          APIs <small> APIs documentation</small>
+        <h1>
+          ABSTAT
+          <small>Dataset Summarization Tool</small>
         </h1>
       </section>
       <!-- /.content -->

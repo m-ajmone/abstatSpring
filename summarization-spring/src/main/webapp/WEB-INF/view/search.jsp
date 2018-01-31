@@ -100,6 +100,15 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+
+      <section class="content-header">
+        <h1>
+          ABSTAT
+          <small>Dataset Summarization Tool</small>
+        </h1>
+      </section>
+
+      <!-- Main content -->
       <section class="content-header">
         <div ng-controller="search">
           <div class="col-md-7">

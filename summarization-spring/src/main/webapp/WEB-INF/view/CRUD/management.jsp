@@ -208,11 +208,11 @@
                           </td>
                           <td>
                             <spring:url value ="/submitconfig/delete/${summary.id}" var="deleteURL"/>
-                            <a href="${deleteURL}">Delete MetaData</a>
+                            <a href="${deleteURL}"><button type="submit" class="btn btn-block btn-primary bg-red btn-sm">Delete Metadata</button></a>
                           </td>
                           <td>
                             <spring:url value ="/submitconfig/deleteDir/${summary.id}" var="deleteDirURL"/>
-                            <a href="${deleteDirURL}">Delete MetaData and Files</a>
+                            <a href="${deleteDirURL}"><button type="submit" class="btn btn-block btn-primary bg-red btn-sm">Delete Metadata and Files</button></a>
                           </td>
                         </tr>
                       </c:forEach>
@@ -236,11 +236,11 @@
                           <td>${dataset.timestamp}</td>
                           <td>
                             <spring:url value ="/dataset/delete/${dataset.id}" var="deleteURL"/>
-                            <a href="${deleteURL}">Delete MetaData</a>
+                            <a href="${deleteURL}"><button type="submit" class="btn btn-block btn-primary bg-red btn-sm">Delete Metadata</button></a>
                           </td>
                           <td>
                             <spring:url value ="/dataset/deleteDir/${dataset.id}" var="deleteDirURL"/>
-                            <a href="${deleteDirURL}">Delete MetaData and Files</a>
+                            <a href="${deleteDirURL}"><button type="submit" class="btn btn-block btn-primary bg-red btn-sm">Delete Metadata and Files</button></a>
                           </td>
                         </tr>
                       </c:forEach>
@@ -264,11 +264,11 @@
                           <td>${ontology.timestamp}</td>
                           <td>
                             <spring:url value ="/ontology/delete/${ontology.id}" var="deleteURL"/>
-                            <a href="${deleteURL}">Delete MetaData</a>
+                            <a href="${deleteURL}"><button type="submit" class="btn btn-block btn-primary bg-red btn-sm">Delete Metadata</button></a>
                           </td>
                           <td>
                             <spring:url value ="/ontology/deleteDir/${ontology.id}" var="deleteDirURL"/>
-                            <a href="${deleteDirURL}">Delete MetaData and Files</a>
+                            <a href="${deleteDirURL}"><button type="submit" class="btn btn-block btn-primary bg-red btn-sm">Delete Metadata and Files</button></a>
                           </td>
                         </tr>
                       </c:forEach>
