@@ -23,12 +23,6 @@ public class DatasetController {
 	@Autowired
 	DatasetService datasetService;
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView listDataset() {
-		ModelAndView  model = new ModelAndView("CRUD/listDataset");
-		model.addObject("listDataset", datasetService.listDataset());
-		return model;
-	}
 	
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public ModelAndView update(@PathVariable("id") String id) {
@@ -36,23 +30,29 @@ public class DatasetController {
 		model.addObject("dataset", datasetService.findDatasetById(id));
 		return model;
 	}
+	
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("dataset") Dataset dataset) {
 		datasetService.update(dataset);
-		return "redirect:/dataset/list";	
+		return "redirect:/management";	
 	}
+	
+	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 		public String delete(@PathVariable("id") String id) throws IOException {
 			Dataset dataset = datasetService.findDatasetById(id);
 			datasetService.delete(dataset);
-			return "redirect:/dataset/list";
+			return "redirect:/management";
 	}
+	
+	
 	@RequestMapping(value = "/deleteDir/{id}", method = RequestMethod.GET)
 	public String deleteDir(@PathVariable("id") String id) throws IOException {
 		Dataset dataset = datasetService.findDatasetById(id);
 		datasetService.delete(dataset);
 		FileUtils.deleteDirectory(new File(StringUtils.substringBeforeLast(dataset.getPath(), "/")));
-		return "redirect:/dataset/list";
-}
+		return "redirect:/management";
+	}
 	
 }

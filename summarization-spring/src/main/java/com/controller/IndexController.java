@@ -2,7 +2,6 @@ package com.controller;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -113,4 +112,13 @@ public class IndexController {
 		return model;
 	}
 	
+	
+	@RequestMapping(value = "/management", method = RequestMethod.GET)
+	public ModelAndView CRUD() {
+		ModelAndView model = new ModelAndView("CRUD/management");
+		model.addObject("listSummaries", submitConfigService.listSubmitConfig());
+		model.addObject("listOntologies", ontologyService.listOntology());
+		model.addObject("listDatasets", datasetService.listDataset());
+		return model;
+	}
 }

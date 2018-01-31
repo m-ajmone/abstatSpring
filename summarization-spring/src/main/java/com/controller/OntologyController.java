@@ -16,15 +16,10 @@ import com.service.OntologyService;
 @Controller
 @RequestMapping(value="ontology")
 public class OntologyController {
+	
 	@Autowired
 	OntologyService ontologyService;
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView listOntology() {
-		ModelAndView  model = new ModelAndView("CRUD/listOntology");
-		model.addObject("listOntology", ontologyService.listOntology());
-		return model;
-	}
 	
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public ModelAndView update(@PathVariable("id") String id) {
@@ -32,23 +27,29 @@ public class OntologyController {
 		model.addObject("ontology", ontologyService.findOntologyById(id));
 		return model;
 	}
+	
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("ontology") Ontology ontology) {
 		ontologyService.update(ontology);
-		return "redirect:/ontology/list";	
+		return "redirect:/management";	
 	}
+	
+	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 		public String delete(@PathVariable("id") String id) throws IOException {
 			Ontology ontology = ontologyService.findOntologyById(id);
 			ontologyService.delete(ontology);
-			return "redirect:/ontology/list";
+			return "redirect:/management";
 	}
+	
+	
 	@RequestMapping(value = "/deleteDir/{id}", method = RequestMethod.GET)
 	public String deleteDir(@PathVariable("id") String id) throws IOException {
 		Ontology ontology = ontologyService.findOntologyById(id);
 		ontologyService.delete(ontology);
 		File ontFile = new File(ontology.getPath());
 		ontFile.delete();
-		return "redirect:/ontology/list";
+		return "redirect:/management";
 	}
 }
