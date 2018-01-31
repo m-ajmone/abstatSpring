@@ -87,6 +87,7 @@
           <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
           <li class="active"><a href="search"><i class="fa fa-search"></i> <span>Search</span></a></li>
           <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
+          <li class="active"><a href="management"><i class="fa fa-folder"></i> <span>Management</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
