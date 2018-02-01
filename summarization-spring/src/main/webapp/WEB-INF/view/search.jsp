@@ -65,7 +65,7 @@
          <!-- Logo -->
          <a href="home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>BS</span>
+            <span class="logo-mini"> <img src="img/bicocca.png" width="50" height="50"> </span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>ABSTAT</b></span>
          </a>
@@ -85,13 +85,13 @@
             <ul class="sidebar-menu" data-widget="tree">
                <li class="header">ABSTAT</li>
                <!-- Optionally, you can add icons to the links -->
-               <li class="active"><a href="home"><i class="fa fa-home"></i> <span>Overview</span></a></li>
-               <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarization</span></a></li>
-               <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Data Loading</span></a></li>
-               <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
-               <li class="active"><a href="search"><i class="fa fa-search"></i> <span>Search</span></a></li>
-               <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
-               <li class="active"><a href="management"><i class="fa fa-folder"></i> <span>Management</span></a></li>
+          <li class="active"><a href="home"><i class="fa fa-home"></i> <span>Overview</span></a></li>
+          <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarize</span></a></li>
+          <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Consolidate</span></a></li>
+          <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
+          <li class="active"><a href="search"><i class="fa fa-search"></i> <span>Search</span></a></li>
+          <li class="active"><a href="management"><i class="fa fa-folder"></i> <span>Manage</span></a></li>
+          <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
          </section>
@@ -99,13 +99,6 @@
       </aside>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-         <!-- Content Header (Page header) -->
-         <section class="content-header">
-            <h1>
-               ABSTAT
-               <small>Dataset Summarization Tool</small>
-            </h1>
-         </section>
          <!-- Main content -->
          <section class="content-header">
             <div ng-controller="search">

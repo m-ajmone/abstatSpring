@@ -65,7 +65,7 @@
       <!-- Logo -->
       <a href="home" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>BS</span>
+        <span class="logo-mini"> <img src="img/bicocca.png" width="50" height="50"> </span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b>ABSTAT</b></span>
       </a>
@@ -86,12 +86,12 @@
           <li class="header">ABSTAT</li>
           <!-- Optionally, you can add icons to the links -->
           <li class="active"><a href="home"><i class="fa fa-home"></i> <span>Overview</span></a></li>
-          <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarization</span></a></li>
-          <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Data Loading</span></a></li>
+          <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarize</span></a></li>
+          <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Consolidate</span></a></li>
           <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
           <li class="active"><a href="search"><i class="fa fa-search"></i> <span>Search</span></a></li>
+          <li class="active"><a href="management"><i class="fa fa-folder"></i> <span>Manage</span></a></li>
           <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
-          <li class="active"><a href="management"><i class="fa fa-folder"></i> <span>Management</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
       </section>
@@ -100,14 +100,6 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-
-      <section class="content-header">
-        <h1>
-          ABSTAT
-          <small>Dataset Summarization Tool</small>
-        </h1>
-      </section>
-      
       <section class="content-header">
         <div ng-controller="browse">
           
@@ -117,7 +109,7 @@
               <div class="box box-info">
 
                 <div class="box-header">
-                  <h3 class="box-title">Summaries Available</h3>
+                  <h3 class="box-title">Stored Summaries</h3>
                 </div>
 
                 <div class="box-body">
@@ -125,6 +117,7 @@
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
                         <tr>
+                          <th>Select</th>
                           <th>Dataset</th>
                           <th>Ontology</th>
                           <th>Timestamp</th>
@@ -132,12 +125,14 @@
                           <th>Inference</th>
                           <th>Cardinality</th>
                           <th>Property Min.</th>
-                          <th>Select</th>
                         </tr>
                       </thead>
                       <tbody>
                         <c:forEach var="summary" items="${listSummaries}">
                           <tr>
+                            <td class = "text-center">
+                              <input type="radio" ng-model="selected_graph" name="readAnswer" value="${summary.id}" />
+                            </td>
                             <td>${summary.dsName}</td>
                             <td>${summary.listOntNames.get(0)}</td>
                             <td>${summary.timestamp}</td>
@@ -180,9 +175,6 @@
                                   <span class="glyphicon glyphicon-remove text-danger" style="color:red"></span>
                                 </c:otherwise>
                               </c:choose>
-                            </td>
-                            <td class = "text-center">
-                              <input type="radio" ng-model="selected_graph" name="readAnswer" value="${summary.id}" />
                             </td>
                           </tr>
                         </c:forEach>
