@@ -137,7 +137,7 @@
                         <th>Property Min.</th>
                         <th>Loaded</th>
                         <th>Indexed</th>
-                        <th colspan="2">Action</th>
+                        <th colspan="2" class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -226,7 +226,7 @@
                       <tr>
                         <th>Name</th>
                         <th>TimeStamp</th>
-                        <th colspan="2">Action</th>
+                        <th colspan="2" class = "text-center" >Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -254,7 +254,7 @@
                       <tr>
                         <th>Name</th>
                         <th>TimeStamp</th>
-                        <th colspan="2">Action</th>
+                        <th colspan="2" class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
