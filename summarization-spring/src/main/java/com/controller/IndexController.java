@@ -93,6 +93,7 @@ public class IndexController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView search() {
 		ModelAndView model = new ModelAndView("search");
+		model.addObject("listDataset", submitConfigService.datasetsUsed( null, true));
 		return model;
 	}
 	

@@ -1,6 +1,9 @@
 package com.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +40,19 @@ public class SubmitConfigServiceImpl implements SubmitConfigService {
 		return output;
 	}
 
+	
+ /* returns the dataset list of the summaries which satisfy the constraints*/
+	public Set<String> datasetsUsed(Boolean loaded, Boolean indexed){
+		List<SubmitConfig> results =  submitConfigDao.listSubmitConfig(loaded, indexed);
+		Set<String> datasets = new HashSet<String>();
+		
+		for(SubmitConfig result : results) 
+			datasets.add(result.getDsName());
+		
+		return datasets;
+	}
+	
+	
 	public void add(SubmitConfig submitConfig) {
 		submitConfigDao.add(submitConfig);
 		

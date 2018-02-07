@@ -82,8 +82,8 @@ bootstrapSearchController = function(scope, solr, dataset){
 		if(!scope.searchInExternalResources){
 			solr.withFilter('subtype: internal');
 		}
-		if(dataset){
-			solr.withFilter('dataset:' + dataset);
+		if(scope.selected_dataset){
+			solr.withFilter('dataset:'  + scope.selected_dataset );
 		}
 		solr.search(scope.srcStr);
 	};
