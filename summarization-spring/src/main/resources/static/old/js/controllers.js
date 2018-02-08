@@ -89,18 +89,19 @@ bootstrapSearchController = function(scope, solr, dataset){
 		}
 		solr.search(scope.srcStr);
 	};
-	
+
+	var offset = 0;
 	scope.loadPatterns = function(){
+		offset = 0;
 		solr.startFrom(0);
 		prepare(scope, solr, dataset);
 		solr.accumulate(function(results){
 					scope.allDocuments = results.response.docs;
 				});
 	};
-	
-	var offset = 0;
+
 	scope.loadMore = function(){
-		offset+=10;
+		offset+=20;
 		solr.startFrom(offset);
 		solr.accumulate(function(results){
 					for (var i = 0; i < results.response.docs.length; i++) {
