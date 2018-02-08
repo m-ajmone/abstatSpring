@@ -118,7 +118,7 @@
             <div class="box-body col-md-12">
               <div class="checkbox" style="margin-top:-0.2cm">
                 <label>
-                <input type="checkbox" ng-model="searchInExternalResources">include external resources
+                <input type="checkbox" ng-model="searchInExternalResources">include non-preferred resources
                 </label>
               </div>
               <button type="submit" class="btn btn-primary" ng-click="loadPatterns()">Search</button>
