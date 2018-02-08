@@ -8,43 +8,46 @@ public class TypeOf{
 		this.domain = domain;
 	}
 
+	
 	public String resource(String resource) {
-		String aaa = resource.toLowerCase();
-		String type = "";
-		if ((aaa.contains("wikidata")) && (aaa.contains(domain)))
-		{
-			type = "external";
-		}
-		else
-		{
-			if ((!(aaa.contains("wikidata"))) && (aaa.contains(domain)))
-			{
-				type = "internal";
+		if(domain != null && !domain.isEmpty()){
+			String aaa = resource.toLowerCase();
+			String type = "";
+			if ((aaa.contains("wikidata")) && (aaa.contains(domain))) {
+				type = "external";
 			}
-			else
-			{
-				if (!(aaa.contains(domain)))
-				{
-					type = "external";
+			else {
+				if ((!(aaa.contains("wikidata"))) && (aaa.contains(domain))) {
+					type = "internal";
+				}
+				else {
+					if (!(aaa.contains(domain))) {
+						type = "external";
+					}
 				}
 			}
+			return type;
 		}
-		return type;
+		else {
+			return "internal";
+		}
 	}
+	
 	
 	public String objectAKP(String subject, String object) {
 		if (isInternal(subject) && isInternal(object))
-		{
 			return "internal";
-		}
 		return "external";
 	}
+	
 	
 	public String datatypeAKP(String subject) {
 		return resource(subject);
 	}
 
+	
 	private boolean isInternal(String subject) {
 		return resource(subject).equals("internal");
 	}
+	
 }

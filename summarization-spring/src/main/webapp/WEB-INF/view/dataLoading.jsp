@@ -232,9 +232,19 @@
                   </table>
                 </div>
 
+                <div class="box-body">
+                  <div class="col-xs-2" style="margin-left: -6px;">
+                    <label id="title" for="target"> Mark prefer patterns </label><br />
+                    <select id="target" name="target" class="form-control select2" onchange="java_script_:show(this.options[this.selectedIndex].value)" >
+                      <option selected="selected" value="Defautl" > Default </option>
+                      <option value="Custom" > Custom </option>
+                    </select>
+                  </div>
+                  <input id="domain" name="domain" type="text" class="form-control" style="margin-top: 0.7cm; width: 20%; visibility:hidden" name="domain" placeholder="Insert a domain" />
+                </div>
+
                 <div class="box-footer">
-                  <input type="text" name="domain" placeholder="Insert a domain" />
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" style="margin-left: 7px;" >Submit</button>
                 </div>
 
               </form:form>
@@ -281,5 +291,19 @@
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. -->
+
+    <script type="text/javascript">
+      function show(aval) {    
+        if (aval == "Custom") {
+          domain.style.visibility='visible';
+          domain.style.display='block';
+          Form.fileURL.focus();
+         } 
+        else {
+          domain.style.visibility='hidden';
+          domain.style.display='none';
+         } 
+      }
+    </script>
   </body>
 </html>
