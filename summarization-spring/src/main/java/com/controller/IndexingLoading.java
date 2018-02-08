@@ -250,105 +250,113 @@ public class IndexingLoading {
 	public void indexSummary(InputFile input, String type) throws Exception{
 		ArrayList<ResourceSolr> buffer = new ArrayList<ResourceSolr>();
 		while(input.hasNextLine()){
-			String[] line = input.nextLine().split("##");
-			ResourceSolr res = new ResourceSolr();
-			res.setType(type);
-			res.setDataset(dataset);
-			if(type.contains("Akp")){
-				String subject = line[0];
-				String subjectLocalName = new RDFResource(subject).localName();
-				String property = line[1];
-				String propertyLocalName = new RDFResource(property).localName();
-				String object = line[2];
-				String objectLocalName = new RDFResource(object).localName();
-				Long occurrences = Long.parseLong(line[3]);
-				String subtype = typeOf(subject, object, type);
-				
-				res.setURI(new String[]{subject, property, object});
-				res.setSubtype(subtype);
-				res.setFullTextSearchField(new String[]{subjectLocalName, propertyLocalName, objectLocalName});
-				res.setOccurrence(occurrences);
+			String line = input.nextLine();
+			if(!line.equals("")) {
+				String[] splitted = line.split("##");
+				ResourceSolr res = new ResourceSolr();
+				res.setType(type);
+				res.setDataset(dataset);
+				if(type.contains("Akp")){
+					String subject = splitted[0];
+					String subjectLocalName = new RDFResource(subject).localName();
+					String property = splitted[1];
+					String propertyLocalName = new RDFResource(property).localName();
+					String object = splitted[2];
+					String objectLocalName = new RDFResource(object).localName();
+					Long occurrences = Long.parseLong(splitted[3]);
+					String subtype = typeOf(subject, object, type);
+					
+					res.setURI(new String[]{subject, property, object});
+					res.setSubtype(subtype);
+					res.setFullTextSearchField(new String[]{subjectLocalName, propertyLocalName, objectLocalName});
+					res.setOccurrence(occurrences);
+				}
+				else {
+					String resource = splitted[0];
+					String localName = new RDFResource(resource).localName();
+					Long occurrences = Long.parseLong(splitted[1]);
+					String subtype = new TypeOf(domain).resource(resource);
+					
+					res.setURI(new String[]{resource});
+					res.setSubtype(subtype);
+					res.setFullTextSearchField(new String[]{localName});
+					res.setOccurrence(occurrences);
+				}
+				if(buffer.size() >= SolrBufferSize) {
+					resRepo.save(buffer);
+					buffer.clear();
+				}
+				buffer.add(res);
 			}
-			else {
-				String resource = line[0];
-				String localName = new RDFResource(resource).localName();
-				Long occurrences = Long.parseLong(line[1]);
-				String subtype = new TypeOf(domain).resource(resource);
-				
-				res.setURI(new String[]{resource});
-				res.setSubtype(subtype);
-				res.setFullTextSearchField(new String[]{localName});
-				res.setOccurrence(occurrences);
-			}
-			if(buffer.size() >= SolrBufferSize) {
-				resRepo.save(buffer);
-				buffer.clear();
-			}
-			buffer.add(res);
 		}
-		resRepo.save(buffer);
+		if(!buffer.isEmpty())
+			resRepo.save(buffer);
 	}
 	
 	
 	public void indexAKPsAutocomplete(InputFile input, String type) throws Exception{
 		ArrayList<AKPSolr> buffer = new ArrayList<AKPSolr>();
 		while(input.hasNextLine()){
-			String[] line = input.nextLine().split("##");
-			String subject = line[0];
-			String subjectLocalName = new RDFResource(subject).localName();
-			String property = line[1];
-			String propertyLocalName = new RDFResource(property).localName();
-			String object = line[2];
-			String objectLocalName = new RDFResource(object).localName();
-			Long occurrences = Long.parseLong(line[3]);
-			String subtype = typeOf(subject, object, type);
-			
-			AKPSolr akp = new AKPSolr();
-			akp.setURI(new String[]{
-					subject, property, object
-			});
-			akp.setType(type);
-			akp.setDataset(dataset);
-			akp.setSubtype(subtype);
-			akp.setFullTextSearchField(new String[]{
-					subjectLocalName, propertyLocalName, objectLocalName
-			});
-			akp.setSubject(subject);
-			akp.setPredicate(property);
-			akp.setObject(object);
-			akp.setSubject_ngram(subjectLocalName);
-			akp.setPredicate_ngram(propertyLocalName);
-			akp.setObject_ngram(objectLocalName);
-			akp.setOCcurrence(occurrences);
-			
-			if(concepts.containsKey(subject))                     // questo if è necessario perchè i concetti esterni non sono elecnati in count-concepts.txt e quidni non sono nella collection concepts
-				akp.setSubjectFreq(concepts.get(subject));
-			else
-				akp.setSubjectFreq(0);
-			
-			if(type.equals("datatypeAkp")){
-				akp.setPredicateFreq(datatype_properties.get(property));
-				akp.setObjectFreq(datatypes.get(object));
-			}
-			else{
-				akp.setPredicateFreq(object_properties.get(property));
-				if(concepts.containsKey(object))                     // questo if è necessario perchè i concetti esterni non sono elecnati in count-concepts.txt e quidni non sono nella collection concepts
-					akp.setObjectFreq(concepts.get(object));
+			String line = input.nextLine();
+			if(!line.equals("")) {
+				String[] splitted = line.split("##");
+				String subject = splitted[0];
+				String subjectLocalName = new RDFResource(subject).localName();
+				String property = splitted[1];
+				String propertyLocalName = new RDFResource(property).localName();
+				String object = splitted[2];
+				String objectLocalName = new RDFResource(object).localName();
+				Long occurrences = Long.parseLong(splitted[3]);
+				String subtype = typeOf(subject, object, type);
+				
+				AKPSolr akp = new AKPSolr();
+				akp.setURI(new String[]{
+						subject, property, object
+				});
+				akp.setType(type);
+				akp.setDataset(dataset);
+				akp.setSubtype(subtype);
+				akp.setFullTextSearchField(new String[]{
+						subjectLocalName, propertyLocalName, objectLocalName
+				});
+				akp.setSubject(subject);
+				akp.setPredicate(property);
+				akp.setObject(object);
+				akp.setSubject_ngram(subjectLocalName);
+				akp.setPredicate_ngram(propertyLocalName);
+				akp.setObject_ngram(objectLocalName);
+				akp.setOCcurrence(occurrences);
+				
+				if(concepts.containsKey(subject))                     // questo if è necessario perchè i concetti esterni non sono elecnati in count-concepts.txt e quidni non sono nella collection concepts
+					akp.setSubjectFreq(concepts.get(subject));
 				else
-					akp.setObjectFreq(0);
+					akp.setSubjectFreq(0);
+				
+				if(type.equals("datatypeAkp")){
+					akp.setPredicateFreq(datatype_properties.get(property));
+					akp.setObjectFreq(datatypes.get(object));
+				}
+				else{
+					akp.setPredicateFreq(object_properties.get(property));
+					if(concepts.containsKey(object))                     // questo if è necessario perchè i concetti esterni non sono elecnati in count-concepts.txt e quidni non sono nella collection concepts
+						akp.setObjectFreq(concepts.get(object));
+					else
+						akp.setObjectFreq(0);
+				}
+				
+				akp.setSubject_plus_dataset(subjectLocalName + "_" + dataset);
+				akp.setPredicate_plus_dataset(propertyLocalName + "_" + dataset);
+				akp.setObject_plus_dataset(objectLocalName + "_" + dataset);
+				
+				if(buffer.size() >= SolrBufferSize) {
+					akpRepo.save(buffer);
+					buffer.clear();
+				}
+				buffer.add(akp);
 			}
-			
-			akp.setSubject_plus_dataset(subjectLocalName + "_" + dataset);
-			akp.setPredicate_plus_dataset(propertyLocalName + "_" + dataset);
-			akp.setObject_plus_dataset(objectLocalName + "_" + dataset);
-			
-			if(buffer.size() >= SolrBufferSize) {
-				akpRepo.save(buffer);
-				buffer.clear();
-			}
-			buffer.add(akp);
 		}
-		akpRepo.save(buffer);
+		if(!buffer.isEmpty())
+			akpRepo.save(buffer);
 	}
 	
 	
