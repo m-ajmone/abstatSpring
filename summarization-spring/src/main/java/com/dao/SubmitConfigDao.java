@@ -16,5 +16,4 @@ public interface SubmitConfigDao {
 	
 	public SubmitConfig findSubmitConfigById(String id);
 	
-	public List<SubmitConfig> listSubmitConfig(Boolean loaded, Boolean indexed);
 }
