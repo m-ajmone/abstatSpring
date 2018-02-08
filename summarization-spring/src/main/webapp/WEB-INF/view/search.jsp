@@ -106,7 +106,8 @@
             <div class="box-body col-md-12">
               <div class="form-group">
                 <label>Choose a dataset for filtering</label>
-                <select class="form-control select2"  ng-model="selected_dataset" >
+                <select class="form-control select2"  ng-model="selected_dataset">
+                  <option ng-option value="all" selected ="selected"> all</option>
                   <c:forEach var="dataset" items="${listDataset}">
                     <option ng-option value="${dataset}">${dataset}</option>
                   </c:forEach>

@@ -83,7 +83,9 @@ bootstrapSearchController = function(scope, solr, dataset){
 			solr.withFilter('subtype: internal');
 		}
 		if(scope.selected_dataset){
-			solr.withFilter('dataset:'  + scope.selected_dataset );
+			if(scope.selected_dataset!="all"){
+				solr.withFilter('dataset:'  + scope.selected_dataset );
+			}
 		}
 		solr.search(scope.srcStr);
 	};
