@@ -125,8 +125,7 @@
             <div  ng-show="allDocuments">
               <div class="box-body">
                 <ul class="list-unstyled">
-                  <li><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> <small><strong>external</strong> concept / property / akp</small></li>
-                  <li><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span> <small><strong>internal</strong> concept / property / akp</small></li>
+                  <li><span class="fa fa-star-o" aria-hidden="true"></span> <small><strong>prefered</strong> concept / property / akp</small></li>
                 </ul>
               </div>
             </div>
@@ -141,7 +140,7 @@
                   <ul class="list-inline">
                     <li><span class="label label-default">{{doc.dataset}}</span></li>
                     <li><span class="label label-{{doc.type | asLabel}}">{{doc.type}}</span></li>
-                    <li><span class="glyphicon glyphicon-resize-{{doc.subtype | asIcon}}" aria-hidden="true"></span></li>
+                    <li><span class="fa fa-{{doc.subtype | asIcon}}" aria-hidden="true"></span></li>
                     <li ng-repeat="uri in doc.URI track by $index">
                       <h4>{{uri | prefixed}}</h4>
                     </li>
