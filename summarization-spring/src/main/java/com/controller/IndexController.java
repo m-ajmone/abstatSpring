@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model.IndexSummary;
@@ -17,6 +18,7 @@ import com.service.OntologyService;
 import com.service.SubmitConfigService;
 
 @Controller
+@SessionAttributes("submitConfig")
 public class IndexController {
 	
 	@Autowired
@@ -69,11 +71,12 @@ public class IndexController {
 		for(String id : submitConfig.getListOntId())
 			ontlogiesListName.add(ontologyService.findOntologyById(id).getName());
 		
+		
+		
 		submitConfig.setDsName(datasetName);
 		submitConfig.setListOntNames(ontlogiesListName);
 		submitConfig.setSummaryPath(summary_dir);
 		submitConfig.setTimestamp(new Timestamp(System.currentTimeMillis()).toString());
-		submitConfigService.add(submitConfig);
 		
 		ModelAndView model = new ModelAndView("recapConfig");
 		model.addObject("submitConfig", submitConfig);

@@ -12,9 +12,10 @@ import java.nio.file.Paths;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.code.externalsorting.ExternalSort;
 import com.model.Dataset;
@@ -34,6 +35,7 @@ import com.summarization.export.ProcessObjectRelationAssertions;
 import com.summarization.export.ProcessOntology;
 
 @Controller
+@SessionAttributes("submitConfig")
 public class SummarizationController {
 	
 	@Autowired
@@ -44,16 +46,13 @@ public class SummarizationController {
 	DatasetService datasetService;
 	
 	
-	
 	@RequestMapping(value = "summarization" , method = RequestMethod.POST)
-	public String runSummarization(@RequestParam("subCfgId") String subCfgId)  throws Exception  {
+	public String runSummarization(@ModelAttribute("submitConfig") SubmitConfig subCfg)  throws Exception  {
 		Events.summarization();
-		
-		SubmitConfig subCfg = submitConfigService.findSubmitConfigById(subCfgId);
 		
 		String ontPath = "";
 		String ontName = "";
-		String dsId = submitConfigService.findSubmitConfigById(subCfgId).getDsId();
+		String dsId = subCfg.getDsId();
 		Dataset dataset = datasetService.findDatasetById(dsId);
 		String datasetName = dataset.getName();
 		String inf = ""; String minTp = ""; String propMin = ""; String card = "";
@@ -124,6 +123,9 @@ public class SummarizationController {
  		if(subCfg.isCardinalita()) 
  			cardinality(patternsPath);
     
+		//save configuration
+		submitConfigService.add(subCfg);
+		
  		return "redirect:home";
 	}	
 	
