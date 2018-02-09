@@ -77,6 +77,7 @@ public class IndexingLoading {
 		File datatypeAKP = new File(patternsPath + "/datatype-akp.txt");
 		File objectPatterns = new File(patternsPath + "/patterns_splitMode_object.txt");
 		File datatypePatterns = new File(patternsPath + "/patterns_splitMode_datatype.txt");
+		File patternCardinalities = new File(patternsPath + "/patternCardinalities.txt");
 		
 		
 		if(dataloading.getLoadOnMongoDB() & !config.isLoadedMongoDB()) {
@@ -90,6 +91,10 @@ public class IndexingLoading {
 			if(objectPatterns.exists() && datatypePatterns.exists()) {
 				loadNumberOfInstances(new TextInput(new FileSystemConnector(objectPatterns)), config, "Object AKP");
 				loadNumberOfInstances(new TextInput(new FileSystemConnector(datatypePatterns)), config, "Datatype AKP");
+			}
+			
+			if(patternCardinalities.exists()) {
+				loadPatternCardinalities(new TextInput(new FileSystemConnector(patternCardinalities)), config);
 			}
 			
 		}
@@ -246,6 +251,25 @@ public class IndexingLoading {
 		}
 	}
 
+	public void loadPatternCardinalities(InputFile file,SubmitConfig config) throws Exception {
+		while (file.hasNextLine()) {
+			String line = file.nextLine();
+			if(!line.equals("")){
+				String[] splitted = line.split(" ");		
+				String[] pattern = splitted[0].split("##");	
+				String[] card = splitted[1].split("-");					
+				AKP akp = AKPService.getAKP(pattern[0], pattern[1], pattern[2], config.getId());	
+				akp.setCardinality1(Long.parseLong(card[0]));
+				akp.setCardinality2(Long.parseLong(card[1]));
+				akp.setCardinality3(Long.parseLong(card[2]));
+				akp.setCardinality4(Long.parseLong(card[3]));
+				akp.setCardinality5(Long.parseLong(card[4]));
+				akp.setCardinality6(Long.parseLong(card[5]));
+				AKPService.update(akp);
+			}
+		}
+	}
+	
 	
 	public void indexSummary(InputFile input, String type) throws Exception{
 		ArrayList<ResourceSolr> buffer = new ArrayList<ResourceSolr>();

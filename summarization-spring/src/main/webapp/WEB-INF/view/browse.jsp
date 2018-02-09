@@ -255,12 +255,12 @@
                               </td>
                               <td>{{summary.frequency}}</td>
                               <td>{{summary.numberOfInstances != null && summary.numberOfInstances || '-' }}</td>
-                              <td>{{summary.cardinality1 != null && 'summary.cardinality1' || '-' }}</td>
-                              <td>{{summary.cardinality2 != null && 'summary.cardinality2' || '-' }}</td>
-                              <td>{{summary.cardinality3 != null && 'summary.cardinality3' || '-' }}</td>
-                              <td>{{summary.cardinality4 != null && 'summary.cardinality4' || '-' }}</td>
-                              <td>{{summary.cardinality5 != null && 'summary.cardinality5' || '-' }}</td>
-                              <td>{{summary.cardinality6 != null && 'summary.cardinality6' || '-' }}</td>
+                              <td>{{summary.cardinality1 != null && summary.cardinality1 || '-' }}</td>
+                              <td>{{summary.cardinality2 != null && summary.cardinality2 || '-' }}</td>
+                              <td>{{summary.cardinality3 != null && summary.cardinality3 || '-' }}</td>
+                              <td>{{summary.cardinality4 != null && summary.cardinality4 || '-' }}</td>
+                              <td>{{summary.cardinality5 != null && summary.cardinality5 || '-' }}</td>
+                              <td>{{summary.cardinality6 != null && summary.cardinality6 || '-' }}</td>
                             </tr>
                           </tbody>
                         </table>

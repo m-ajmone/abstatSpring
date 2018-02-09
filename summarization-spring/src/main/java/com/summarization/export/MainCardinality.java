@@ -17,22 +17,21 @@ public class MainCardinality {
 		
 		String path = args[0];
 
-		File folderAkps = new File(path+"/Akps");
-		File folderProps = new File(path+"/Properties");
-
+		File obj_grezzo = new File(path+"/object-akp_grezzo.txt");
+		File dt_grezzo = new File(path+"/datatype-akp_grezzo.txt");
 		ArrayList<String> listP = new ArrayList<String>();
 		ArrayList<String> listAKP = new ArrayList<String>();
 
-		File obj_grezzo = new File(path+"/object-akp_grezzo.txt");
 		Split.readFromFiles(obj_grezzo, path, listP, listAKP);
-
-		File dt_grezzo = new File(path+"/datatype-akp_grezzo.txt");
 		Split.readFromFiles(dt_grezzo, path, listP, listAKP);
 
+		
+		File folderAkps = new File(path+"/Akps");
+		File folderProps = new File(path+"/Properties");
 		File globalCard = new File(path+"/globalCardinalities.txt");
-		CalculateCardinality.concurrentWork(folderProps, listP, globalCard);
-
 		File patternCard = new File(path+"/patternCardinalities.txt");
+		
+		CalculateCardinality.concurrentWork(folderProps, listP, globalCard);
 		CalculateCardinality.concurrentWork(folderAkps, listAKP, patternCard);
 
 		//mappatura di akp+nome file di testo
