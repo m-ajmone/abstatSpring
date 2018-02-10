@@ -223,7 +223,7 @@
                           </thead>
                           <tbody>
                             <tr>
-                              <td class="text-center"><button type="submit" ng-click='filterPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
+                              <td class="text-center" style="width:0cm"><button type="submit" ng-click='filterPatterns()' ng-disabled="loadingSummary" class="btn btn-primary">
                                 <span ng-hide="loadingSummary">filter</span>
                                 <span ng-show="loadingSummary">filter  <i class="fa fa-spinner fa-spin"></i></span>
                                 </button>
@@ -239,7 +239,7 @@
                               <td><input type="text" typeahead="object as object.global for object in autocomplete.object | filter:$viewValue | limitTo:7" typeahead-template-url="autocomplete-template.html" ng-model="object" class="form-control" placeholder="object"></td>
                             </tr>
                             <tr ng-repeat="summary in summaries">
-                              <td></td>
+                              <td class = "text-center"><span class="fa fa-{{summary.subType | asIcon}}" aria-hidden="true"></span></td>
                               <td>
                                 <a target="_blank" ">{{summary.subject.globalURL | prefixed}}</a>
                                 <small ng-show="summary.subject.frequency">({{summary.subject.frequency}})</small>

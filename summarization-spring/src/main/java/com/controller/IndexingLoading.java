@@ -33,7 +33,6 @@ import com.summarization.dataset.InputFile;
 import com.summarization.dataset.TextInput;
 import com.summarization.ontology.LDSummariesVocabulary;
 import com.summarization.ontology.RDFResource;
-import com.summarization.ontology.RDFTypeOf;
 import com.summarization.ontology.TypeOf;
 
 @Controller
@@ -127,6 +126,7 @@ public class IndexingLoading {
 	}	
 	
 	public void loadResources(InputFile file, SubmitConfig config, String type) throws Exception{
+		TypeOf typeOf = new TypeOf(domain);
 		while (file.hasNextLine()) {
 			String line = file.nextLine();
 			if(!line.equals("")){
@@ -137,7 +137,6 @@ public class IndexingLoading {
 				
 				Model model = ModelFactory.createDefaultModel();
 				LDSummariesVocabulary vocabulary = new LDSummariesVocabulary(model, dataset);
-				RDFTypeOf typeOf = new RDFTypeOf(domain);
 			
 				com.model.Resource resource = new com.model.Resource();
 				String localResource = "";
@@ -167,7 +166,7 @@ public class IndexingLoading {
 				resource.setLocalUrl(localResource);
 				resource.setSeeAlso(globalResource);
 				resource.setType(type);
-				resource.setSubType(typeOf.resource(globalResource).getURI());
+				resource.setSubType(typeOf.resource(globalResource));
 				resource.setDatasetOfOrigin(dataset);
 				resource.setOntologiesOfOrigin(ontList);
 				resource.setSummary_conf(config.getId());
@@ -179,6 +178,7 @@ public class IndexingLoading {
 	
 	
 	public void loadAKPs(InputFile file,SubmitConfig config, String type) throws Exception{
+		TypeOf typeOf = new TypeOf(domain);
 		while (file.hasNextLine()) {
 			String line = file.nextLine();
 			if(!line.equals("")){
@@ -190,7 +190,6 @@ public class IndexingLoading {
 
 				Model model = ModelFactory.createDefaultModel();
 				LDSummariesVocabulary vocabulary = new LDSummariesVocabulary(model, dataset);
-				RDFTypeOf typeOf = new RDFTypeOf(domain);
 				
 				String localSubject = vocabulary.asLocalResource(globalSubject).getURI();
 				String localObject = vocabulary.asLocalResource(globalObject).getURI();
@@ -201,11 +200,11 @@ public class IndexingLoading {
 				switch(type) {
 				case "Object AKP":
 					localPredicate = vocabulary.asLocalObjectProperty(globalPredicate).getURI();
-					internal = typeOf.objectAKP(globalSubject, globalObject).getURI();
+					internal = typeOf.objectAKP(globalSubject, globalObject);
 					break;
 				case "Datatype AKP":
 					localPredicate = vocabulary.asLocalDatatypeProperty(globalPredicate).getURI();
-					internal = typeOf.datatypeAKP(globalSubject).getURI();
+					internal = typeOf.datatypeAKP(globalSubject);
 					break;
 				default:
 					AKP.setType("NONE");
@@ -273,6 +272,7 @@ public class IndexingLoading {
 	
 	public void indexSummary(InputFile input, String type) throws Exception{
 		ArrayList<ResourceSolr> buffer = new ArrayList<ResourceSolr>();
+		TypeOf typeOf = new TypeOf(domain);
 		while(input.hasNextLine()){
 			String line = input.nextLine();
 			if(!line.equals("")) {
@@ -288,7 +288,12 @@ public class IndexingLoading {
 					String object = splitted[2];
 					String objectLocalName = new RDFResource(object).localName();
 					Long occurrences = Long.parseLong(splitted[3]);
-					String subtype = typeOf(subject, object, type);
+					String subtype = "";
+
+					if(type.equals("datatypeAkp")) 
+						subtype =  typeOf.datatypeAKP(subject);
+					else
+						subtype =  typeOf.objectAKP(subject, object);
 					
 					res.setURI(new String[]{subject, property, object});
 					res.setSubtype(subtype);
@@ -299,7 +304,7 @@ public class IndexingLoading {
 					String resource = splitted[0];
 					String localName = new RDFResource(resource).localName();
 					Long occurrences = Long.parseLong(splitted[1]);
-					String subtype = new TypeOf(domain).resource(resource);
+					String subtype = typeOf.resource(resource);
 					
 					res.setURI(new String[]{resource});
 					res.setSubtype(subtype);
@@ -319,6 +324,7 @@ public class IndexingLoading {
 	
 	
 	public void indexAKPsAutocomplete(InputFile input, String type) throws Exception{
+		TypeOf typeOf = new TypeOf(domain);
 		ArrayList<AKPSolr> buffer = new ArrayList<AKPSolr>();
 		while(input.hasNextLine()){
 			String line = input.nextLine();
@@ -331,7 +337,13 @@ public class IndexingLoading {
 				String object = splitted[2];
 				String objectLocalName = new RDFResource(object).localName();
 				Long occurrences = Long.parseLong(splitted[3]);
-				String subtype = typeOf(subject, object, type);
+				String subtype = "";
+				
+				if(type.equals("datatypeAkp")) 
+					subtype =  typeOf.datatypeAKP(subject);
+				else 
+					subtype =  typeOf.objectAKP(subject, object);
+
 				
 				AKPSolr akp = new AKPSolr();
 				akp.setURI(new String[]{
@@ -403,13 +415,6 @@ public class IndexingLoading {
 		} catch(Exception e){
 		}
 		return map;
-	}
-	
-	
-	private String typeOf(String subject, String object, String type) {
-		TypeOf typeOf = new TypeOf(domain);
-		if(type.equals("datatypeAkp")) return typeOf.datatypeAKP(subject);
-		return typeOf.objectAKP(subject, object);
 	}
 	
 }

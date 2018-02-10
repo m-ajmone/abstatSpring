@@ -47,7 +47,8 @@ summary.filter('asLabel', function(){
 
 summary.filter('asIcon', function(){
 	return function(subtype){
-		if(subtype.indexOf('external') > -1) return '';
+		if(subtype.indexOf('external') > -1) 
+			return '';
 		return 'star-o'
 	};
 });
