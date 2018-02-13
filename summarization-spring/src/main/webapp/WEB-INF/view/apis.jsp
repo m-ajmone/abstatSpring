@@ -140,10 +140,10 @@
                   </table>
                 </div>
                 <div>Example 1: 
-                  <a href="http://localhost/api/v1/summaries">http://localhost/api/v1/summaries</a>
+                  <a href="api/v1/summaries">http://localhost/api/v1/summaries</a>
                 </div>
                 <div>Example 2: 
-                  <a href="http://localhost/api/v1/summaries?loaded=true&indexed=false">http://localhost/api/v1/summaries?loaded=true&indexed=false</a>
+                  <a href="api/v1/summaries?loaded=true&indexed=false">http://localhost/api/v1/summaries?loaded=true&indexed=false</a>
                 </div>
               </div>
             </div>
@@ -201,10 +201,10 @@
                   </table>
                 </div>
                 <div>Example 1: 
-                  <a href="http://localhost/api/v1/SPO?position=object">http://localhost/api/v1/SPO?position=object</a>
+                  <a href="api/v1/SPO?position=object">http://localhost/api/v1/SPO?position=object</a>
                 </div>
                 <div>Example 2: 
-                  <a href="http://localhost/api/v1/SPO?summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210&position=predicate">http://localhost/api/v1/SPO?summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210&position=predicate</a>
+                  <a href="api/v1/SPO?summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210&position=predicate">http://localhost/api/v1/SPO?summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210&position=predicate</a>
                 </div>
               </div>
             </div>
@@ -296,16 +296,16 @@
                   </table>
                 </div>
                 <div>Example 1: 
-                  <a href="http://localhost/api/v1/browse?enrichWithSPO=true&limit=20">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20</a>
+                  <a href="api/v1/browse?enrichWithSPO=true&limit=20">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20</a>
                 </div>
                  <div>Example 2: 
-                  <a href="http://localhost/api/v1/browse?subj=http://dbpedia.org/ontology/Settlement">http://localhost/api/v1/browse?subj=http://dbpedia.org/ontology/Settlement</a>
+                  <a href="api/v1/browse?subj=http://dbpedia.org/ontology/Settlement">http://localhost/api/v1/browse?subj=http://dbpedia.org/ontology/Settlement</a>
                 </div>
                 <div>Example 3: 
-                  <a href="http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&pred=http://dbpedia.org/ontology/birthPlace&subj=http://xmlns.com/foaf/0.1/Person">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&pred=http://dbpedia.org/ontology/birthPlace&subj=http://xmlns.com/foaf/0.1/Person</a>
+                  <a href="api/v1/browse?enrichWithSPO=true&limit=20&pred=http://dbpedia.org/ontology/birthPlace&subj=http://xmlns.com/foaf/0.1/Person">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&pred=http://dbpedia.org/ontology/birthPlace&subj=http://xmlns.com/foaf/0.1/Person</a>
                 </div>
                 <div>Example 4: 
-                  <a href="http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&offset=40&pred=http://dbpedia.org/ontology/birthPlace&summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&offset=40&pred=http://dbpedia.org/ontology/birthPlace&summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210</a>
+                  <a href="api/v1/browse?enrichWithSPO=true&limit=20&offset=40&pred=http://dbpedia.org/ontology/birthPlace&summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&offset=40&pred=http://dbpedia.org/ontology/birthPlace&summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210</a>
                 </div>
               </div>
             </div>
@@ -411,19 +411,19 @@
                   </table>
                 </div>
                 <div>Example 1: 
-                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred</a>
+                  <a href="api/v1/SolrSuggestions?qString=a&qPosition=pred">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred</a>
                 </div>
                 <div>Example 2: 
-                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&dataset=dbpedia-2015-10">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&dataset=dbpedia-2015-10</a>
+                  <a href="api/v1/SolrSuggestions?qString=a&qPosition=pred&dataset=dbpedia-2015-10">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&dataset=dbpedia-2015-10</a>
                 </div>
                 <div>Example 3: 
-                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place</a>
+                  <a href="api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place</a>
                 </div>
                 <div>Example 4: 
-                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&group=true">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&group=true</a>
+                  <a href="api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&group=true">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&group=true</a>
                 </div>
                 <div>Example 5: 
-                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&obj=http://www.w3.org/2001/XMLSchema%23double&group=true">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&obj=http://www.w3.org/2001/XMLSchema%23double&group=true</a>
+                  <a href="api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&obj=http://www.w3.org/2001/XMLSchema%23double&group=true">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&obj=http://www.w3.org/2001/XMLSchema%23double&group=true</a>
                 </div>
               </div>
             </div>
