@@ -94,6 +94,345 @@
     </aside>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+      <section class="content">
+
+        <div class="col-md-12">
+          <div class="box box-info collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">api/v1/summaries</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="col-md-12">
+                <div>This API allows a user to list the ID's summaries which match the input parameters</div>
+                <div>
+                  <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width:8%"">Parameter</th>
+                        <th style="width:12%">Values</th>
+                        <th style="width:12%">Example</th>
+                        <th style="width:6%">Optional</th>
+                        <th>Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>loaded</td>
+                        <td>boolean value</td>
+                        <td>loaded=true</td>
+                        <td>yes</td>
+                        <td>not specified value is considered as "don't care"</td>
+                      </tr>
+                      <tr>
+                        <td>indexed</td>
+                        <td>boolean value</td>
+                        <td>indexed=false</td>
+                        <td>yes</td>
+                        <td>not specified value is considered as "don't care"</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>Example 1: 
+                  <a href="http://localhost/api/v1/summaries">http://localhost/api/v1/summaries</a>
+                </div>
+                <div>Example 2: 
+                  <a href="http://localhost/api/v1/summaries?loaded=true&indexed=false">http://localhost/api/v1/summaries?loaded=true&indexed=false</a>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+        <div class="col-md-12">
+          <div class="box box-success collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">api/v1/SPO</h3>
+              <font size="2" color="grey">(for stored summaries)</font>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="col-md-12">
+                <div>This API allows a user to list all the subject/predicate/object of a given summary that has been previously stored</div>
+                <div> 
+                  <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width:8%"">Parameter</th>
+                        <th style="width:12%">Values</th>
+                        <th style="width:12%">Example</th>
+                        <th style="width:6%">Optional</th>
+                        <th>Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>summary</td>
+                        <td>(string) ID summary</td>
+                        <td>summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210</td>
+                        <td>yes</td>
+                        <td> - if not specified, will be considered all the stored summaries<br>
+                             - IDs can be retrieved using the api/v1/summaries API or the <a href="/home">overview</a> page
+                        </td>
+                      </tr>
+                     
+                      <tr>
+                        <td>position</td>
+                        <td>(string) subject/predicate/object</td>
+                        <td>position=predicate</td>
+                        <td>no</td>
+                        <td>-</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                <div>Example 1: 
+                  <a href="http://localhost/api/v1/SPO?position=object">http://localhost/api/v1/SPO?position=object</a>
+                </div>
+                <div>Example 2: 
+                  <a href="http://localhost/api/v1/SPO?summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210&position=predicate">http://localhost/api/v1/SPO?summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210&position=predicate</a>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="box box-success collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">api/v1/browse</h3>
+              <font size="2" color="grey">(for stored summaries)</font>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="col-md-12">
+                <div>This API allows a user to list all AKPs which match the input parameters.</div>
+                <div>
+                  <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width:8%"">Parameter</th>
+                        <th style="width:12%">Values</th>
+                        <th style="width:12%">Example</th>
+                        <th style="width:6%">Optional</th>
+                        <th>Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>summary</td>
+                        <td>(string) ID summary</td>
+                        <td>summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210</td>
+                        <td>yes</td>
+                        <td> - if not specified, will be considered all the stored summaries<br>
+                             - IDs can be retrieved using the api/v1/summaries API or the <a href="/home">overview</a> page
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>subj</td>
+                        <td>(string) concept URI</td>
+                        <td>subj=http://schema.org/Place</td>
+                        <td>yes</td>
+                        <td>values can be retrieved using the api/v1/SPO API</td>
+                      </tr>
+                      <tr>
+                        <td>pred</td>
+                        <td>(string) predicate URI</td>
+                        <td>pred=http://xmlns.com/foaf/0.1/name</td>
+                        <td>yes</td>
+                        <td>values can be retrieved using the api/v1/SPO API</td>
+                      </tr>
+                      <tr>
+                        <td>obj</td>
+                        <td>(string) concept URI</td>
+                        <td>obj=http://dbpedia.org/ontology/City</td>
+                        <td>yes</td>
+                        <td>values can be retrieved using the api/v1/SPO API</td>
+                      </tr>
+                      <tr>
+                        <td>limit</td>
+                        <td>(int) AKPs limit output</td>
+                        <td>limit=20</td>
+                        <td>yes</td>
+                        <td>if not specified will return all the matching AKPs</td>
+                      </tr>
+                      <tr>
+                        <td>offset</td>
+                        <td>(int) AKPs offset</td>
+                        <td>offset=40</td>
+                        <td>yes</td>
+                        <td>default value is 0</td>
+                      </tr>
+                      <tr>
+                        <td>enrichWithSPO</td>
+                        <td>boolean value</td>
+                        <td>enrichWithSPO=true</td>
+                        <td>yes</td>
+                        <td>if true subject, predicate and object frequencies are showed</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>Example 1: 
+                  <a href="http://localhost/api/v1/browse?enrichWithSPO=true&limit=20">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20</a>
+                </div>
+                 <div>Example 2: 
+                  <a href="http://localhost/api/v1/browse?subj=http://dbpedia.org/ontology/Settlement">http://localhost/api/v1/browse?subj=http://dbpedia.org/ontology/Settlement</a>
+                </div>
+                <div>Example 3: 
+                  <a href="http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&pred=http://dbpedia.org/ontology/birthPlace&subj=http://xmlns.com/foaf/0.1/Person">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&pred=http://dbpedia.org/ontology/birthPlace&subj=http://xmlns.com/foaf/0.1/Person</a>
+                </div>
+                <div>Example 4: 
+                  <a href="http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&offset=40&pred=http://dbpedia.org/ontology/birthPlace&summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210">http://localhost/api/v1/browse?enrichWithSPO=true&limit=20&offset=40&pred=http://dbpedia.org/ontology/birthPlace&summary=6d0ed511-f8c9-4b72-8c04-1f4cba9b9210</a>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+
+        <div class="col-md-12">
+          <div class="box box-warning collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">/api/v1/SolrSuggestions</h3>
+              <font size="2" color="grey">(for indexed summaries)</font>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="col-md-12">
+                <div>This API allows a user get suggestions based on the specified constraints.</div>
+                <div>
+                  <table id="example2" class="table table-bordered table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width:8%"">Parameter</th>
+                        <th style="width:12%">Values</th>
+                        <th style="width:12%">Example</th>
+                        <th style="width:6%">Optional</th>
+                        <th>Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>subj</td>
+                        <td>(string) concept URI</td>
+                        <td>subj=http://www.ontologydesignpatterns.org/ont/dul/DUL.owl%23Agent</td>
+                        <td>yes</td>
+                        <td>values can be retrieved using the api/v1/SPO API</td>
+                      </tr>
+                      <tr>
+                        <td>pred</td>
+                        <td>(string) predicate URI</td>
+                        <td>pred=http://dbpedia.org/property/birthPlace</td>
+                        <td>yes</td>
+                        <td>values can be retrieved using the api/v1/SPO API</td>
+                      </tr>
+                      <tr>
+                        <td>obj</td>
+                        <td>(string) concept URI</td>
+                        <td>obj=http://dbpedia.org/ontology/Person</td>
+                        <td>yes</td>
+                        <td>values can be retrieved using the api/v1/SPO API</td>
+                      </tr>
+                      <tr>
+                        <td>qString</td>
+                        <td>(string) user input</td>
+                        <td>qString=per</td>
+                        <td>no</td>
+                        <td>If user input has 2 chars or less, the function will search for matchings which begin with the user input otherwise the matching search will be extended to central substrings</td>
+                      </tr>
+                      <tr>
+                        <td>qPosition</td>
+                        <td>(string) subj/pred/obj</td>
+                        <td>qPosition=subj</td>
+                        <td>no</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>dataset</td>
+                        <td>(string) target dataset</td>
+                        <td>dataset=dbpedia-2015-10</td>
+                        <td>yes</td>
+                        <td>If not specified the search of the query will be extended to all the datasets</td>
+                      </tr>
+                      <tr>
+                        <td>rows</td>
+                        <td>(int) number of rows to return</td>
+                        <td>rows=100</td>
+                        <td>yes</td>
+                        <td> A smaller value implicates better performance</td>
+                      </tr>
+                      <tr>
+                        <td>start</td>
+                        <td>(int) suggestions offset</td>
+                        <td>start=100</td>
+                        <td>yes</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>group</td>
+                        <td>boolean value</td>
+                        <td>group=true</td>
+                        <td>yes</td>
+                        <td> - to be used only if you have specified sub/pred/obj<br>
+                             - if true duplicates are removed
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>Example 1: 
+                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred</a>
+                </div>
+                <div>Example 2: 
+                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&dataset=dbpedia-2015-10">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&dataset=dbpedia-2015-10</a>
+                </div>
+                <div>Example 3: 
+                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place</a>
+                </div>
+                <div>Example 4: 
+                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&group=true">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&group=true</a>
+                </div>
+                <div>Example 5: 
+                  <a href="http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&obj=http://www.w3.org/2001/XMLSchema%23double&group=true">http://localhost/api/v1/SolrSuggestions?qString=a&qPosition=pred&subj=http://schema.org/Place&obj=http://www.w3.org/2001/XMLSchema%23double&group=true</a>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+      </section>
     </div>
     <!-- /.content-wrapper -->
     <!-- Main Footer -->

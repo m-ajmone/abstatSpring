@@ -21,9 +21,9 @@ public class AutocompleteAPI {
 
 	@RequestMapping(value="/api/v1/SolrSuggestions", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody String getitem(
-			@RequestParam(value="subjectType", required=false) String s, 
-			@RequestParam(value="predicate", required=false) String p,
-			@RequestParam(value="objectType", required=false) String o,
+			@RequestParam(value="subj", required=false) String s, 
+			@RequestParam(value="pred", required=false) String p,
+			@RequestParam(value="obj", required=false) String o,
 			@RequestParam(value="qString") String qString,
 			@RequestParam(value="qPosition") String qPosition,
 			@RequestParam(value="dataset", required=false) String dataset,
