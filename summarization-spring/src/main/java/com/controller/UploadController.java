@@ -38,7 +38,7 @@ public class UploadController {
 		
 		if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "redirect:uploadStatus";
+            return "redirect:status";
         }
 		try {
 
@@ -73,7 +73,7 @@ public class UploadController {
             e.printStackTrace();
         }
 
-        return "redirect:uploadStatus";
+        return "redirect:status";
     }
 	
 	
@@ -82,7 +82,7 @@ public class UploadController {
 		
 		if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "redirect:uploadStatus";
+            return "redirect:status";
         }
 		try {
 
@@ -116,13 +116,13 @@ public class UploadController {
             e.printStackTrace();
         }
 
-        return "redirect:uploadStatus";
+        return "redirect:status";
     }
 	
 	
-	@RequestMapping(value = "/uploadStatus", method = RequestMethod.GET)
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
     public String uploadStatus() {
-        return "uploadStatus";
+        return "operationStatus";
     }
 	
 }

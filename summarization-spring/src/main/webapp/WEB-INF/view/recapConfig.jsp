@@ -12,17 +12,17 @@
     <title>ABSTAT</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type = "text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type = "text/css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type = "text/css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="css/ionicons.min.css" type = "text/css">
+    <link rel="stylesheet" href="/css/ionicons.min.css" type = "text/css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
       page. However, you can choose any other skin. Make sure you
       apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="css/skinblue.min.css" type = "text/css">
+    <link rel="stylesheet" href="/css/skinblue.min.css" type = "text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,9 +58,9 @@
       <!-- Main Header -->
       <header class="main-header">
         <!-- Logo -->
-        <a href="home" class="logo">
+        <a href="../home" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"> <img src="img/bicocca.png" width="50" height="50"> </span>
+          <span class="logo-mini"> <img src="/img/bicocca.png" width="50" height="50"> </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>ABSTAT</b></span>
         </a>
@@ -80,13 +80,13 @@
           <ul class="sidebar-menu" data-widget="tree">
             <li class="header">ABSTAT</li>
             <!-- Optionally, you can add icons to the links -->
-          <li class="active"><a href="home"><i class="fa fa-home"></i> <span>Overview</span></a></li>
-          <li class="active"><a href="summarize"><i class="fa fa-gears"></i> <span>Summarize</span></a></li>
-          <li class="active"><a href="dataLoading"><i class="fa fa-database"></i> <span>Consolidate</span></a></li>
-          <li class="active"><a href="browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
-          <li class="active"><a href="search"><i class="fa fa-search"></i> <span>Search</span></a></li>
-          <li class="active"><a href="management"><i class="fa fa-folder"></i> <span>Manage</span></a></li>
-          <li class="active"><a href="apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
+          <li class="active"><a href="../home"><i class="fa fa-home"></i> <span>Overview</span></a></li>
+          <li class="active"><a href="../summarize"><i class="fa fa-gears"></i> <span>Summarize</span></a></li>
+          <li class="active"><a href="../dataLoading"><i class="fa fa-database"></i> <span>Consolidate</span></a></li>
+          <li class="active"><a href="../browse"><i class="fa fa-filter"></i> <span>Browse</span></a></li>
+          <li class="active"><a href="../search"><i class="fa fa-search"></i> <span>Search</span></a></li>
+          <li class="active"><a href="../management"><i class="fa fa-folder"></i> <span>Manage</span></a></li>
+          <li class="active"><a href="../apis"><i class="fa fa-link"></i> <span>APIs</span></a></li>
           </ul>
           <!-- /.sidebar-menu -->
         </section>
@@ -177,7 +177,7 @@
                   </table>
                 </div>
 
-                <form:form action = "summarization" method = "post">
+                <form:form action = "run" method = "post">
                   <div class="box-body">
                     <div class="col-xs-9" style="margin-left: -6px;">
                      <label >Please insert your email if you want to be notified when your summary is ready:</label>
@@ -226,11 +226,11 @@
       <!-- ./wrapper -->
       <!-- REQUIRED JS SCRIPTS -->
       <!-- jQuery 3 -->
-      <script src="jquery/jquery.min.js"></script>
+      <script src="/jquery/jquery.min.js"></script>
       <!-- Bootstrap 3.3.7 -->
-      <script src="jquery/bootstrap.min.js"></script>
+      <script src="/jquery/bootstrap.min.js"></script>
       <!-- AdminLTE App -->
-      <script src="jquery/adminlte.min.js"></script>
+      <script src="/jquery/adminlte.min.js"></script>
       <!-- Optionally, you can add Slimscroll and FastClick plugins.
         Both of these plugins are recommended to enhance the
         user experience. -->

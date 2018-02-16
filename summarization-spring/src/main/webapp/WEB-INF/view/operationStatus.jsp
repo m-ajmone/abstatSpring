@@ -60,7 +60,7 @@
         <!-- Logo -->
         <a href="home" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"> <img src="img/bicocca.png" width="50" height="50"> </span>
+          <span class="logo-mini"> <img src="../img/bicocca.png" width="50" height="50"> </span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>ABSTAT</b></span>
         </a>
@@ -103,6 +103,16 @@
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-ban"></i>${message}</h4>
                 <a href="/summarize">Back to Summarization</a>
+              </div>
+            </c:when>
+
+
+            <c:when test = "${message == 'You successfully submit the summarization request'}">
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i>${message}</h4>
+                 <h5>When your summary is ready we will sent you an email. You can also keep the homepage under control.</h5>
+                <a href="/home">Back to Home</a>
               </div>
             </c:when>
 

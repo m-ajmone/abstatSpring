@@ -126,7 +126,7 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Summarization</h3>
               </div>
-              <form:form action = "submit" modelAttribute = "submitConfig" method = "POST" >
+              <form:form action = "summarize/recap" modelAttribute = "submitConfig" method = "POST" >
                 <div class="box-body">
                   <label>Datasets Available</label>
                   <div class="form-group">
