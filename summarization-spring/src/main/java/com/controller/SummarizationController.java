@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.model.SubmitConfig;
@@ -22,12 +23,12 @@ public class SummarizationController {
 	
 	
 	@RequestMapping(value = "summarization" , method = RequestMethod.POST)
-	public Callable<String> runSummarization(@ModelAttribute("submitConfig") SubmitConfig subCfg)  throws Exception  {
+	public Callable<String> runSummarization(@ModelAttribute("submitConfig") SubmitConfig subCfg, @RequestParam("email") String email)  throws Exception  {
 		
 		Callable<String> callable = new Callable<String>() {
 			@Override
             public String call () throws Exception {
-				summarizationServ.summarizza(subCfg);
+				summarizationServ.summarize(subCfg, email);
 				return "redirect:home";
 			}
 		};

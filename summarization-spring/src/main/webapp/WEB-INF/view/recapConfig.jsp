@@ -176,15 +176,27 @@
                     </tr>
                   </table>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                  <form:form action = "summarization" method = "post">
-                    <input type="hidden" name="subCfgId" value="${submitConfig.getId()}" />
-                    <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
-                    <button type="submit" class="btn btn-primary">Summarize</button>
-                  </form:form>
+
+                <form:form action = "summarization" method = "post">
+                  <div class="box-body">
+                    <div class="col-xs-9" style="margin-left: -6px;">
+                     <label >Please insert your email if you want to be notified when your summary is ready:</label>
+                    <div class="col-xs-6" style="margin-left: -15px;">
+                      <input id="email" name="email" type="text" class="form-control"  placeholder="your email" />
+                    </div>
+                    </div>
+                  </div>
+
+                  <!-- /.box-body -->
+                  <div class="box-footer">
+                      <input type="hidden" name="subCfgId" value="${submitConfig.getId()}" />
+                      <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
+                      <button type="submit" class="btn btn-primary"  style="margin-left: 7px;">Summarize</button>
+                  </div>
                 </div>
-              </div>
+
+              </form:form>
+
               <!-- /.box -->
             </div>
           </div>

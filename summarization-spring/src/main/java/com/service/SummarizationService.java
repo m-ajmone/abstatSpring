@@ -4,6 +4,6 @@ import com.model.SubmitConfig;
 
 public interface SummarizationService {
 
-	public String summarizza(SubmitConfig subCfg) throws Exception ;
+	public String summarize(SubmitConfig subCfg, String email) throws Exception ;
 	
 }

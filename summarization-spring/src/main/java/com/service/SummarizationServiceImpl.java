@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +41,11 @@ public class SummarizationServiceImpl implements SummarizationService {
 	SubmitConfigService submitConfigService;
 	
 	
+	@Autowired
+	JavaMailSender emailSender;
+	
 	@Async("processExecutor")
-	public String summarizza(SubmitConfig subCfg)  throws Exception  {
+	public String summarize(SubmitConfig subCfg, String email)  throws Exception  {
 		Events.summarization();
 		
 		String ontPath = "";
@@ -119,6 +124,10 @@ public class SummarizationServiceImpl implements SummarizationService {
 		//save configuration
 		submitConfigService.add(subCfg);
 		
+		//mail notification
+		if(email!=null)
+			sendSimpleMessage(email, "Your summary is ready now!");
+		
  		return "redirect:home";
     
 	}	
@@ -182,4 +191,11 @@ public class SummarizationServiceImpl implements SummarizationService {
 	}
 	
 
+    public void sendSimpleMessage(String email, String text) {
+        SimpleMailMessage message = new SimpleMailMessage(); 
+        message.setTo(email); 
+        message.setSubject("ABSTAT"); 
+        message.setText(text);
+        emailSender.send(message);
+    }
 }
