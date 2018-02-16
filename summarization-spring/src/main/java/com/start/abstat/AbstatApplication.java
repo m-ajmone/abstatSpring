@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+@EnableAsync
 @SpringBootApplication
 public class AbstatApplication {
 	
@@ -25,7 +27,7 @@ public class AbstatApplication {
                 //-1 means unlimited
                 ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setMaxSwallowSize(-1);
                 ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setKeepAliveTimeout(-1);
-                ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setSoTimeout(60000 * 30);
+                ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setSoTimeout(60000 * 60);
             }
         });
 
