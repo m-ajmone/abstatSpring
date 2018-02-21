@@ -12,4 +12,5 @@ echo "Starting Solr"
 
 echo "Starting ABSTAT"
 cd summarization-spring
-mvn spring-boot:run@abstat
+mvn package
+java -jar target/summarization-spring-0.0.1-SNAPSHOT.jar

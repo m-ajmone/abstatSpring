@@ -222,21 +222,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.5.8.RELEASE</version>
-			    
-		<executions>
-            <execution>
-                <id>abstat</id>
-                <goals>
-                    <goal>run</goal>
-                </goals>
-                <configuration>
-                    <mainClass>com.start.abstat.AbstatApplication</mainClass>
-                    <includePluginDependencies>false</includePluginDependencies>
-                </configuration>
-            </execution>
-        </executions>
-			    
+				<version>1.5.8.RELEASE</version>    
+				<configuration>
+        			<executable>true</executable>
+    			</configuration>
 			</plugin>
 		</plugins>
 	</build>
