@@ -14,7 +14,7 @@ function start(){
 
 	echo "Starting ABSTAT"
 	cd summarization-spring
-	java -jar target/summarization-spring-0.0.1-SNAPSHOT.jar
+	java -Xmx32000m -Xms256m  -jar target/summarization-spring-0.0.1-SNAPSHOT.jar
 }
 
 function build(){
