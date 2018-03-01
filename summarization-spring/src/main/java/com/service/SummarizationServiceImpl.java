@@ -40,77 +40,48 @@ public class SummarizationServiceImpl implements SummarizationService {
 	@Autowired
 	SubmitConfigService submitConfigService;
 	
-	
 	@Autowired
 	JavaMailSender emailSender;
+
 	
 	@Async("processExecutor")
-	public String summarize(SubmitConfig subCfg, String email)  throws Exception  {
+	public void summarizeAsyncWrapper(SubmitConfig subCfg, String email) throws Exception  {
+		summarize(subCfg, email);
+	}
+	
+
+	public void summarize(SubmitConfig subCfg, String email)  throws Exception  {
 		Events.summarization();
-		
-		String ontPath = "";
-		String ontName = "";
 		String dsId = subCfg.getDsId();
 		Dataset dataset = datasetService.findDatasetById(dsId);
 		String datasetName = dataset.getName();
-		String inf = ""; String minTp = ""; String propMin = ""; String card = "";
-
-		if(subCfg.isTipoMinimo())        minTp = "MinTp";
-		if(subCfg.isCardinalita())       card = "Card";
-		if(subCfg.isInferences())        inf = "Inf";
-		if(subCfg.isPropertyMinimaliz()) propMin = "PropMin";
-		if(!subCfg.isTipoMinimo() || subCfg.getListOntId().isEmpty()) {
-			ontPath = new File(System.getProperty("user.dir")).getParentFile().getAbsolutePath() + "/data/DsAndOnt/ontology/emptyOnt.owl";
-			ontName = "emptyOnt";
-		}
-		else {
-			String ontId = subCfg.getListOntId().get(0);
-			ontPath = new File(ontologyService.findOntologyById(ontId).getPath()).getCanonicalPath();
-			ontName = ontologyService.findOntologyById(ontId).getName();
-		}
-		
-		String summary_dir = new File(System.getProperty("user.dir")).getParentFile().getAbsolutePath() + "/data/summaries/" + datasetName + "_" + ontName + "_" + minTp + propMin + card + inf +"/";
+		String ontId = subCfg.getListOntId().get(0);
+		String ontPath = ontologyService.findOntologyById(ontId).getPath();
+		String summary_dir = subCfg.getSummaryPath();
+	
 		String datasetSupportFileDirectory = summary_dir + "/reports/tmp-data-for-computation/";
         checkFile(summary_dir);
         checkFile(datasetSupportFileDirectory);
-        //String owlBaseFile = ontologyService.findOntologyById(ontId).getPath();
 		
 		//Process ontology
 		ProcessOntology.main(new String[] {ontPath, datasetSupportFileDirectory});
-        //Script bash/awk invocation
- 		String[] cmd = {"../pipeline/split-dataset.sh", datasetName};
- 		Process p = Runtime.getRuntime().exec(cmd);
- 		BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
- 	    String line = "";
- 	    while ((line = reader.readLine()) != null)
- 	    	System.out.println(line);
-
+        
+		//Script bash/awk invocation
+		split(datasetName);
 
  		String minTypeResult = summary_dir + "/min-types/min-type-results/";
  		String patternsPath = summary_dir + "/patterns/";
+        String typesDirectory = "../data/DsAndOnt/dataset/" + datasetName + "/organized-splitted-deduplicated/";
         checkFile(minTypeResult);
         checkFile(patternsPath);
-        String typesDirectory = "../data/DsAndOnt/dataset/" + dataset.getName() + "/organized-splitted-deduplicated/";
- 		
- 		//Minimal types
- 		CalculateMinimalTypes.main(new String[] {ontPath, typesDirectory, minTypeResult});
- 		//Aggregate concepts
- 		AggregateConceptCounts.main(new String[] {minTypeResult, patternsPath});
- 		//Process dt relational asserts
- 		ProcessDatatypeRelationAssertions.main(new String[] {typesDirectory, minTypeResult, patternsPath});
- 		//Process obj relational asserts
- 		ProcessObjectRelationAssertions.main(new String[] {typesDirectory, minTypeResult, patternsPath});
 
  		
- 		//sposto i file akp_grezzo
- 		Path objectAkpGrezzo_target = Paths.get(patternsPath+"object-akp_grezzo.txt");
+        // core summarization
+        coreSummarization(ontPath, typesDirectory, minTypeResult, patternsPath);
+ 		
+        Path objectAkpGrezzo_target = Paths.get(patternsPath+"object-akp_grezzo.txt");
  		Path datatypeAkpGrezzo_target = Paths.get(patternsPath+"datatype-akp_grezzo.txt");
- 		Path datatypeAkpGrezzo_src = Paths.get("datatype-akp_grezzo.txt");
- 		Path objectAkpGrezzo_src = Paths.get("object-akp_grezzo.txt");
- 		Files.move(datatypeAkpGrezzo_src, datatypeAkpGrezzo_target, REPLACE_EXISTING);
- 		Files.move(objectAkpGrezzo_src, objectAkpGrezzo_target,REPLACE_EXISTING);
- 		
- 		
+
  		//Property minimalization
  		if(subCfg.isPropertyMinimaliz()) 
  			propertyMinimalization(objectAkpGrezzo_target, datatypeAkpGrezzo_target, patternsPath, ontPath);
@@ -126,12 +97,39 @@ public class SummarizationServiceImpl implements SummarizationService {
 		
 		//mail notification
 		if(email!=null)
-			sendSimpleMessage(email, "Your summary is ready now!");
-		
- 		return "redirect:home";
-    
+			sendMail(email, "Your summary is ready now!");
 	}	
 	
+	
+	private void coreSummarization(String ontPath, String typesDirectory, String minTypeResult, String patternsPath) throws Exception{
+		//Minimal types
+ 		CalculateMinimalTypes.main(new String[] {ontPath, typesDirectory, minTypeResult});
+ 		//Aggregate concepts
+ 		AggregateConceptCounts.main(new String[] {minTypeResult, patternsPath});
+ 		//Process dt relational asserts
+ 		ProcessDatatypeRelationAssertions.main(new String[] {typesDirectory, minTypeResult, patternsPath});
+ 		//Process obj relational asserts
+ 		ProcessObjectRelationAssertions.main(new String[] {typesDirectory, minTypeResult, patternsPath});
+
+ 		//sposto i file akp_grezzo
+ 		Path objectAkpGrezzo_target = Paths.get(patternsPath+"object-akp_grezzo.txt");
+ 		Path datatypeAkpGrezzo_target = Paths.get(patternsPath+"datatype-akp_grezzo.txt");
+ 		Path datatypeAkpGrezzo_src = Paths.get("datatype-akp_grezzo.txt");
+ 		Path objectAkpGrezzo_src = Paths.get("object-akp_grezzo.txt");
+ 		Files.move(datatypeAkpGrezzo_src, datatypeAkpGrezzo_target, REPLACE_EXISTING);
+ 		Files.move(objectAkpGrezzo_src, objectAkpGrezzo_target,REPLACE_EXISTING);
+ 		
+	}
+
+	
+	private void split(String datasetName) throws Exception {
+ 		String[] cmd = {"../pipeline/split-dataset.sh", datasetName};
+ 		Process p = Runtime.getRuntime().exec(cmd);
+ 		BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+ 	    String line = "";
+ 	    while ((line = reader.readLine()) != null)
+ 	    	System.out.println(line);
+	}
 	
 	private void propertyMinimalization(Path objectAkpGrezzo_target, Path datatypeAkpGrezzo_target, String patternsPath, String ontPath) throws Exception{
 	    //ordino i file akp_grezzo
@@ -191,7 +189,7 @@ public class SummarizationServiceImpl implements SummarizationService {
 	}
 	
 
-    public void sendSimpleMessage(String email, String text) {
+    public void sendMail(String email, String text) {
         SimpleMailMessage message = new SimpleMailMessage(); 
         message.setTo(email); 
         message.setSubject("ABSTAT"); 

@@ -86,7 +86,7 @@ public class SummarizationController {
 		Callable<String> callable = new Callable<String>() {
 			@Override
             public String call () throws Exception {
-				summarizationServ.summarize(subCfg, email);
+				summarizationServ.summarizeAsyncWrapper(subCfg, email);
 				redirectAttributes.addFlashAttribute("message", "You successfully submit the summarization request");
 				return "redirect:status";
 			}
