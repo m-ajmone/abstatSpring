@@ -58,7 +58,7 @@
       <!-- Main Header -->
       <header class="main-header">
         <!-- Logo -->
-        <a href="home" class="logo">
+        <a href="../home" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"> <img src="../img/bicocca.png" width="50" height="50"> </span>
           <!-- logo for regular state and mobile devices -->
