@@ -4,6 +4,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,7 +57,7 @@ public class SummarizationServiceImpl implements SummarizationService {
 		Dataset dataset = datasetService.findDatasetById(dsId);
 		String datasetName = dataset.getName();
 		String ontId = subCfg.getListOntId().get(0);
-		String ontPath = ontologyService.findOntologyById(ontId).getPath();
+		String ontPath = new File(ontologyService.findOntologyById(ontId).getPath()).getCanonicalPath();
 		String summary_dir = subCfg.getSummaryPath();
 	
 		String datasetSupportFileDirectory = summary_dir + "/reports/tmp-data-for-computation/";
@@ -68,7 +69,7 @@ public class SummarizationServiceImpl implements SummarizationService {
         
 		//Script bash/awk invocation
 		split(datasetName);
-
+		
  		String minTypeResult = summary_dir + "/min-types/min-type-results/";
  		String patternsPath = summary_dir + "/patterns/";
         String typesDirectory = "../data/DsAndOnt/dataset/" + datasetName + "/organized-splitted-deduplicated/";
@@ -96,7 +97,7 @@ public class SummarizationServiceImpl implements SummarizationService {
 		submitConfigService.add(subCfg);
 		
 		//mail notification
-		if(email!=null)
+		if(email!=null && !email.equals(""))
 			sendMail(email, "Your summary is ready now!");
 	}	
 	
@@ -190,6 +191,7 @@ public class SummarizationServiceImpl implements SummarizationService {
 	
 
     public void sendMail(String email, String text) {
+
         SimpleMailMessage message = new SimpleMailMessage(); 
         message.setTo(email); 
         message.setSubject("ABSTAT"); 
