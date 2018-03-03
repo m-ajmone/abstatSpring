@@ -109,7 +109,7 @@
               <div class="box box-info">
 
                 <div class="box-header">
-                  <h3 class="box-title">Stored Summaries</h3>
+                  <h3 class="box-title">Stored summaries</h3>
                 </div>
 
                 <div class="box-body">

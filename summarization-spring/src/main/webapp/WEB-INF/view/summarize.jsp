@@ -102,7 +102,7 @@
             <!-- general form elements -->
             <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Upload a Dataset</h3>
+                <h3 class="box-title">Upload a dataset</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
@@ -124,7 +124,7 @@
             <!-- box summarization -->
             <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Summarization</h3>
+                <h3 class="box-title">Summarize</h3>
               </div>
               <form:form action = "summarize/recap" modelAttribute = "submitConfig" method = "POST" >
                 <div class="box-body">
@@ -179,7 +179,7 @@
           <div class="col-md-6">
             <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Upload an Ontology</h3>
+                <h3 class="box-title">Upload an ontology</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->

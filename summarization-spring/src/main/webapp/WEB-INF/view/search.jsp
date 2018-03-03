@@ -113,12 +113,12 @@
                   </c:forEach>
                 </select>
               </div>
-              <input type="text" class="form-control" ng-model="srcStr" placeHolder="search for concepts, properties and abstract knowledge patterns"/>
+              <input type="text" class="form-control" ng-model="srcStr" placeHolder="Search for concepts, properties and abstract knowledge patterns"/>
             </div>
             <div class="box-body col-md-12">
               <div class="checkbox" style="margin-top:-0.2cm">
                 <label>
-                <input type="checkbox" ng-model="searchInExternalResources">include non-preferred resources
+                <input type="checkbox" ng-model="searchInExternalResources">Include non-preferred resources
                 </label>
               </div>
               <button type="submit" class="btn btn-primary" ng-click="loadPatterns()">Search</button>

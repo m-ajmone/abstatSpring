@@ -102,7 +102,7 @@
             <div class="box box-info">
 
               <div class="box-header">
-                <h3 class="box-title">Summaries Available</h3>
+                <h3 class="box-title">Available summaries</h3>
               </div>
 
               <div class="box-body">
@@ -207,7 +207,7 @@
             <div class="box box-info">
               
               <div class="box-header">
-                <h3 class="box-title">Datasets Available</h3>
+                <h3 class="box-title">Available data sets</h3>
               </div>
               
               <div class="box-body">
@@ -241,7 +241,7 @@
             <div class="box box-info">
               
               <div class="box-header">
-                <h3 class="box-title">Ontologies Available</h3>
+                <h3 class="box-title">Available ontologies</h3>
               </div>
               
               <div class="box-body">
