@@ -1,7 +1,9 @@
 package com.controller;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,12 +68,13 @@ public class SummarizationController {
 		for(String id : submitConfig.getListOntId())
 			ontlogiesListName.add(ontologyService.findOntologyById(id).getName());
 		
-		
+		Date dNow = new Date( );
+        SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy hh:mm:ss");
 		
 		submitConfig.setDsName(datasetName);
 		submitConfig.setListOntNames(ontlogiesListName);
 		submitConfig.setSummaryPath(summary_dir);
-		submitConfig.setTimestamp(new Timestamp(System.currentTimeMillis()).toString());
+		submitConfig.setTimestamp(ft.format(dNow));
 		
 		ModelAndView model = new ModelAndView("recapConfig");
 		model.addObject("submitConfig", submitConfig);

@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +43,16 @@ public class UploadController {
             return "redirect:status";
         }
 		try {
-
             // Get the file and save it somewhere
             InputStream stream = file.getInputStream();
+            
+            Date dNow = new Date( );
+            SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy hh:mm:ss");
             
             Dataset dataset = new Dataset();
             dataset.setType("dataset");
             dataset.setName(file.getOriginalFilename().replaceFirst("[.][^.]+$", ""));
-            dataset.setTimestamp(new Timestamp(System.currentTimeMillis()).toString());
+            dataset.setTimestamp( ft.format(dNow));
             String percorso = UPLOADED_FOLDER + "dataset" + "/" + dataset.getName();
             dataset.setPath(percorso  +"/"+ file.getOriginalFilename());
             //path del file
@@ -85,13 +89,15 @@ public class UploadController {
             return "redirect:status";
         }
 		try {
-
+			 Date dNow = new Date( );
+	         SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy hh:mm:ss");
+	         
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             Ontology ontology = new Ontology();
             ontology.setType("ontology");
             ontology.setName(file.getOriginalFilename().replaceFirst("[.][^.]+$", ""));
-            ontology.setTimestamp(new Timestamp(System.currentTimeMillis()).toString());
+            ontology.setTimestamp( ft.format(dNow));
             String percorso = UPLOADED_FOLDER + "ontology";
             ontology.setPath(percorso  +"/"+ file.getOriginalFilename());
             //path del file
