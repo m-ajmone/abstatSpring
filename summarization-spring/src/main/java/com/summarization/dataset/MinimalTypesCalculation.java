@@ -147,8 +147,8 @@ public class MinimalTypesCalculation implements Processing{
 			this.subclassRelations.add(subClasses.get(0) + "##" + subClasses.get(1));
 		}
 		
-		OntologyDomainRangeExtractor DRExtractor = new OntologyDomainRangeExtractor();
-		DRExtractor.setConceptsDomainRange(concepts, properties);
+	//	OntologyDomainRangeExtractor DRExtractor = new OntologyDomainRangeExtractor();
+	//	DRExtractor.setConceptsDomainRange(concepts, properties);
 		return concepts;
 	}
 }
