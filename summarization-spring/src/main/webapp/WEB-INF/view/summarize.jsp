@@ -99,27 +99,6 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="box box-info">
-              <div class="box-header with-border">
-                <h3 class="box-title">Upload a dataset</h3>
-              </div>
-              <!-- /.box-header -->
-              <!-- form start -->
-              <form role="form" method="POST" action="upload/ds" enctype="multipart/form-data">
-                <div class="box-body">
-                  <div class="form-group">
-                    <!-- <label for="exampleInputFile">File input</label> -->
-                    <input type="file" name="file">
-                    <p class="help-block">Datasets must have ".nt" extension</p>
-                  </div>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Upload</button>
-                </div>
-              </form>
-            </div>
             <!-- /.box -->
             <!-- box summarization -->
             <div class="box box-info">
@@ -177,6 +156,27 @@
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">Upload a dataset</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" method="POST" action="upload/ds" enctype="multipart/form-data">
+                <div class="box-body">
+                  <div class="form-group">
+                    <!-- <label for="exampleInputFile">File input</label> -->
+                    <input type="file" name="file">
+                    <p class="help-block">Datasets must have ".nt" extension</p>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+              </form>
+            </div>
             <div class="box box-info">
               <div class="box-header with-border">
                 <h3 class="box-title">Upload an ontology</h3>
