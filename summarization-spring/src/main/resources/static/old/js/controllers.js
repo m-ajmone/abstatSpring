@@ -2417,5 +2417,6 @@ var prefixes = {
 		"http://www.datacron-project.eu/datAcron#": "datacron",
 		"http://datashapes.org/dash#": "dash",
 		"http://ontology.cybershare.utep.edu/ELSEWeb/elseweb-lifemapper.owl#": "lslife",
-		"http://ecowlim.tfri.gov.tw/lode/resource/": "ecowlim"
+		"http://ecowlim.tfri.gov.tw/lode/resource/": "ecowlim",
+		"http://data.businessgraph.io/ontology#": "ebg"
 };
