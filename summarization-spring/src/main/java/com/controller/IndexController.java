@@ -69,7 +69,7 @@ public class IndexController {
 	
 	@RequestMapping(value = "/management", method = RequestMethod.GET)
 	public ModelAndView CRUD() {
-		ModelAndView model = new ModelAndView("CRUD/management");
+		ModelAndView model = new ModelAndView("management");
 		model.addObject("listSummaries", submitConfigService.listSubmitConfig());
 		model.addObject("listOntologies", ontologyService.listOntology());
 		model.addObject("listDatasets", datasetService.listDataset());

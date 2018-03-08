@@ -131,10 +131,7 @@
       <!-- /.content-wrapper -->
       <!-- Main Footer -->
       <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-        </div>
-        <!-- Default to the left -->
+        <strong> ABSTAT X.X.X </strong> source code is available on <a href="https://github.com/rAlvaPrincipe/abstatSpring">GitHub</a> under the <a href="https://www.gnu.org/licenses/">GNU Affero General Public License v3.010</a> licence.
       </footer>
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">

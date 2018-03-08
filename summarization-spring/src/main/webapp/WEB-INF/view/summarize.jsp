@@ -107,13 +107,13 @@
               </div>
               <form:form action = "summarize/recap" modelAttribute = "submitConfig" method = "POST" >
                 <div class="box-body">
-                  <label>Datasets Available</label>
+                  <label>Available data sets</label>
                   <div class="form-group">
                     <form:select class="form-control select2" path="dsId">
                       <form:options items="${listDataset}" itemLabel="name" itemValue="id" />
                     </form:select>
                   </div>
-                  <label>Ontologies Available</label>
+                  <label>Available ontologies</label>
                   <div class="form-group">
                     <form:select class="form-control select2" path="listOntId" multiple = "multiple">
                       <form:options items="${listOntology}" itemLabel="name" itemValue="id" />
@@ -168,7 +168,7 @@
                   <div class="form-group">
                     <!-- <label for="exampleInputFile">File input</label> -->
                     <input type="file" name="file">
-                    <p class="help-block">Datasets must have ".nt" extension</p>
+                    <p class="help-block">Data sets must have ".nt" extension</p>
                   </div>
                 </div>
                 <!-- /.box-body -->
@@ -208,12 +208,7 @@
     <!-- /.content-wrapper -->
     <!-- Main Footer -->
     <footer class="main-footer">
-      <!-- To the right -->
-      <div class="pull-right hidden-xs">
-        Anything you want
-      </div>
-      <!-- Default to the left -->
-      <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+      <strong> ABSTAT X.X.X </strong> source code is available on <a href="https://github.com/rAlvaPrincipe/abstatSpring">GitHub</a> under the <a href="https://www.gnu.org/licenses/">GNU Affero General Public License v3.010</a> licence.
     </footer>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
