@@ -237,6 +237,7 @@ public class MinimalTypesCalculationTest extends TestWithTemporaryData{
 		assertThat(linesOf("s_uknHierConcept.txt"), hasItem("http://entity##http://unknown"));
 	}
 	
+	/*
 	@Test
 	public void shouldGetAlsoConceptsThatAreMentionedAsDomaninOrRange() throws Exception {
 		ToyOntology ontology = new ToyOntology()
@@ -254,7 +255,7 @@ public class MinimalTypesCalculationTest extends TestWithTemporaryData{
 		
 		assertThat(linesOf("s_countConcepts.txt"), hasItem("http://datatype/age##0"));
 		assertThat(linesOf("s_countConcepts.txt"), hasItem("http://person##1"));
-	}
+	}*/
 	
 	private MinimalTypesCalculation minimalTypesFrom(ToyOntology ontology, File directory) throws Exception {
 		
