@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,15 @@ public class OntologyServiceImpl implements OntologyService {
 
 	
 	public List<Ontology> listOntology() {
-		return ontologyDao.listOntology();
+		List<Ontology> list = ontologyDao.listOntology();
+		Iterator<Ontology> iterator = list.iterator();
+		while(iterator.hasNext()) {
+			Ontology ont = iterator.next();
+			if(ont.getId().equals("empty_ontology"))
+				iterator.remove();
+		}
+		
+		return list;
 	}
 
 	

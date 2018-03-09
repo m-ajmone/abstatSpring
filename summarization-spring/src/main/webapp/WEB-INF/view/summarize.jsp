@@ -107,19 +107,20 @@
               </div>
               <form:form action = "summarize/recap" modelAttribute = "submitConfig" method = "POST" >
                 <div class="box-body">
-                  <label>Available data sets</label>
+                  <label>Choose a data set:</label>
                   <div class="form-group">
                     <form:select class="form-control select2" path="dsId">
                       <form:options items="${listDataset}" itemLabel="name" itemValue="id" />
                     </form:select>
                   </div>
-                  <label>Available ontologies</label>
+                  <label>Choose an ontology:</label>
                   <div class="form-group">
                     <form:select class="form-control select2" path="listOntId" multiple = "multiple">
+                      <form:option  value="empty_ontology">no ontology</form:option>
                       <form:options items="${listOntology}" itemLabel="name" itemValue="id" />
                     </form:select>
                   </div>
-                  <label>Options</label>
+                  <label>Options:</label>
                   <div class="form-group">
                     <div class="checkbox">
                       <label>
