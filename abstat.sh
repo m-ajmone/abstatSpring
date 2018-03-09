@@ -17,10 +17,12 @@ function start(){
 	java -Xmx32000m -Xms256m  -jar target/summarization-spring-0.0.1-SNAPSHOT.jar
 }
 
+
 function build(){
 	cd summarization-spring
 	mvn package 	
 }
+
 
 function install(){
 	sudo apt-get update
@@ -84,15 +86,33 @@ function install(){
 	sudo apt-get install -y gawk
 }
 
+
 function initMongo(){
-	now=$(date +"%x %X")
-	command="var document = {\"_id\" : \"system-test_dataset\",\"_class\" : \"com.model.Dataset\",\"name\" : \"system-test\",\"path\" : \"../data/DsAndOnt/dataset/system-test/system-test.nt\",\"timestamp\" : \""$now"\",\"type\" : \"dataset\",\"split\" : false};db.datasetAndOntology.insert(document);"
-	mongo 127.0.0.1/abstat --eval "$command"
-	command="var document = {\"_id\" : \"system-test_ontology\",\"_class\" : \"com.model.Ontology\",\"name\" : \"dbpedia_2014\",\"path\" : \"../data/DsAndOnt/ontology/dbpedia_2014.owl\",\"timestamp\" : \""$now"\",\"type\" : \"ontology\"};db.datasetAndOntology.insert(document);"
-	mongo 127.0.0.1/abstat --eval "$command"
-	command="var document = {\"_id\" : \"empty_ontology\",\"_class\" : \"com.model.Ontology\",\"name\" : \"emptyOnt\",\"path\" : \"../data/DsAndOnt/ontology/emptyOnt.owl\",\"timestamp\" : \""$now"\",\"type\" : \"ontology\"};db.datasetAndOntology.insert(document);"
-	mongo 127.0.0.1/abstat --eval "$command"
+    now=$(date +"%x %X")
+
+	mongo_command="db.datasetAndOntology.find({_id:\"system-test_dataset\"}).limit(1).size();"
+	exists="$(mongo 127.0.0.1/abstat --eval $mongo_command )"
+	if [[ "$exists" == *"0" ]]; then
+			command="var document = {\"_id\" : \"system-test_dataset\",\"_class\" : \"com.model.Dataset\",\"name\" : \"system-test\",\"path\" : \"../data/DsAndOnt/dataset/system-test/system-test.nt\",\"timestamp\" : \""$now"\",\"type\" : \"dataset\",\"split\" : false};db.datasetAndOntology.insert(document);"
+			mongo 127.0.0.1/abstat --quiet --eval "$command"
+	fi
+
+	mongo_command="db.datasetAndOntology.find({_id:\"system-test_ontology\"}).limit(1).size();"
+	exists="$(mongo 127.0.0.1/abstat --eval $mongo_command )"
+	if [[ "$exists" == *"0" ]]; then
+			command="var document = {\"_id\" : \"system-test_ontology\",\"_class\" : \"com.model.Ontology\",\"name\" : \"dbpedia_2014\",\"path\" : \"../data/DsAndOnt/ontology/dbpedia_2014.owl\",\"timestamp\" : \""$now"\",\"type\" : \"ontology\"};db.datasetAndOntology.insert(document);"
+			mongo 127.0.0.1/abstat --quiet --eval "$command"
+	fi
+
+
+	mongo_command="db.datasetAndOntology.find({_id:\"empty_ontology\"}).limit(1).size();"
+	exists="$(mongo 127.0.0.1/abstat --eval $mongo_command )"
+	if [[ "$exists" == *"0" ]]; then
+			command="var document = {\"_id\" : \"empty_ontology\",\"_class\" : \"com.model.Ontology\",\"name\" : \"no ontology\",\"path\" : \"../data/DsAndOnt/ontology/emptyOnt.owl\",\"timestamp\" : \""$now"\",\"type\" : \"ontology\"};db.datasetAndOntology.insert(document);"
+			mongo 127.0.0.1/abstat --quiet --eval "$command"
+	fi
 }
+
 
 case "$1" in
         start)
