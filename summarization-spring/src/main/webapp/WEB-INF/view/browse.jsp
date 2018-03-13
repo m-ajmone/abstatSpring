@@ -103,7 +103,7 @@
       <section class="content-header">
         <div ng-controller="browse">
           
-          <div class="row">
+          <div class="row" >
             
             <div class="col-md-12">
               <div class="box box-info">
@@ -112,7 +112,7 @@
                   <h3 class="box-title">Stored summaries</h3>
                 </div>
 
-                <div class="box-body" style="overflow-x:scroll;">
+                <div class="box-body" style="overflow: auto;">
                   <form>
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
@@ -201,7 +201,7 @@
             <div ng-show="graph_was_selected">
               <div class="col-md-12">
                 <div class="box box-info">
-                  <div class="box-body">
+                  <div class="box-body" style="overflow: auto;">
                     <div style="margin-top:0.0cm" class="row">
                       <div class="col-md-12">
                         <table class="table table-bordered table-hover table-striped">

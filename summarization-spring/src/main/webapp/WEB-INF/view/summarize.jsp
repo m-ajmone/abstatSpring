@@ -115,7 +115,7 @@
                   </div>
                   <label>Choose an ontology:</label>
                   <div class="form-group">
-                    <form:select class="form-control select2" path="listOntId" multiple = "multiple">
+                    <form:select class="form-control select2" path="listOntId" multiple = "multiple" id="ontologyCheckbox">
                       <form:option  value="empty_ontology">no ontology</form:option>
                       <form:options items="${listOntology}" itemLabel="name" itemValue="id" />
                     </form:select>
@@ -149,7 +149,7 @@
                   </div>
                 </div>
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" onclick="return checkInput();">Submit</button>
                 </div>
               </form:form>
             </div>
@@ -234,5 +234,20 @@
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. -->
+
+    <script type="text/javascript">
+      function checkInput(){
+        ontologyCheckbox  = document.getElementById('ontologyCheckbox').value;
+        if(!ontologyCheckbox){
+          alert("Please select an ontology");
+          return false;
+        }
+        else{
+          alert("ciao");
+          return true;
+        }
+      }
+    </script>
+    
   </body>
 </html>

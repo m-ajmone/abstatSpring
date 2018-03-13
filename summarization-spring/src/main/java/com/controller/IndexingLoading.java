@@ -239,12 +239,14 @@ public class IndexingLoading {
 		while (file.hasNextLine()) {
 			String line = file.nextLine();
 			if(!line.equals("")){
-				String[] splitted = line.split("##");				
-				AKP akp = AKPService.getAKP(splitted[0], splitted[1], splitted[2], config.getId());
-				
-				if(akp!=null) {  //to deal with no-minimal patterns
-					akp.setNumberOfInstances(Long.parseLong(splitted[4]));
-					AKPService.update(akp);
+				String[] splitted = line.split("##");	
+				if(Integer.parseInt(splitted[3])>0) {
+					AKP akp = AKPService.getAKP(splitted[0], splitted[1], splitted[2], config.getId());
+					
+					if(akp!=null) {  //to deal with no-minimal patterns
+						akp.setNumberOfInstances(Long.parseLong(splitted[4]));
+						AKPService.update(akp);
+					}
 				}
 			}
 		}

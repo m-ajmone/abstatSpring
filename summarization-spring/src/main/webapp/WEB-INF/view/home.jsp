@@ -105,7 +105,7 @@
                 <h3 class="box-title">Available summaries</h3>
               </div>
 
-              <div class="box-body">
+              <div class="box-body" style="overflow: auto;">
                 <form>
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
@@ -210,7 +210,7 @@
                 <h3 class="box-title">Available data sets</h3>
               </div>
               
-              <div class="box-body">
+              <div class="box-body" style="overflow: auto;">
                 <!-- /.box-header -->
                 <form>
                   <table id="example2" class="table table-bordered table-hover">
@@ -244,7 +244,7 @@
                 <h3 class="box-title">Available ontologies</h3>
               </div>
               
-              <div class="box-body">
+              <div class="box-body" style="overflow: auto;">
                 <!-- /.box-header -->
                 <form>
                   <table id="example2" class="table table-bordered table-hover">

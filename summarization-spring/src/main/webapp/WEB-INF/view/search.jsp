@@ -101,7 +101,7 @@
     <div class="content-wrapper">
       <!-- Main content -->
       <section class="content-header">
-        <div ng-controller="search">
+        <div ng-controller="search" style="overflow: auto;">
           <div class="box box-info">
             <div class="box-body col-md-12">
               <div class="form-group">

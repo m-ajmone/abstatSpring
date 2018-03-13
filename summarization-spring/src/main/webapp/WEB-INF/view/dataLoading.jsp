@@ -107,7 +107,7 @@
 
               <!-- /.box-header -->
               <form:form action = "indexingLoading" modelAttribute = "indexingReq" method = "POST" >
-                <div class="box-body">
+                <div class="box-body" style="overflow: auto;">
                   <table id="example2" class="table table-bordered table-hover table-striped">
                    
                     <thead>
@@ -129,7 +129,7 @@
                       <c:forEach var="summary" items="${listSummaries}">
                         <tr>
                           <td class = "text-center">
-                            <form:radiobutton name="readAnswer" path="idSummary" value="${summary.id}" />
+                            <form:radiobutton name="readAnswer" id="summaryRB" path="idSummary" value="${summary.id}"/>
                           </td>
                           <td>${summary.dsName}</td>
                           <td>${summary.listOntNames.get(0)}</td>
@@ -210,11 +210,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <div class="form-group">
+                      <div class="form-group" >
                         <tr>
                           <div class="checkbox">
                             <td>
-                              <form:checkbox path="loadOnMongoDB"/>
+                              <form:checkbox path="loadOnMongoDB" id="actionsCB"/>
                               &nbsp Store on the document database
                             </td>
                           </div>
@@ -222,7 +222,7 @@
                         <tr>
                           <div class="checkbox">
                             <td>
-                              <form:checkbox path="indexOnSolr"/>
+                              <form:checkbox path="indexOnSolr" id="actionsCB"/>
                               &nbsp Index on the search engine
                             </td>
                           </div>
@@ -244,7 +244,7 @@
                 </div>
 
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary" style="margin-left: 7px;" >Submit</button>
+                  <button type="submit" class="btn btn-primary" id="submitButton" style="margin-left: 7px;">Submit</button>
                 </div>
 
               </form:form>
@@ -299,6 +299,23 @@
           domain.style.display='none';
          } 
       }
+  
+      $( "#submitButton" ).click(function(event) {
+        var actionsCB = $('#actionsCB:checked');  
+        var summaryRB = $('#summaryRB:checked');          
+        if (summaryRB.length===0 || (summaryRB.length===0 && actionsCB.length===0)) {
+          alert("Please select a summary")
+          event.preventDefault();
+        }
+
+        if (actionsCB.length===0 && summaryRB.length===1) {
+          alert("Please select at least one action")
+          event.preventDefault();
+        }
+
+      });
+
     </script>
+
   </body>
 </html>

@@ -104,7 +104,7 @@
                 <h3 class="box-title">Management</h3>
               </div>
               <!-- /.box-header -->
-              <div class="box-body">
+              <div class="box-body" style="overflow: auto;">
 
                 <div class="form-group">
                   <label id="title" for="target">On what data do you want to operate? </label><br />

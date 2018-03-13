@@ -107,7 +107,7 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="overflow: auto;">
               <div class="col-md-12">
                 <div>This API allows a user to list the ID's summaries which match the input parameters</div>
                 <div>
@@ -164,7 +164,7 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="overflow: auto;">
               <div class="col-md-12">
                 <div>This API allows a user to list all the subject/predicate/object of a given summary that has been previously stored</div>
                 <div> 
@@ -226,7 +226,7 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="overflow: auto;">
               <div class="col-md-12">
                 <div>This API allows a user to list all AKPs which match the input parameters.</div>
                 <div>
@@ -327,7 +327,7 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body" style="overflow: auto;">
               <div class="col-md-12">
                 <div>This API allows a user get suggestions based on the specified constraints.</div>
                 <div>
