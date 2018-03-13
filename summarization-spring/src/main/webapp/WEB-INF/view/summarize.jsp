@@ -149,7 +149,7 @@
                   </div>
                 </div>
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary" onclick="return checkInput();">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
                 </div>
               </form:form>
             </div>
@@ -236,17 +236,16 @@
       user experience. -->
 
     <script type="text/javascript">
-      function checkInput(){
-        ontologyCheckbox  = document.getElementById('ontologyCheckbox').value;
-        if(!ontologyCheckbox){
-          alert("Please select an ontology");
-          return false;
+       $( "#submitButton" ).click(function(event) {
+        var ontologyCB = $('#ontologyCheckbox option:selected'); 
+        console.log(ontologyCB)
+
+        if (ontologyCB.length===0 ) {
+          alert("Please select an ontology")
+          event.preventDefault();
         }
-        else{
-          alert("ciao");
-          return true;
-        }
-      }
+      });
+
     </script>
     
   </body>
